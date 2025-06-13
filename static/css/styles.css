@@ -1,0 +1,478 @@
+/* CSS Custom Properties for Theme Management */
+:root {
+  /* Light Theme Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --border-color: #dee2e6;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  
+  /* Brand Colors */
+  --farmington-green: #28a745;
+  --farmington-brown: #8b4513;
+  --farmington-gold: #ffc107;
+  --farmington-orange: #fd7e14;
+  
+  /* Status Colors */
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --info: #17a2b8;
+  
+  /* Animation Settings */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* Dark Theme Colors */
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #404040;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-muted: #999999;
+  --border-color: #555555;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-lg: rgba(0, 0, 0, 0.5);
+}
+
+/* Base Styles */
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* Card Enhancements */
+.card {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+  box-shadow: 0 0.125rem 0.25rem var(--shadow);
+  transition: all var(--transition-normal);
+  border-radius: 0.75rem;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background-color: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+  font-weight: 600;
+}
+
+/* Farmer Card Styles */
+.farmer-card {
+  transition: all var(--transition-normal);
+  overflow: hidden;
+}
+
+.farmer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.75rem 1.5rem var(--shadow-lg);
+}
+
+.farmer-card.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
+.farmer-market-card {
+  border-left: 4px solid var(--farmington-green);
+}
+
+.farmer-preview-card {
+  border: 2px solid var(--border-color);
+  transition: border-color var(--transition-fast);
+}
+
+.farmer-preview-card:hover {
+  border-color: var(--farmington-orange);
+}
+
+.farmer-display-card {
+  transition: all var(--transition-normal);
+}
+
+.farmer-display-card:hover {
+  box-shadow: 0 0.5rem 1rem var(--shadow-lg);
+}
+
+/* Stat Display Components */
+.stat-display {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--bg-secondary);
+  margin-bottom: 0.5rem;
+  transition: background-color var(--transition-fast);
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.25rem;
+}
+
+.stat-summary {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--bg-secondary);
+  transition: all var(--transition-fast);
+}
+
+.stat-summary:hover {
+  background-color: var(--bg-tertiary);
+  transform: scale(1.05);
+}
+
+/* Navigation Enhancements */
+.navbar {
+  box-shadow: 0 0.125rem 0.25rem var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.nav-tabs .nav-link {
+  color: var(--text-secondary);
+  border-color: transparent;
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: var(--border-color);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--bg-primary);
+  border-color: var(--farmington-orange);
+  color: var(--farmington-orange);
+  font-weight: 600;
+}
+
+/* Button Enhancements */
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  text-transform: none;
+  letter-spacing: 0.25px;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.25rem 0.5rem var(--shadow);
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* Form Enhancements */
+.form-control,
+.form-select {
+  background-color: var(--bg-primary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  border-radius: 0.5rem;
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--bg-primary);
+  border-color: var(--farmington-orange);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 0.2rem rgba(253, 126, 20, 0.25);
+}
+
+.form-label {
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Draft Select Validation */
+.draft-select option:disabled {
+  color: var(--text-muted);
+  background-color: var(--bg-tertiary);
+}
+
+/* Table Enhancements */
+.table {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.table th {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.table td {
+  border-color: var(--border-color);
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Alert Enhancements */
+.alert {
+  border-radius: 0.75rem;
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem var(--shadow);
+}
+
+/* Badge Enhancements */
+.badge {
+  font-weight: 500;
+  padding: 0.5em 0.75em;
+  border-radius: 0.5rem;
+}
+
+/* Progress Bar Enhancements */
+.progress {
+  background-color: var(--bg-tertiary);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.progress-bar {
+  transition: width var(--transition-normal);
+}
+
+/* Countdown Display */
+.countdown-display {
+  padding: 2rem;
+}
+
+.countdown-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--danger);
+  text-shadow: 0 2px 4px var(--shadow);
+}
+
+.countdown-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* Trading Card Styles */
+.farmer-trade-card {
+  transition: all var(--transition-fast);
+  border-radius: 0.5rem;
+}
+
+.farmer-trade-card:hover {
+  transform: scale(1.02);
+}
+
+/* Story Content Styling */
+.story-content {
+  background-color: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  font-family: 'Courier New', monospace;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.stats-content {
+  background-color: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+}
+
+/* Recent Form Display */
+.recent-form .badge {
+  font-size: 0.75rem;
+  padding: 0.25em 0.5em;
+}
+
+/* Role Suitability Indicators */
+.role-suitability {
+  padding: 0.5rem;
+  background-color: var(--bg-secondary);
+  border-radius: 0.375rem;
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn var(--transition-slow) ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+  animation: slideIn var(--transition-normal) ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+/* Theme Toggle Animation */
+.theme-transition {
+  transition: all var(--transition-slow);
+}
+
+/* Dark Theme Specific Adjustments */
+[data-theme="dark"] .table-dark {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .bg-light {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .text-dark {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .border {
+  border-color: var(--border-color) !important;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .display-5 {
+    font-size: 2rem;
+  }
+  
+  .display-6 {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-number {
+    font-size: 2rem;
+  }
+  
+  .stat-value {
+    font-size: 1rem;
+  }
+  
+  .farmer-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Accessibility Enhancements */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+  outline: 2px solid var(--farmington-orange);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .navbar,
+  .btn,
+  .card-footer {
+    display: none !important;
+  }
+  
+  .card {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Loading Spinner */
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--text-muted);
+  border-radius: 50%;
+  border-top-color: var(--farmington-orange);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Utility Classes */
+.text-farmington-green { color: var(--farmington-green) !important; }
+.text-farmington-brown { color: var(--farmington-brown) !important; }
+.text-farmington-gold { color: var(--farmington-gold) !important; }
+.text-farmington-orange { color: var(--farmington-orange) !important; }
+
+.bg-farmington-green { background-color: var(--farmington-green) !important; }
+.bg-farmington-brown { background-color: var(--farmington-brown) !important; }
+.bg-farmington-gold { background-color: var(--farmington-gold) !important; }
+.bg-farmington-orange { background-color: var(--farmington-orange) !important; }
+
+.border-farmington-green { border-color: var(--farmington-green) !important; }
+.border-farmington-brown { border-color: var(--farmington-brown) !important; }
+.border-farmington-gold { border-color: var(--farmington-gold) !important; }
+.border-farmington-orange { border-color: var(--farmington-orange) !important; }

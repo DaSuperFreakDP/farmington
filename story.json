@@ -1,0 +1,11 @@
+{
+    "ty": {
+        "story_message": "First,\nJosh tried their best to Build Tha Fence but ended up creating a luxury dog door for every farm animal...mission failed! Zach and Tyler were both very disappointed in Josh.\nDue to after slipping on a rogue vegetable during lunch break, Josh became injured and will miss 0 matchday(s).\nThen,\nZach tried their best to Mow Tha Lawn and made it look so good that even the weeds started lining up to apologize. Everyone cheered and started to square-dance!\nFinally,\nTyler tried their best to Shovel Tha Manure but his efforts belong in the same pile. Josh and Zach were both very disappointed in Tyler.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "Oh no! Tyler got heat stroke and struggled to do their task.",
+        "miss_days": {
+            "Josh": 0,
+            "Zach": 0,
+            "Tyler": 0
+        }
+    }
+}

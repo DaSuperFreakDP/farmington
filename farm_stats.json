@@ -1,0 +1,11 @@
+{
+    "users": {
+        "ty": {
+            "matchday": 0,
+            "drafted_team": {},
+            "data": [],
+            "total_injuries": 10,
+            "total_injury_points_lost": 13
+        }
+    }
+}
