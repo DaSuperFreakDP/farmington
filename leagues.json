@@ -1,0 +1,343 @@
+{
+    "31DAC053": {
+        "name": "balls",
+        "code": "31DAC053",
+        "host": "ty",
+        "players": [
+            "ty",
+            "jared"
+        ],
+        "season": "summer",
+        "matchdays": 30,
+        "use_playoffs": true,
+        "playoff_cutoff": 6,
+        "draft_time": "2025-06-17T20:25:09.170126",
+        "draft_complete": true,
+        "snake_order": [
+            "jared",
+            "ty",
+            "ty",
+            "jared",
+            "jared",
+            "ty",
+            "ty",
+            "jared",
+            "jared",
+            "ty"
+        ],
+        "market_initialized": true,
+        "playoff_records": {},
+        "recorded_matchups": [],
+        "picked_farmers": [
+            {
+                "id": 5,
+                "name": "Luke",
+                "strength": 9,
+                "handy": 3,
+                "stamina": 6,
+                "physical": 7,
+                "image": "https://via.placeholder.com/150x150/F4A460/000000?text=Luke",
+                "crop_preferences": {
+                    "summer": "watermelons",
+                    "fall": "cranberries",
+                    "winter": "winter_wheat",
+                    "spring": "spinach"
+                }
+            },
+            {
+                "id": 1,
+                "name": "Josh",
+                "strength": 1,
+                "handy": 7,
+                "stamina": 6,
+                "physical": 6,
+                "image": "/static/images/farmers/josh.png",
+                "crop_preferences": {
+                    "summer": "tomatoes",
+                    "fall": "apples",
+                    "winter": "kale",
+                    "spring": "lettuce"
+                }
+            },
+            {
+                "id": 2,
+                "name": "Zach",
+                "strength": 5,
+                "handy": 4,
+                "stamina": 8,
+                "physical": 8,
+                "image": "/static/images/farmers/zach.png",
+                "crop_preferences": {
+                    "summer": "corn",
+                    "fall": "pumpkins",
+                    "winter": "brussels_sprouts",
+                    "spring": "radishes"
+                }
+            },
+            {
+                "id": 6,
+                "name": "Vrock",
+                "strength": 6,
+                "handy": 5,
+                "stamina": 5,
+                "physical": 6,
+                "image": "https://via.placeholder.com/150x150/D2691E/FFFFFF?text=Vrock",
+                "crop_preferences": {
+                    "summer": "zucchini",
+                    "fall": "carrots",
+                    "winter": "cabbage",
+                    "spring": "asparagus"
+                }
+            },
+            {
+                "id": 7,
+                "name": "Jared",
+                "strength": 5,
+                "handy": 8,
+                "stamina": 9,
+                "physical": 8,
+                "image": "https://via.placeholder.com/150x150/BC8F8F/000000?text=Jared",
+                "crop_preferences": {
+                    "summer": "tomatoes",
+                    "fall": "pumpkins",
+                    "winter": "kale",
+                    "spring": "lettuce"
+                }
+            },
+            {
+                "id": 3,
+                "name": "Tyler",
+                "strength": 10,
+                "handy": 3,
+                "stamina": 8,
+                "physical": 10,
+                "image": "/static/images/farmers/tyler.jpg",
+                "crop_preferences": {
+                    "summer": "peppers",
+                    "fall": "squash",
+                    "winter": "potatoes",
+                    "spring": "peas"
+                }
+            },
+            {
+                "id": 4,
+                "name": "Tyrone",
+                "strength": 4,
+                "handy": 7,
+                "stamina": 7,
+                "physical": 9,
+                "image": "/static/images/farmers/tyrone.png",
+                "crop_preferences": {
+                    "summer": "cucumbers",
+                    "fall": "sweet_potatoes",
+                    "winter": "onions",
+                    "spring": "strawberries"
+                }
+            },
+            {
+                "id": 8,
+                "name": "Mezzy",
+                "strength": 8,
+                "handy": 9,
+                "stamina": 8,
+                "physical": 8,
+                "image": "https://via.placeholder.com/150x150/8FBC8F/000000?text=Mezzy",
+                "crop_preferences": {
+                    "summer": "corn",
+                    "fall": "apples",
+                    "winter": "brussels_sprouts",
+                    "spring": "radishes"
+                }
+            },
+            {
+                "id": 9,
+                "name": "Daisy Plowman",
+                "strength": 6,
+                "handy": 9,
+                "stamina": 4,
+                "physical": 8,
+                "image": "https://via.placeholder.com/150x150/FFB6C1/000000?text=Daisy",
+                "crop_preferences": {
+                    "summer": "peppers",
+                    "fall": "squash",
+                    "winter": "potatoes",
+                    "spring": "peas"
+                }
+            },
+            {
+                "id": 10,
+                "name": "Nellie Pickens",
+                "strength": 6,
+                "handy": 8,
+                "stamina": 3,
+                "physical": 3,
+                "image": "https://via.placeholder.com/150x150/FFA07A/000000?text=Nellie",
+                "crop_preferences": {
+                    "summer": "cucumbers",
+                    "fall": "sweet_potatoes",
+                    "winter": "onions",
+                    "spring": "strawberries"
+                }
+            }
+        ],
+        "user_drafts": {
+            "jared": {
+                "Fix Meiser": {
+                    "id": 5,
+                    "name": "Luke",
+                    "strength": 9,
+                    "handy": 3,
+                    "stamina": 6,
+                    "physical": 7,
+                    "image": "https://via.placeholder.com/150x150/F4A460/000000?text=Luke",
+                    "crop_preferences": {
+                        "summer": "watermelons",
+                        "fall": "cranberries",
+                        "winter": "winter_wheat",
+                        "spring": "spinach"
+                    }
+                },
+                "Speed Runner": {
+                    "id": 6,
+                    "name": "Vrock",
+                    "strength": 6,
+                    "handy": 5,
+                    "stamina": 5,
+                    "physical": 6,
+                    "image": "https://via.placeholder.com/150x150/D2691E/FFFFFF?text=Vrock",
+                    "crop_preferences": {
+                        "summer": "zucchini",
+                        "fall": "carrots",
+                        "winter": "cabbage",
+                        "spring": "asparagus"
+                    }
+                },
+                "Lift Tender": {
+                    "id": 7,
+                    "name": "Jared",
+                    "strength": 5,
+                    "handy": 8,
+                    "stamina": 9,
+                    "physical": 8,
+                    "image": "https://via.placeholder.com/150x150/BC8F8F/000000?text=Jared",
+                    "crop_preferences": {
+                        "summer": "tomatoes",
+                        "fall": "pumpkins",
+                        "winter": "kale",
+                        "spring": "lettuce"
+                    }
+                },
+                "Bench 1": {
+                    "id": 8,
+                    "name": "Mezzy",
+                    "strength": 8,
+                    "handy": 9,
+                    "stamina": 8,
+                    "physical": 8,
+                    "image": "https://via.placeholder.com/150x150/8FBC8F/000000?text=Mezzy",
+                    "crop_preferences": {
+                        "summer": "corn",
+                        "fall": "apples",
+                        "winter": "brussels_sprouts",
+                        "spring": "radishes"
+                    }
+                },
+                "Bench 2": {
+                    "id": 9,
+                    "name": "Daisy Plowman",
+                    "strength": 6,
+                    "handy": 9,
+                    "stamina": 4,
+                    "physical": 8,
+                    "image": "https://via.placeholder.com/150x150/FFB6C1/000000?text=Daisy",
+                    "crop_preferences": {
+                        "summer": "peppers",
+                        "fall": "squash",
+                        "winter": "potatoes",
+                        "spring": "peas"
+                    }
+                }
+            },
+            "ty": {
+                "Fix Meiser": {
+                    "id": 1,
+                    "name": "Josh",
+                    "strength": 1,
+                    "handy": 7,
+                    "stamina": 6,
+                    "physical": 6,
+                    "image": "/static/images/farmers/josh.png",
+                    "crop_preferences": {
+                        "summer": "tomatoes",
+                        "fall": "apples",
+                        "winter": "kale",
+                        "spring": "lettuce"
+                    }
+                },
+                "Speed Runner": {
+                    "id": 2,
+                    "name": "Zach",
+                    "strength": 5,
+                    "handy": 4,
+                    "stamina": 8,
+                    "physical": 8,
+                    "image": "/static/images/farmers/zach.png",
+                    "crop_preferences": {
+                        "summer": "corn",
+                        "fall": "pumpkins",
+                        "winter": "brussels_sprouts",
+                        "spring": "radishes"
+                    }
+                },
+                "Lift Tender": {
+                    "id": 3,
+                    "name": "Tyler",
+                    "strength": 10,
+                    "handy": 3,
+                    "stamina": 8,
+                    "physical": 10,
+                    "image": "/static/images/farmers/tyler.jpg",
+                    "crop_preferences": {
+                        "summer": "peppers",
+                        "fall": "squash",
+                        "winter": "potatoes",
+                        "spring": "peas"
+                    }
+                },
+                "Bench 1": {
+                    "id": 4,
+                    "name": "Tyrone",
+                    "strength": 4,
+                    "handy": 7,
+                    "stamina": 7,
+                    "physical": 9,
+                    "image": "/static/images/farmers/tyrone.png",
+                    "crop_preferences": {
+                        "summer": "cucumbers",
+                        "fall": "sweet_potatoes",
+                        "winter": "onions",
+                        "spring": "strawberries"
+                    }
+                },
+                "Bench 2": {
+                    "id": 10,
+                    "name": "Nellie Pickens",
+                    "strength": 6,
+                    "handy": 8,
+                    "stamina": 3,
+                    "physical": 3,
+                    "image": "https://via.placeholder.com/150x150/FFA07A/000000?text=Nellie",
+                    "crop_preferences": {
+                        "summer": "cucumbers",
+                        "fall": "sweet_potatoes",
+                        "winter": "onions",
+                        "spring": "strawberries"
+                    }
+                }
+            }
+        },
+        "picks_made": 10,
+        "pick_start_time": "2025-06-17T20:25:53.631446",
+        "last_pick_message": "ty selected Nellie Pickens as Bench 2"
+    }
+}

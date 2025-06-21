@@ -1,0 +1,20 @@
+{
+    "jared": {
+        "story_message": "First,\nLuke tried their best to Repair Tha Barn but failed. Someone call in the Amish like that one episode of Family Guy. Vrock and Jared were both very disappointed in Luke.\nDue to because he tried to arm wrestle a gangster cow and lost, Luke became injured and will miss 0 matchday(s).\nThen,\nVrock tried their best to Harvest tha Crops but couldn't find the damn tractor. Luke and Jared were both very disappointed in Vrock.\nFinally,\nJared tried their best to Shovel Tha Manure but he failed. That's wasn't cowshit... that was BULLSHIT! Luke and Vrock were both very disappointed in Jared.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "Oh no! Jared got heat stroke and struggled to do their task.",
+        "miss_days": {
+            "Luke": 0,
+            "Vrock": 0,
+            "Jared": 0
+        }
+    },
+    "ty": {
+        "story_message": "First,\nJosh tried their best to Build Tha Fence but forgot to put up the posts first, so it's basically just a bunch of random boards lying on the ground. Fucking retard. Zach and Tyler were both very disappointed in Josh.\nThen,\nZach tried their best to Mow Tha Lawn but the lawnmower refused to start. Josh and Tyler were both very disappointed in Zach.\nFinally,\nTyler tried their best to Shovel Tha Manure but he failed. That's wasn't cowshit... that was BULLSHIT! Josh and Zach were both very disappointed in Tyler.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "A devastating drought hit, ruining all crop-related work!",
+        "miss_days": {
+            "Josh": 0,
+            "Zach": 0,
+            "Tyler": 0
+        }
+    }
+}

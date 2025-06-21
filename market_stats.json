@@ -1,0 +1,289 @@
+{
+    "Josh": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Zach": {
+        "total_points": 4,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Speed Runner": {
+                "count": 1,
+                "total_points": 4
+            }
+        },
+        "recent_form": [
+            4
+        ]
+    },
+    "Tyler": {
+        "total_points": 7,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 7
+            }
+        },
+        "recent_form": [
+            7
+        ]
+    },
+    "Tyrone": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Vrock": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Jared": {
+        "total_points": 2,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Speed Runner": {
+                "count": 1,
+                "total_points": 2
+            }
+        },
+        "recent_form": [
+            2
+        ]
+    },
+    "Mezzy": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Daisy Plowman": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Nellie Pickens": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Beau Dilly": {
+        "total_points": 5,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            2,
+            3,
+            0,
+            0,
+            0
+        ]
+    },
+    "Buford Duggan": {
+        "total_points": 20,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 10
+            }
+        },
+        "recent_form": [
+            8,
+            5,
+            2,
+            4,
+            1
+        ]
+    },
+    "Rufus Barnwell": {
+        "total_points": 15,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 2
+            }
+        },
+        "recent_form": [
+            4,
+            4,
+            2,
+            4,
+            1
+        ]
+    },
+    "Mose Tractorbeam": {
+        "total_points": 2,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            2,
+            0
+        ]
+    },
+    "Nellie Goatley": {
+        "total_points": 12,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 24
+            }
+        },
+        "recent_form": [
+            0,
+            9,
+            0,
+            0,
+            3
+        ]
+    },
+    "Mose Stubblefield": {
+        "total_points": 21,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 19
+            }
+        },
+        "recent_form": [
+            7,
+            6,
+            0,
+            0,
+            8
+        ]
+    },
+    "June Goatley": {
+        "total_points": 12,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 16
+            }
+        },
+        "recent_form": [
+            0,
+            2,
+            0,
+            4,
+            6
+        ]
+    },
+    "Gus Mulewhistle": {
+        "total_points": 7,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 10
+            }
+        },
+        "recent_form": [
+            4,
+            3,
+            0,
+            0,
+            0
+        ]
+    },
+    "Dusty Plowman": {
+        "total_points": 9,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 8
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            3,
+            3,
+            3
+        ]
+    },
+    "Bo Plowman": {
+        "total_points": 11,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            4,
+            5,
+            0,
+            0,
+            2
+        ]
+    }
+}
