@@ -1,0 +1,1096 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Farmington{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="display-5 fw-bold text-primary">
+                <i class="fas fa-seedling me-2"></i>Welcome to Farmington
+            </h1>
+            <div class="badge bg-success fs-6">
+                <i class="fas fa-user me-1"></i>{{ username }}
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs nav-fill mb-4" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'stats' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='stats') }}'"
+                        type="button">
+                    <i class="fas fa-chart-bar me-2"></i>Match Stats
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'results' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='results') }}'"
+                        type="button">
+                    <i class="fas fa-newspaper me-2"></i>Results
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'draft' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='draft') }}'"
+                        type="button">
+                    <i class="fas fa-users me-2"></i>My Farm
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'leaderboard' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='leaderboard') }}'"
+                        type="button">
+                    <i class="fas fa-trophy me-2"></i>Leaderboard
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'farmer_stats' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='farmer_stats') }}'"
+                        type="button">
+                    <i class="fas fa-chart-bar me-2"></i>Farmer Stats
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'leagues' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='leagues') }}'"
+                        type="button">
+                    <i class="fas fa-users-cog me-2"></i>Leagues
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            {% if tab == 'stats' %}
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-chart-line me-2"></i>Matchday Statistics
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-content">
+                            {{ stats_html | safe }}
+                        </div>
+                    </div>
+                </div>
+
+            {% elif tab == 'results' %}
+                <div class="card shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-newspaper me-2"></i>Latest Matchday Report
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="impressive-timer mb-4" id="countdown">
+                            <div class="timer-description">
+                                <i class="fas fa-clock me-2"></i>Next Matchday Countdown
+                            </div>
+                            <div class="chicken-coop" id="chicken-coop">
+                                <div class="chicken sleeping" id="chicken1">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken2">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken3">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken4">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken5">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken6">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timer-display">
+                                <div id="timer" class="timer-text">--:--</div>
+                                <div class="timer-label">Time Left</div>
+                            </div>
+                        </div>
+
+                        <div class="result-box mb-4">
+                            <h4><i class="fas fa-book-open me-2"></i>📖 Story</h4>
+                            <div class="bg-light p-3 rounded">
+                                <p class="mb-0">{{ story_message | safe }}</p>
+                            </div>
+                        </div>
+
+                        <div class="result-box mb-4">
+                            <h4><i class="fas fa-exclamation-triangle me-2"></i>🔥 Catastrophe</h4>
+                            <div class="bg-warning bg-opacity-25 p-3 rounded">
+                                <p class="mb-0">{{ catastrophe_message }}</p>
+                            </div>
+                        </div>
+
+                        <div class="result-box">
+                            <h4><i class="fas fa-hospital me-2"></i>🏥 Upcoming Miss-Days</h4>
+                            <div class="bg-danger bg-opacity-25 p-3 rounded">
+                                {% if miss_days %}
+                                    <ul class="mb-0">
+                                        {% for name, days in miss_days.items() %}
+                                            <li><strong>{{ name }}</strong>: will miss {{ days }} matchday(s)</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p class="mb-0">No farmers are currently injured.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% elif tab == 'draft' %}
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-4">
+                            <i class="fas fa-hammer me-2"></i>Manage Your Farm Team
+                        </h3>
+
+                        {% if team %}
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h4 class="card-title mb-0">
+                                        <i class="fas fa-cogs me-2"></i>Role Assignments
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" action="{{ url_for('draft') }}">
+                                        <div class="row">
+                                            {% for role in roles %}
+                                                <div class="col-md-6 col-lg-4 mb-3">
+                                                    <label class="form-label fw-bold">
+                                                        <i class="fas fa-user-tag me-2"></i>{{ role }}
+                                                        {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                                                            <span class="badge bg-warning text-dark ms-2">Starting</span>
+                                                        {% endif %}
+                                                    </label>
+                                                    <select name="{{ role }}" class="form-select draft-select">
+                                                        <option value="">No farmer assigned</option>
+                                                        {% for farmer in team %}
+                                                            <option value="{{ farmer.name }}" 
+                                                                    {% if current_team[role] and current_team[role].name == farmer.name %}selected{% endif %}>
+                                                                {{ farmer.name }} (STR: {{ farmer.strength }}, HANDY: {{ farmer.handy }}, STA: {{ farmer.stamina }}, PHYS: {{ farmer.physical }})
+                                                            </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            <strong>Assignment Rules:</strong>
+                                            <ul class="mb-0 mt-2">
+                                                <li>All drafted farmers must be assigned to a role</li>
+                                                <li>You can leave starting positions empty if desired</li>
+                                                <li>Games will run with however many farmers you assign to starting positions</li>
+                                            </ul>
+                                        </div>
+                                        <button type="submit" class="btn btn-success btn-lg">
+                                            <i class="fas fa-save me-2"></i>Save Team Assignments
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-success text-white">
+                                    <h4 class="card-title mb-0">
+                                        <i class="fas fa-users me-2"></i>Current Team Lineup
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-4">
+                                        {% for role in roles %}
+                                            {% set farmer = current_team[role] %}
+                                            <div class="col-md-6 col-lg-4">
+                                                <div class="card farmer-display-card h-100 {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}border-success{% else %}border-secondary{% endif %}">
+                                            <div class="card-header {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}bg-success text-white{% else %}bg-secondary text-white{% endif %}">
+                                                <h6 class="card-title mb-0">
+                                                    {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                                                        <i class="fas fa-star me-2"></i>
+                                                    {% else %}
+                                                        <i class="fas fa-user me-2"></i>
+                                                    {% endif %}
+                                                    {{ role }}
+                                                </h6>
+                                            </div>
+
+                                            {% if farmer %}
+                                                {% if farmer.image %}
+                                                    <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+                                                         style="height: 300px; object-fit: cover;">
+                                                {% else %}
+                                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                                         style="height: 300px;">
+                                                        <i class="fas fa-user fa-4x text-muted"></i>
+                                                    </div>
+                                                {% endif %}
+                                            {% else %}
+                                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                                     style="height: 300px;">
+                                                    <div class="text-center">
+                                                        <i class="fas fa-user-slash fa-4x text-muted mb-3"></i>
+                                                        <p class="text-muted mb-0">No farmer assigned</p>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="card-body">
+                                                {% if farmer %}
+                                                    <h5 class="card-title text-center">{{ farmer.name }}</h5>
+
+                                                    <div class="row text-center">
+                                                        <div class="col-6">
+                                                            <div class="stat-item">
+                                                                <div class="stat-value text-danger fw-bold">{{ farmer.strength }}</div>
+                                                                <div class="stat-label text-muted small">Strength</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="stat-item">
+                                                                <div class="stat-value text-warning fw-bold">{{ farmer.handy }}</div>
+                                                                <div class="stat-label text-muted small">Handy</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row text-center mt-2">
+                                                        <div class="col-6">
+                                                            <div class="stat-item">
+                                                                <div class="stat-value text-info fw-bold">{{ farmer.stamina }}</div>
+                                                                <div class="stat-label text-muted small">Stamina</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="stat-item">
+                                                                <div class="stat-value text-success fw-bold">{{ farmer.physical }}</div>
+                                                                <div class="stat-label text-muted small">Physical</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mt-3 mb-2">
+                                                        <div class="progress" style="height: 8px;">
+                                                            <div class="progress-bar bg-primary" 
+                                                                 style="width: {{ ((farmer.strength + farmer.handy + farmer.stamina + farmer.physical) / 40 * 100)|round }}%"></div>
+                                                        </div>
+                                                        <small class="text-muted">Overall Rating: {{ farmer.strength + farmer.handy + farmer.stamina + farmer.physical }}/40</small>
+                                                    </div>
+
+                                                    <!-- Crop Preferences -->
+                                                    <div class="text-center">
+                                                        <small class="text-muted d-block">🌾 Crop Preferences:</small>
+                                                        <div class="mt-1">
+                                                            <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">☀️ {{ farmer.crop_preferences.summer|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                            <span class="badge bg-success" style="font-size: 0.6rem;">🍂 {{ farmer.crop_preferences.fall|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                        </div>
+                                                        <div class="mt-1">
+                                                            <span class="badge bg-info" style="font-size: 0.6rem;">❄️ {{ farmer.crop_preferences.winter|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                            <span class="badge bg-light text-dark" style="font-size: 0.6rem;">🌸 {{ farmer.crop_preferences.spring|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                        </div>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="text-center py-4">
+                                                        <h6 class="text-muted">Empty Position</h6>
+                                                        <p class="text-muted small mb-0">Assign a farmer to this role</p>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                You haven't drafted any farmers yet. Join a league and complete the draft first!
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% elif tab == 'leaderboard' %}
+    {% if current_league and league_leaderboard %}
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-users me-2"></i>{{ current_league.name }} League Standings
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th><i class="fas fa-medal me-2"></i>Rank</th>
+                                                        <th><i class="fas fa-user me-2"></i>Player</th>
+                                                        <th><i class="fas fa-seedling me-2"></i>Points</th>
+                                                        {% if current_league.use_playoffs %}
+                                                        <th><i class="fas fa-trophy me-2"></i>Record (W-L-T)</th>
+                                                        {% endif %}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for player in league_leaderboard %}
+                                                    <tr {% if player.is_current_user %}class="table-warning"{% endif %}>
+                                                        <td>
+                                                            {% if loop.index == 1 %}
+                                                                <span class="badge bg-warning text-dark">🏆 {{ loop.index }}</span>
+                                                            {% elif loop.index <= 3 %}
+                                                                <span class="badge bg-secondary">{{ loop.index }}</span>
+                                                            {% else %}
+                                                                <span class="badge bg-light text-dark">{{ loop.index }}</span>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <strong>{{ player.username }}</strong>
+                                                            {% if player.is_current_user %}
+                                                                <span class="badge bg-success ms-2">You</span>
+                                                            {% endif %}
+                                                        </td>
+                                                        <td>
+                                                            <span class="fw-bold text-success">{{ player.total_points }}</span>
+                                                        </td>
+                                                        {% if current_league.use_playoffs %}
+                                                        <td>
+                                                            <span class="badge bg-success">{{ player.wins }}W</span>
+                                                            <span class="badge bg-danger">{{ player.losses }}L</span>
+                                                            <span class="badge bg-secondary">{{ player.ties }}T</span>
+                                                        </td>
+                                                        {% endif %}
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+            </div>
+        </div>
+    {% else %}
+        <p>No leaderboard data available.</p>
+    {% endif %}
+
+
+                <!-- Global Leaderboard -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-warning text-dark">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-trophy me-2"></i>Global Leaderboard
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th><i class="fas fa-medal me-2"></i>Rank</th>
+                                        <th><i class="fas fa-user me-2"></i>Player</th>
+                                        <th><i class="fas fa-star me-2"></i>Total Points</th>
+                                        <th><i class="fas fa-eye me-2"></i>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for entry in global_leaderboard %}
+                                        <tr {% if entry.is_current_user %}class="table-warning"{% endif %}>
+                                            <td>
+                                                {% if loop.index == 1 %}
+                                                    <span class="badge bg-warning text-dark">🏆 {{ loop.index }}</span>
+                                                {% elif loop.index <= 3 %}
+                                                    <span class="badge bg-secondary">{{ loop.index }}</span>
+                                                {% elif loop.index <= 10 %}
+                                                    <span class="badge bg-primary">{{ loop.index }}</span>
+                                                {% else %}
+                                                    <span class="badge bg-light text-dark">{{ loop.index }}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <strong>{{ entry.username }}</strong>
+                                                {% if entry.is_current_user %}
+                                                    <span class="badge bg-success ms-2">You</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <span class="fw-bold text-success">{{ entry.total_points }}</span>
+                                            </td>
+                                            <td>
+                                                <a href="{{ url_for('view_user_team', username=entry.username) }}" 
+                                                   class="btn btn-sm btn-outline-primary">
+                                                    <i class="fas fa-eye me-1"></i>View Team
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            {% elif tab == 'farmer_stats' %}
+                        <h2>Farmer Stats</h2>
+                        {% if farmers and farmers|length > 0 %}
+                        <div class="table-container">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Farmer</th>
+                                <th>Owner</th>
+                                <th>Role</th>
+                                <th>Total Points</th>
+                                <th>Matchdays</th>
+                                <th>Average</th>
+                                <th>Best Performance</th>
+                                <th>Point Difference (vs. Yours)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for farmer in farmers %}
+                              <tr>
+                                <td>{{ farmer.name }}</td>
+                                <td>{{ farmer.owner }}</td>
+                                <td>{{ farmer.role }}</td>
+                                <td>{{ farmer.total_points }}</td>
+                                <td>{{ farmer.matchdays }}</td>
+                                <td>{{ farmer.average }}</td>
+                                <td>{{ farmer.best }}</td>
+                                <td>
+                                  {% set your_farmer = None %}
+                                  {% for f in farmers %}
+                                    {% if f.owner == current_user and f.role == farmer.role %}
+                                      {% set your_farmer = f %}
+                                    {% endif %}
+                                  {% endfor %}
+                                  {% if your_farmer %}
+                                    {{ farmer.total_points - your_farmer.total_points }}
+                                  {% else %}
+                                    —
+                                  {% endif %}
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                        {% else %}
+                        <p>No farmer stats available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% elif tab == 'leagues' %}
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-4">
+                            <i class="fas fa-users-cog me-2"></i>League Management
+                        </h3>
+
+                        {% if current_league %}
+                            <!-- Current Matchup Display (moved to top and enhanced) -->
+                            {% if current_league.get('use_playoffs', True) and current_matchup and current_league.status != 'finished' %}
+                                <div class="card shadow-lg mb-4 border-warning">
+                                    <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                        <h4 class="card-title mb-0 text-center">
+                                            <i class="fas fa-fire me-2"></i>Current Matchup
+                                            {% if matchup_progress %}
+                                                <span class="badge bg-warning text-dark ms-2">
+                                                    Game {{ matchup_progress.games_played + 1 }}/3 
+                                                    ({{ matchup_progress.games_remaining }} remaining)
+                                                </span>
+                                            {% endif %}
+                                        </h4>
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <div class="row align-items-center">
+                                            <!-- Player 1 (Current User) -->
+                                            <div class="col-md-5">
+                                                <div class="text-center p-3 border rounded bg-primary bg-opacity-10">
+                                                    <h5 class="text-primary mb-2">
+                                                        <i class="fas fa-user me-2"></i>{{ username }}
+                                                        <span class="badge bg-success ms-2">YOU</span>
+                                                    </h5>
+                                                    {% if current_team %}
+                                                        <div class="mb-3">
+                                                            <h6 class="text-muted mb-2">Team Lineup:</h6>
+                                                            <div class="d-flex flex-wrap justify-content-center gap-1">
+                                                                {% for role in ["Fix Meiser", "Speed Runner", "Lift Tender"] %}
+                                                                    {% set farmer = current_team[role] %}
+                                                                    {% if farmer %}
+                                                                        <span class="badge bg-primary" style="font-size: 0.75rem;">
+                                                                            {{ farmer.name }}
+                                                                        </span>
+                                                                    {% else %}
+                                                                        <span class="badge bg-secondary" style="font-size: 0.75rem;">
+                                                                            Empty {{ role }}
+                                                                        </span>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+                                                    <div class="h4 text-success mb-0">
+                                                        <i class="fas fa-star me-1"></i>
+                                                        <span id="user-matchup-points">0</span> pts
+                                                        <div class="small text-muted">this matchup</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- VS Divider -->
+                                            <div class="col-md-2 text-center">
+                                                <div class="display-4 text-warning">
+                                                    <i class="fas fa-bolt"></i>
+                                                </div>
+                                                <div class="fw-bold text-uppercase text-muted">VS</div>
+                                            </div>
+
+                                            <!-- Player 2 (Opponent) -->
+                                            <div class="col-md-5">
+                                                <div class="text-center p-3 border rounded bg-danger bg-opacity-10">
+                                                    <h5 class="text-danger mb-2">
+                                                        <i class="fas fa-user me-2"></i>{{ current_matchup }}
+                                                        <span class="badge bg-danger ms-2">OPPONENT</span>
+                                                    </h5>
+                                                    <div class="mb-3" id="opponent-team-info">
+                                                        <h6 class="text-muted mb-2">Team Lineup:</h6>
+                                                        <div class="d-flex flex-wrap justify-content-center gap-1">
+                                                            <span class="badge bg-secondary" style="font-size: 0.75rem;">Loading...</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="h4 text-success mb-0">
+                                                        <i class="fas fa-star me-1"></i>
+                                                        <span id="opponent-matchup-points">0</span> pts
+                                                        <div class="small text-muted">this matchup</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Matchup Progress Bar -->
+                                        {% if matchup_progress %}
+                                            <div class="mt-4">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <small class="text-muted">Matchup Progress</small>
+                                                    <small class="text-muted">{{ matchup_progress.games_played }}/3 games completed</small>
+                                                </div>
+                                                <div class="progress" style="height: 8px;">
+                                                    <div class="progress-bar bg-gradient" 
+                                                         style="width: {{ (matchup_progress.games_played / 3 * 100)|round }}%; background: linear-gradient(90deg, #667eea, #764ba2);">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header {% if current_league.status == 'finished' %}bg-success{% else %}bg-primary{% endif %} text-white">
+                                    <h4 class="card-title mb-0">
+                                        <i class="fas fa-trophy me-2"></i>{{ current_league.name }}
+                                        {% if current_league.status == 'finished' %}
+                                            <span class="badge bg-warning text-dark ms-2">FINISHED</span>
+                                        {% endif %}
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><strong>League Code:</strong> <code>{{ current_league.code }}</code></p>
+                                                <p><strong>Host:</strong> {{ current_league.host }}</p>
+                                                <p><strong>Season:</strong> {{ current_league.season|title if current_league.season else 'Summer' }}</p>
+                                                <p><strong>Season Length:</strong> {{ current_league.matchdays }} matchdays</p>
+                                                <p><strong>System:</strong> 
+                                                    {% if current_league.get('use_playoffs', True) %}
+                                                        <span class="badge bg-info">Playoff System</span>
+                                                    {% else %}
+                                                        <span class="badge bg-secondary">Point System</span>
+                                                    {% endif %}
+                                                </p>
+                                                {% if current_league.get('use_playoffs', True) %}
+                                                    <p><strong>Playoff Cutoff:</strong> Top {{ current_league.get('playoff_cutoff', 6) }}</p>
+                                                {% endif %}
+                                                {% if current_league.status == 'finished' %}
+                                                    <p><strong>Winner:</strong> 
+                                                        <span class="badge bg-warning text-dark">👑 {{ current_league.winner }}</span>
+                                                    </p>
+                                                    <p><strong>Completed:</strong> {{ current_league.completion_date[:10] if current_league.completion_date else 'Unknown' }}</p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {% if current_league.status != 'finished' and session.user == current_league.host %}
+                                                    <form method="post" action="/leagues" class="mb-3">
+                                                        <input type="hidden" name="action" value="set_matchdays">
+                                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                                            <label class="form-label mb-0">Matchdays:</label>
+                                                            <select class="form-select" name="matchdays" onchange="this.form.submit()" style="max-width:150px;">
+                                                                {% for day in [30, 60, 90, 120] %}
+                                                                    <option value="{{ day }}" {% if day == current_league.matchdays %}selected{% endif %}>{{ day }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </form>
+
+
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    {% if current_league.status == 'finished' %}
+                                        <!-- Final Standings for Finished League -->
+                                        <div class="col-md-8">
+                                            <div class="card shadow-sm">
+                                                <div class="card-header bg-warning text-dark">
+                                                    <h5 class="card-title mb-0">
+                                                        <i class="fas fa-trophy me-2"></i>Final Standings
+                                                    </h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    {% if current_league.final_standings %}
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover">
+                                                                <thead class="table-dark">
+                                                                    <tr>
+                                                                        <th>Rank</th>
+                                                                        <th>Player</th>
+                                                                        <th>Final Score</th>
+                                                                        <th>Archived Team</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    {% for standing in current_league.final_standings %}
+                                                                        <tr {% if standing[0] == session.user %}class="table-warning"{% endif %}>
+                                                                            <td>
+                                                                                {% if loop.index == 1 %}
+                                                                                    <span class="badge bg-warning text-dark">🥇 {{ loop.index }}</span>
+                                                                                {% elif loop.index == 2 %}
+                                                                                    <span class="badge bg-secondary">🥈 {{ loop.index }}</span>
+                                                                                {% elif loop.index == 3 %}
+                                                                                    <span class="badge bg-dark text-white">🥉 {{ loop.index }}</span>
+                                                                                {% else %}
+                                                                                    <span class="badge bg-light text-dark">{{ loop.index }}</span>
+                                                                                {% endif %}
+                                                                            </td>
+                                                                            <td>
+                                                                                <strong>{{ standing[0] }}</strong>
+                                                                                {% if standing[0] == current_league.winner %}
+                                                                                    <span class="badge bg-success ms-2">Champion</span>
+                                                                                {% endif %}
+                                                                            </td>
+                                                                            <td>
+                                                                                <span class="fw-bold text-success">{{ standing[1] }}</span>
+                                                                            </td>
+                                                                            <td>
+                                                                                {% if current_league.archived_teams and current_league.archived_teams.get(standing[0]) %}
+                                                                                    <button class="btn btn-sm btn-outline-info" 
+                                                                                            data-bs-toggle="modal" 
+                                                                                            data-bs-target="#teamModal{{ loop.index }}">
+                                                                                        View Team
+                                                                                    </button>
+                                                                                {% else %}
+                                                                                    <span class="text-muted">No data</span>
+                                                                                {% endif %}
+                                                                            </td>
+                                                                        </tr>
+                                                                    {% endfor %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    {% else %}
+                                                        <p class="text-muted">Final standings not available.</p>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="card shadow-sm">
+                                                <div class="card-header bg-info text-white">
+                                                    <h5 class="card-title mb-0">
+                                                        <i class="fas fa-info-circle me-2"></i>League Complete
+                                                    </h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>This league has finished its {{ current_league.matchdays }}-matchday season.</p>
+                                                    <p>Your team has been reset for new leagues.</p>
+                                                    {% if session.user == current_league.host %}
+                                                        <form method="post" action="{{ url_for('leagues') }}" 
+                                                              onsubmit="return confirm('Delete this completed league?');">
+                                                            <input type="hidden" name="action" value="delete">
+                                                            <button class="btn btn-danger w-100">
+                                                                <i class="fas fa-trash me-2"></i>Delete League
+                                                            </button>
+                                                        </form>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <!-- Active League Members -->
+                                        <div class="col-md-6">
+                                            <div class="card shadow-sm">
+                                                <div class="card-header bg-success text-white">
+                                                    <h5 class="card-title mb-0">
+                                                        <i class="fas fa-users me-2"></i>League Members
+                                                    </h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="list-group list-group-flush">
+                                                        {% for player in current_league.players %}
+                                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                <span>
+                                                                    <i class="fas fa-user me-2"></i>{{ player }}
+                                                                    {% if player == current_league.host %}
+                                                                        <span class="badge bg-warning ms-2">Host</span>
+                                                                    {% endif %}
+                                                                </span>
+                                                                {% if session.user == current_league.host and player != current_league.host %}
+                                                                    <form method="post" action="/leagues" class="m-0">
+                                                                        <input type="hidden" name="action" value="kick">
+                                                                        <input type="hidden" name="kick_user" value="{{ player }}">
+                                                                        <button class="btn btn-sm btn-danger">
+                                                                            <i class="fas fa-times me-1"></i>Kick
+                                                                        </button>
+                                                                    </form>
+                                                                {% endif %}
+                                                            </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if current_league.status != 'finished' %}
+                                    <div class="col-md-6">
+                                        <div class="card shadow-sm">
+                                            <div class="card-header bg-info text-white">
+                                                <h5 class="card-title mb-0">
+                                                    <i class="fas fa-cogs me-2"></i>League Actions
+                                                </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                {% if session.user == current_league.host %}
+                                                    {% if not current_league.get('draft_time') %}
+                                                        <form method="post" action="/start_league" class="mb-3">
+                                                            <button class="btn btn-success w-100">
+                                                                <i class="fas fa-play me-2"></i>Start League Draft
+                                                            </button>
+                                                        </form>
+                                                    {% endif %}
+
+                                                    <form method="post" action="/leagues" 
+                                                          onsubmit="return confirm('Delete this league?');" class="mb-3">
+                                                        <input type="hidden" name="action" value="delete">
+                                                        <button class="btn btn-danger w-100">
+                                                            <i class="fas fa-trash me-2"></i>Delete League
+                                                        </button>
+                                                    </form>
+                                                {% else %}
+                                                    <form method="post" action="/leagues" class="mb-3">
+                                                        <input type="hidden" name="action" value="leave">
+                                                        <button class="btn btn-warning w-100">
+                                                            <i class="fas fa-sign-out-alt me-2"></i>Leave League
+                                                        </button>
+                                                    </form>
+                                                {% endif %}
+
+                                                {% if current_league.get('draft_time') and not current_league.get('draft_complete') %}
+                                                    <a href="/waitingroom" class="btn btn-primary w-100 mb-2">
+                                                        <i class="fas fa-hourglass-half me-2"></i>Go to Draft Room
+                                                    </a>
+                                                {% endif %}
+
+                                                {% if current_league.draft_complete %}
+                                                    <form method="POST" action="{{ url_for('run_matchday') }}" style="margin-top: 15px;">
+                                                        <button type="submit" class="btn btn-success">Run Next Matchday</button>
+                                                    </form>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <!-- No League -->
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                You're not currently in a league. Create or join one to start playing!
+                            </div>
+                        {% endif %}
+
+                        <!-- Create/Join League Forms - Only show if not in a league -->
+                        {% if not current_league %}
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <div class="card shadow-sm">
+                                        <div class="card-header bg-success text-white">
+                                            <h5 class="card-title mb-0">
+                                                <i class="fas fa-plus me-2"></i>Create New League
+                                            </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="post" action="/leagues">
+                                                <input type="hidden" name="action" value="create">
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">League Name:</label>
+                                                    <input type="text" name="league_name" class="form-control" 
+                                                           placeholder="Enter league name" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Season:</label>
+                                                    <select name="season" class="form-select">
+                                                        <option value="summer">Summer</option>
+                                                        <option value="fall">Fall</option>
+                                                        <option value="winter">Winter</option>
+                                                        <option value="spring">Spring</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Season Length:</label>
+                                                    <select name="matchdays" class="form-select">
+                                                        <option value="30">30 Matchdays</option>
+                                                        <option value="60">60 Matchdays</option>
+                                                        <option value="90">90 Matchdays</option>
+                                                        <option value="120">120 Matchdays</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">League System:</label>
+                                                    <select name="league_system" class="form-select" id="league_system">
+                                                        <option value="playoff">Playoff System</option>
+                                                        <option value="points">Point System</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-3" id="playoff_cutoff_section">
+                                                    <label class="form-label">Playoff Cutoff:</label>
+                                                    <select name="playoff_cutoff" class="form-select">
+                                                        <option value="4">Top 4</option>
+                                                        <option value="6" selected>Top 6</option>
+                                                        <option value="8">Top 8</option>
+                                                    </select>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-success w-100">
+                                                    <i class="fas fa-plus me-2"></i>Create League
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card shadow-sm">
+                                        <div class="card-header bg-primary text-white">
+                                            <h5 class="card-title mb-0">
+                                                <i class="fas fa-sign-in-alt me-2"></i>Join Existing League
+                                            </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="post" action="/leagues">
+                                                <input type="hidden" name="action" value="join">
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">League Code:</label>
+                                                    <input type="text" name="join_code" class="form-control" 
+                                                           placeholder="Enter 8-character code" required>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary w-100">
+                                                    <i class="fas fa-sign-in-alt me-2"></i>Join League
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // League system toggle
+    const leagueSystemSelect = document.getElementById('league_system');
+    const playoffCutoffSection = document.getElementById('playoff_cutoff_section');
+
+    if (leagueSystemSelect && playoffCutoffSection) {
+        function togglePlayoffCutoff() {
+            if (leagueSystemSelect.value === 'playoff') {
+                playoffCutoffSection.style.display = 'block';
+            } else {
+                playoffCutoffSection.style.display = 'none';
+            }
+        }
+
+        leagueSystemSelect.addEventListener('change', togglePlayoffCutoff);
+        togglePlayoffCutoff(); // Initial call
+    }
+
+    // Timer countdown functionality
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const nextMinute = Math.ceil(now / 120000) * 120000; // Next 2-minute interval
+        const timeLeft = nextMinute - now;
+
+        const minutes = Math.floor(timeLeft / 60000);
+        const seconds = Math.floor((timeLeft % 60000) / 1000);
+
+        const timerElement = document.getElementById('timer');
+        if (timerElement) {
+            timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Wake up chickens when close to time
+        const chickens = document.querySelectorAll('.chicken');
+        if (timeLeft < 30000) { // Last 30 seconds
+            chickens.forEach(chicken => {
+                chicken.classList.remove('sleeping');
+                chicken.classList.add('awake');
+            });
+        } else {
+            chickens.forEach(chicken => {
+                chicken.classList.add('sleeping');
+                chicken.classList.remove('awake');
+            });
+        }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Load matchup data if we're on leagues tab and have a current matchup
+    {% if tab == 'leagues' and current_league and current_league.get('use_playoffs', True) and current_matchup and current_league.status != 'finished' %}
+        loadMatchupData();
+    {% endif %}
+});
+
+function loadMatchupData() {
+    const opponentUsername = '{{ current_matchup }}';
+    const currentUsername = '{{ username }}';
+
+    // Load opponent team info
+    fetch(`/api/user_team/${opponentUsername}`)
+        .then(response => response.json())
+        .then(data => {
+            const opponentTeamInfo = document.getElementById('opponent-team-info');
+            if (opponentTeamInfo && data.length > 0) {
+                const startingPositions = data.filter(f => 
+                    f.role === 'Fix Meiser' || f.role === 'Speed Runner' || f.role === 'Lift Tender'
+                );
+
+                const badgeHtml = startingPositions.map(farmer => 
+                    `<span class="badge bg-danger" style="font-size: 0.75rem;">${farmer.name}</span>`
+                ).join(' ');
+
+                opponentTeamInfo.innerHTML = `
+                    <h6 class="text-muted mb-2">Team Lineup:</h6>
+                    <div class="d-flex flex-wrap justify-content-center gap-1">
+                        ${badgeHtml || '<span class="badge bg-secondary" style="font-size: 0.75rem;">No lineup set</span>'}
+                    </div>
+                `;
+            }
+        })
+        .catch(error => console.error('Error loading opponent team:', error));
+
+    // Calculate and display matchup points for both players
+    calculateMatchupPoints(currentUsername, 'user-matchup-points');
+    calculateMatchupPoints(opponentUsername, 'opponent-matchup-points');
+}
+
+function calculateMatchupPoints(username, elementId) {
+    // Get user's matchday data to calculate points for current 3-game cycle
+    fetch(`/api/user_team/${username}`)
+        .then(response => response.json())
+        .then(data => {
+            // This is a simplified calculation - in a real implementation, 
+            // you'd need an API endpoint that returns the user's recent matchday data
+            // For now, we'll show a placeholder or make another API call
+            return fetch(`/api/matchup_points/${username}`);
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                // Fallback calculation if API doesn't exist yet
+                return { points: 0 };
+            }
+        })
+        .then(data => {
+            const pointsElement = document.getElementById(elementId);
+            if (pointsElement) {
+                pointsElement.textContent = data.points || 0;
+            }
+        })
+        .catch(error => {
+            console.error('Error calculating matchup points:', error);
+            // Set to 0 on error
+            const pointsElement = document.getElementById(elementId);
+            if (pointsElement) {
+                pointsElement.textContent = '0';
+            }
+        });
+}
+</script>
+
+{% endblock %}

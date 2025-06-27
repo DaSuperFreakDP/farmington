@@ -1,0 +1,147 @@
+<div class="card farmer-card h-100 shadow-sm border-{% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}success{% else %}secondary{% endif %}">
+    <div class="card-header {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}bg-success text-white{% else %}bg-secondary text-white{% endif %} text-center">
+        <h6 class="card-title mb-0">
+            {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                <i class="fas fa-star me-2"></i>
+            {% else %}
+                <i class="fas fa-user me-2"></i>
+            {% endif %}
+            {{ role }}
+        </h6>
+    </div>
+
+    {% if farmer.image and farmer.name != "Empty" %}
+        <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+             style="height: 500px; object-fit: cover;">
+    {% else %}
+        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+             style="height: 500px;">
+            <i class="fas fa-{% if farmer.name == 'Empty' %}plus{% else %}user{% endif %} fa-3x text-muted"></i>
+        </div>
+    {% endif %}
+
+    <div class="card-body">
+        <h5 class="card-title text-center {% if farmer.name == 'Empty' %}text-muted{% endif %}">
+            {{ farmer.name }}
+        </h5>
+
+        {% if farmer.name != "Empty" %}
+            <div class="row text-center mb-3">
+                <div class="col-6">
+                    <div class="stat-display">
+                        <div class="stat-value text-danger fw-bold">{{ farmer.strength }}</div>
+                        <div class="stat-label text-muted small">STR</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-display">
+                        <div class="stat-value text-warning fw-bold">{{ farmer.handy }}</div>
+                        <div class="stat-label text-muted small">HANDY</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row text-center mb-3">
+                <div class="col-6">
+                    <div class="stat-display">
+                        <div class="stat-value text-info fw-bold">{{ farmer.stamina }}</div>
+                        <div class="stat-label text-muted small">STA</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-display">
+                        <div class="stat-value text-success fw-bold">{{ farmer.physical }}</div>
+                        <div class="stat-label text-muted small">PHYS</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Rating Progress Bar -->
+            <div class="progress mb-2" style="height: 10px;">
+                <div class="progress-bar bg-{% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}success{% else %}secondary{% endif %}" 
+                     style="width: {{ ((farmer.strength + farmer.handy + farmer.stamina + farmer.physical) / 40 * 100)|round }}%"></div>
+            </div>
+            <div class="text-center">
+                <small class="text-muted">
+                    Total: {{ farmer.strength + farmer.handy + farmer.stamina + farmer.physical }}/40
+                </small>
+            </div>
+
+            <!-- Crop Preferences -->
+            <div class="mt-3">
+                <small class="text-muted d-block mb-2">🌾 Crop Preferences:</small>
+                <div class="row text-xs">
+                    <div class="col-6">
+                        <div class="mb-1">
+                            <span class="badge bg-warning text-dark">☀️ Summer</span>
+                            <small class="d-block">{{ farmer.crop_preferences.summer|title if farmer.crop_preferences else 'N/A' }}</small>
+                        </div>
+                        <div class="mb-1">
+                            <span class="badge bg-info">❄️ Winter</span>
+                            <small class="d-block">{{ farmer.crop_preferences.winter|title if farmer.crop_preferences else 'N/A' }}</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-1">
+                            <span class="badge bg-success">🍂 Fall</span>
+                            <small class="d-block">{{ farmer.crop_preferences.fall|title if farmer.crop_preferences else 'N/A' }}</small>
+                        </div>
+                        <div class="mb-1">
+                            <span class="badge bg-light text-dark">🌸 Spring</span>
+                            <small class="d-block">{{ farmer.crop_preferences.spring|title if farmer.crop_preferences else 'N/A' }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Role Suitability Indicator -->
+            <div class="mt-3">
+                {% if role == 'Fix Meiser' %}
+                    <div class="role-suitability">
+                        <small class="text-muted d-block">Handy Focus:</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: {{ (farmer.handy / 10 * 100)|round }}%"></div>
+                        </div>
+                    </div>
+                {% elif role == 'Speed Runner' %}
+                    <div class="role-suitability">
+                        <small class="text-muted d-block">Stamina Focus:</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-info" style="width: {{ (farmer.stamina / 10 * 100)|round }}%"></div>
+                        </div>
+                    </div>
+                {% elif role == 'Lift Tender' %}
+                    <div class="role-suitability">
+                        <small class="text-muted d-block">Strength Focus:</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-danger" style="width: {{ (farmer.strength / 10 * 100)|round }}%"></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="text-center">
+                        <span class="badge bg-secondary">Bench Player</span>
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="text-center text-muted">
+                <p class="mb-0">No farmer assigned</p>
+                <small>Select a farmer for this role</small>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if farmer.name != "Empty" %}
+        <div class="card-footer bg-light text-center">
+            {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                <span class="badge bg-success">
+                    <i class="fas fa-star me-1"></i>Starting Position
+                </span>
+            {% else %}
+                <span class="badge bg-secondary">
+                    <i class="fas fa-chair me-1"></i>Bench
+                </span>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

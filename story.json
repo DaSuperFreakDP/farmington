@@ -1,0 +1,29 @@
+{
+    "ty": {
+        "story_message": "First,\nJosh tried their best to Build Tha Fence and succeeded. That required sobriety, lets keep it this way. The town declared it a holiday!\nThen,\nVrock tried their best to Milk Tha Cow but the cow said 'You better take me out for dinner first'. Josh and Jared were both very disappointed in Vrock.\nFinally,\nJared tried their best to Lift Tha Hay but the haybales said 'nar nar'. Josh and Vrock were both very disappointed in Jared.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "No catastrophe today!",
+        "miss_days": {
+            "Josh": 0,
+            "Vrock": 0,
+            "Jared": 0
+        }
+    },
+    "cena": {
+        "story_message": "First,\nTyrone tried their best to Build Tha Fence and succeeded. That required sobriety, lets keep it this way. The local farmer's market gave them a medal!\nThen,\nLuke tried their best to Chase Tha Coyote but his sneakers were no match for the ACME jetpack that just left him in the dust. Tyrone and Mezzy were both very disappointed in Luke.\nDue to due to throwing out his back riding the mechanical bull at the local bar, Luke became injured and will miss 2 matchday(s).\nFinally,\nMezzy tried their best to Shovel Tha Manure and showed that manure who's boss. The scarecrow even did a happy dance!\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "Oh no! Mezzy got heat stroke and struggled to do their task.",
+        "miss_days": {
+            "Tyrone": 0,
+            "Luke": 2,
+            "Mezzy": 0
+        }
+    },
+    "jared": {
+        "story_message": "First,\nZach tried their best to Repair Tha Barn but failed. Someone call in the Amish like that one episode of Family Guy. Tyler and Daisy Plowman were both very disappointed in Zach.\nThen,\nTyler tried their best to Chase Tha Coyote but ran headfirst into a wall that was painted to look like a tunnel. Zach and Daisy Plowman were both very disappointed in Tyler.\nFinally,\nDaisy Plowman tried their best to Push Tha Car but the car didn't budge. Zach and Tyler were both very disappointed in Daisy Plowman.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "A raging wildfire has forced all farmers to evacuate\u2014no work today!",
+        "miss_days": {
+            "Zach": 0,
+            "Tyler": 0,
+            "Daisy Plowman": 0
+        }
+    }
+}
