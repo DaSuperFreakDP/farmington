@@ -1,0 +1,178 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">🌾 Farmer Performance Statistics</h2>
+    
+    {% if your_team %}
+    <div class="alert alert-info mb-4">
+        <h5>Your Current Team ({{ username }})</h5>
+        {% for role, farmer in your_team.items() %}
+            <div><strong>{{ role }}:</strong> {{ farmer.name }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <p class="text-muted">
+                Showing all farmers who have been drafted or earned points this season. 
+                Market farmers are available for drafting.
+            </p>
+        </div>
+        <div class="col-md-4 text-end">
+            <small class="text-muted">
+                Total farmers listed: {{ all_farmers|length }}
+            </small>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Rank</th>
+                    <th>Farmer Name</th>
+                    <th>Status</th>
+                    <th>Role/Owner</th>
+                    <th>Total Points</th>
+                    <th>Matchdays</th>
+                    <th>Base Stats</th>
+                    <th>Crop Preferences</th>
+                    {% if all_farmers and all_farmers[0].get('avg_points') is not none %}
+                    <th>Avg/Game</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for entry in all_farmers %}
+                <tr {% if entry.owner == username %}class="table-warning"{% endif %}>
+                    <td>
+                        <strong>{{ loop.index }}</strong>
+                        {% if loop.index == 1 and entry.total_points > 0 %}
+                            👑
+                        {% elif loop.index <= 3 and entry.total_points > 0 %}
+                            🏆
+                        {% endif %}
+                    </td>
+                    <td>
+                        <strong>{{ entry.name }}</strong>
+                        {% if entry.status == "available" and entry.total_points > 10 %}
+                            <span class="badge bg-success">Hot Prospect</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if entry.status == "drafted" %}
+                            <span class="badge bg-primary">Drafted</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Available</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if entry.status == "drafted" %}
+                            <div><small class="text-muted">{{ entry.role }}</small></div>
+                            <strong>{{ entry.owner }}</strong>
+                        {% else %}
+                            <span class="text-success">Market</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <strong class="{% if entry.total_points > 20 %}text-success{% elif entry.total_points > 10 %}text-warning{% elif entry.total_points == 0 %}text-muted{% endif %}">
+                            {{ entry.total_points }}
+                        </strong>
+                    </td>
+                    <td>
+                        <span class="badge bg-light text-dark">{{ entry.matchdays_played }}</span>
+                    </td>
+                    <td>
+                        <small>
+                            💪{{ entry.strength }} 
+                            🔧{{ entry.handy }} 
+                            ⚡{{ entry.stamina }}
+                            {% if entry.physical %}❤️{{ entry.physical }}{% endif %}
+                        </small>
+                    </td>
+                    <td>
+                        <small>
+                            {% if entry.get('crop_preferences') %}
+                                🌞{{ entry.crop_preferences.get('summer', 'N/A') }}<br>
+                                🍂{{ entry.crop_preferences.get('fall', 'N/A') }}<br>
+                                ❄️{{ entry.crop_preferences.get('winter', 'N/A') }}<br>
+                                🌸{{ entry.crop_preferences.get('spring', 'N/A') }}
+                            {% else %}
+                                <span class="text-muted">No preferences</span>
+                            {% endif %}
+                        </small>
+                    </td>
+                    {% if entry.get('avg_points') is not none %}
+                    <td>
+                        <span class="badge {% if entry.avg_points > 3 %}bg-success{% elif entry.avg_points > 1 %}bg-warning{% else %}bg-secondary{% endif %}">
+                            {{ "%.1f"|format(entry.avg_points) }}
+                        </span>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center text-muted">
+                        No farmer statistics available yet. Start a matchday to see performance data!
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if all_farmers %}
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Top Performers</h5>
+                </div>
+                <div class="card-body">
+                    {% for farmer in all_farmers[:5] %}
+                        {% if farmer.total_points > 0 %}
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span>
+                                    {{ loop.index }}. {{ farmer.name }}
+                                    {% if farmer.status == "available" %}
+                                        <small class="text-success">(Available)</small>
+                                    {% endif %}
+                                </span>
+                                <span class="badge bg-primary">{{ farmer.total_points }} pts</span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Available Talent</h5>
+                </div>
+                <div class="card-body">
+                    {% set available_count = 0 %}
+                    {% for farmer in all_farmers %}
+                        {% if farmer.status == "available" and farmer.total_points > 0 %}
+                            {% set available_count = available_count + 1 %}
+                            {% if available_count <= 5 %}
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span>{{ farmer.name }}</span>
+                                    <span class="badge bg-success">{{ farmer.total_points }} pts</span>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if available_count == 0 %}
+                        <p class="text-muted">No proven undrafted farmers available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

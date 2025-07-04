@@ -1,0 +1,29 @@
+{
+    "ty": {
+        "story_message": "First,\nTyler tried their best to Repair Tha Barn but instead built a new home for a family of squirrels who are now demanding rent. Tyrone and Daisy Plowman were both very disappointed in Tyler.\nThen,\nTyrone tried their best to Mow Tha Lawn and made it look so good that even the weeds started lining up to apologize. The cows mooed in approval!\nFinally,\nDaisy Plowman tried their best to Lift Tha Hay and he lifted the fuck outta those bales. Everyone cheered and started to square-dance!\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "No catastrophe today!",
+        "miss_days": {
+            "Tyler": 0,
+            "Tyrone": 0,
+            "Daisy Plowman": 0
+        }
+    },
+    "cena": {
+        "story_message": "First,\nZach tried their best to Repair Tha Barn but accidentally created a whole new opening for the cows to fucking escape. Luke and Mezzy were both very disappointed in Zach.\nThen,\nLuke tried their best to Milk Tha Cow but failed. If he can't milk the cow, I guess he has to leave the farm. Zach and Mezzy were both very disappointed in Luke.\nFinally,\nMezzy tried their best to Push Tha Car but the car stayed put. Sounds like someone forgot to put it in neutral. Zach and Luke were both very disappointed in Mezzy.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "A devastating drought hit, ruining all crop-related work!",
+        "miss_days": {
+            "Zach": 0,
+            "Luke": 0,
+            "Mezzy": 0
+        }
+    },
+    "jared": {
+        "story_message": "First,\nJosh tried their best to Build Tha Fence but ended up creating a luxury dog door for every farm animal...mission failed! Vrock and Jared were both very disappointed in Josh.\nThen,\nVrock tried their best to Mow Tha Lawn but it got caught on some stones. Josh and Jared were both very disappointed in Vrock.\nFinally,\nJared tried their best to Push Tha Car but the car stayed put. Sounds like someone forgot to put it in neutral. Josh and Vrock were both very disappointed in Jared.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "Oh no! Jared got heat stroke and struggled to do their task.",
+        "miss_days": {
+            "Josh": 0,
+            "Vrock": 0,
+            "Jared": 0
+        }
+    }
+}

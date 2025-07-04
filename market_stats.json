@@ -1,0 +1,243 @@
+{
+    "Tyrone": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Luke": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Vrock": {
+        "total_points": 8,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 8
+            }
+        },
+        "recent_form": [
+            8
+        ]
+    },
+    "Jared": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Speed Runner": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Mezzy": {
+        "total_points": 3,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 3
+            }
+        },
+        "recent_form": [
+            3
+        ]
+    },
+    "Daisy Plowman": {
+        "total_points": 7,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 7
+            }
+        },
+        "recent_form": [
+            7
+        ]
+    },
+    "Nellie Pickens": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Beau Dilly": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Buford Duggan": {
+        "total_points": 7,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 7
+            }
+        },
+        "recent_form": [
+            7
+        ]
+    },
+    "Rufus Barnwell": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Mose Tractorbeam": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Nellie Goatley": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Mose Stubblefield": {
+        "total_points": 11,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 11
+            }
+        },
+        "recent_form": [
+            6,
+            5,
+            0,
+            0,
+            0
+        ]
+    },
+    "June Goatley": {
+        "total_points": 4,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            0,
+            4
+        ]
+    },
+    "Gus Mulewhistle": {
+        "total_points": 7,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 5
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            5,
+            2
+        ]
+    },
+    "Dusty Plowman": {
+        "total_points": 13,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 10
+            }
+        },
+        "recent_form": [
+            4,
+            0,
+            4,
+            2,
+            3
+        ]
+    },
+    "Bo Plowman": {
+        "total_points": 10,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 10
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            3,
+            7,
+            0
+        ]
+    }
+}
