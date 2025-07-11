@@ -1,0 +1,14 @@
+{
+    "ty": {
+        "password": "scrypt:32768:8:1$tq1VnnYmEzc9x5Tz$dc6429cf9d5ffa1a6403c8b4605f9b0378d18f0a969d8b5b19395fcaf38f83b34fcbebc1ebc775e88c662f258e5a4c6e09b65bc0274b72f46e69a8fa34abb842",
+        "theme": "light",
+        "team_name": "Ballsacks",
+        "profile_pic": "ty_9zgy4d.jpg"
+    },
+    "jared": {
+        "password": "scrypt:32768:8:1$E6G8cbvnDzQALzp1$ca9735f999e92397908c37bfe7338226b8c4569ed3e3dba06831e8fdad0aeefd7a6401b7d02ad9637bcd3930919b16516afcb3fc87be3fb038047ea44aa8d051",
+        "theme": "light",
+        "team_name": "Porkers",
+        "profile_pic": "jared_9zgy4d.jpg"
+    }
+}

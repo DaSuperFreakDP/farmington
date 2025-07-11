@@ -1,0 +1,190 @@
+{
+    "Nelson": {
+        "total_points": 4,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 14
+            }
+        },
+        "recent_form": [
+            4,
+            0,
+            0,
+            0,
+            0
+        ],
+        "avg_points": 1.0,
+        "recent_avg": 1.0
+    },
+    "Christian": {
+        "total_points": 0,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 5
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "avg_points": 1.6,
+        "recent_avg": 1.6
+    },
+    "Marc-Anthony": {
+        "total_points": 4,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 3
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            4,
+            0
+        ],
+        "avg_points": 0.0,
+        "recent_avg": 0.0
+    },
+    "Nellie Goatley": {
+        "total_points": 2,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 7
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            0,
+            2
+        ],
+        "avg_points": 0.0,
+        "recent_avg": 0.0
+    },
+    "Mose Stubblefield": {
+        "total_points": 15,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 10
+            }
+        },
+        "recent_form": [
+            8,
+            0,
+            2,
+            0,
+            5
+        ],
+        "avg_points": 2.2,
+        "recent_avg": 2.2
+    },
+    "June Goatley": {
+        "total_points": 2,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 2
+            }
+        },
+        "recent_form": [
+            0,
+            2,
+            0,
+            0,
+            0
+        ],
+        "avg_points": 1.8,
+        "recent_avg": 1.8
+    },
+    "Gus Mulewhistle": {
+        "total_points": 10,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 6
+            }
+        },
+        "recent_form": [
+            4,
+            0,
+            3,
+            3,
+            0
+        ],
+        "avg_points": 0.0,
+        "recent_avg": 0.0
+    },
+    "Dusty Plowman": {
+        "total_points": 5,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 14
+            }
+        },
+        "recent_form": [
+            2,
+            0,
+            0,
+            3,
+            0
+        ],
+        "avg_points": 0.8,
+        "recent_avg": 0.8
+    },
+    "Bo Plowman": {
+        "total_points": 5,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 5
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            5,
+            0,
+            0
+        ],
+        "avg_points": 0.4,
+        "recent_avg": 0.4
+    },
+    "Luke": {
+        "total_points": 8,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 16
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            8,
+            0
+        ]
+    }
+}

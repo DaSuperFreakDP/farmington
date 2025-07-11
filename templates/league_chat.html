@@ -1,0 +1,303 @@
+
+{% extends "base.html" %}
+
+{% block title %}League Chat - {{ current_league.name }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="display-6 fw-bold text-primary">
+                        <i class="fas fa-comments me-2"></i>{{ current_league.name }} Chat
+                    </h1>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-users me-1"></i>
+                        {{ current_league.players|length }} members
+                    </p>
+                </div>
+                <div>
+                    <a href="{{ url_for('index', tab='leagues') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to League
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chat Container -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">
+                                    <i class="fas fa-comments me-2"></i>League Chat
+                                </h5>
+                                <small>
+                                    <i class="fas fa-circle text-success me-1"></i>
+                                    {{ current_league.players|length }} online
+                                </small>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages Area -->
+                        <div class="card-body p-0">
+                            <div id="chat-messages" class="chat-messages" style="height: 400px; overflow-y: auto; padding: 15px;">
+                                {% for message in messages %}
+                                <div class="message-item mb-3 {% if message.username == username %}message-own{% endif %}">
+                                    <div class="d-flex {% if message.username == username %}justify-content-end{% else %}justify-content-start{% endif %}">
+                                        <div class="message-content {% if message.username == username %}bg-primary text-white{% else %}bg-light{% endif %} rounded p-3" style="max-width: 70%;">
+                                            <div class="d-flex align-items-center mb-2">
+                                                {% if user_profiles[message.username].profile_pic %}
+                                                    <img src="{{ url_for('static', filename='images/profile_pics/' + user_profiles[message.username].profile_pic) }}" 
+                                                         class="rounded-circle me-2" 
+                                                         style="width: 24px; height: 24px; object-fit: cover;">
+                                                {% else %}
+                                                    <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" 
+                                                         style="width: 24px; height: 24px;">
+                                                        <i class="fas fa-user text-white" style="font-size: 10px;"></i>
+                                                    </div>
+                                                {% endif %}
+                                                <small class="fw-bold {% if message.username == username %}text-white{% else %}text-primary{% endif %}">
+                                                    {{ user_profiles[message.username].team_name }}
+                                                </small>
+                                                {% if message.username == current_league.host %}
+                                                    <span class="badge bg-warning text-dark ms-2" style="font-size: 0.6rem;">Host</span>
+                                                {% endif %}
+                                                {% if message.username == username %}
+                                                    <span class="badge bg-light text-dark ms-2" style="font-size: 0.6rem;">You</span>
+                                                {% endif %}
+                                            </div>
+                                            <div class="message-text">{{ message.message }}</div>
+                                            <small class="{% if message.username == username %}text-white-50{% else %}text-muted{% endif %} d-block mt-1">
+                                                {{ message.timestamp[:16].replace('T', ' ') }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="card-footer">
+                            <form id="chat-form" class="d-flex">
+                                <input type="text" 
+                                       id="message-input" 
+                                       class="form-control me-2" 
+                                       placeholder="Type your message..." 
+                                       maxlength="500"
+                                       required>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+                            <small class="text-muted mt-1">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Be respectful and follow good sportsmanship
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- League Members -->
+                    <div class="card shadow-sm mt-4">
+                        <div class="card-header bg-success text-white">
+                            <h6 class="card-title mb-0">
+                                <i class="fas fa-users me-2"></i>League Members
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                {% for player in current_league.players %}
+                                <div class="col-md-6 mb-2">
+                                    <div class="d-flex align-items-center">
+                                        {% if user_profiles[player].profile_pic %}
+                                            <img src="{{ url_for('static', filename='images/profile_pics/' + user_profiles[player].profile_pic) }}" 
+                                                 class="rounded-circle me-2" 
+                                                 style="width: 32px; height: 32px; object-fit: cover;">
+                                        {% else %}
+                                            <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" 
+                                                 style="width: 32px; height: 32px;">
+                                                <i class="fas fa-user text-white" style="font-size: 12px;"></i>
+                                            </div>
+                                        {% endif %}
+                                        <div>
+                                            <div class="fw-bold">{{ user_profiles[player].team_name }}</div>
+                                            <small class="text-muted">@{{ player }}</small>
+                                        </div>
+                                        {% if player == current_league.host %}
+                                            <span class="badge bg-warning text-dark ms-auto">Host</span>
+                                        {% endif %}
+                                        {% if player == username %}
+                                            <span class="badge bg-primary ms-auto">You</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.chat-messages {
+    background: #f8f9fa;
+}
+
+.message-item {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-content {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+}
+
+.message-own .message-content {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+}
+
+#message-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatForm = document.getElementById('chat-form');
+    const messageInput = document.getElementById('message-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const leagueCode = '{{ current_league.code }}';
+
+    // Auto-scroll to bottom of chat
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Initial scroll to bottom
+    scrollToBottom();
+
+    // Handle form submission
+    chatForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const message = messageInput.value.trim();
+        if (!message) return;
+
+        // Disable input while sending
+        messageInput.disabled = true;
+        
+        // Send message
+        fetch('/send_chat_message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `message=${encodeURIComponent(message)}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Clear input
+                messageInput.value = '';
+                // Add message to chat
+                addMessageToChat(data.message, true);
+            } else {
+                alert('Error sending message: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error sending message');
+        })
+        .finally(() => {
+            messageInput.disabled = false;
+            messageInput.focus();
+        });
+    });
+
+    // Add message to chat display
+    function addMessageToChat(message, isOwn = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message-item mb-3 ${isOwn ? 'message-own' : ''}`;
+        
+        const profilePicHtml = message.user_profile.profile_pic 
+            ? `<img src="/static/images/profile_pics/${message.user_profile.profile_pic}" class="rounded-circle me-2" style="width: 24px; height: 24px; object-fit: cover;">`
+            : `<div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 24px; height: 24px;"><i class="fas fa-user text-white" style="font-size: 10px;"></i></div>`;
+
+        const hostBadge = message.username === '{{ current_league.host }}' 
+            ? '<span class="badge bg-warning text-dark ms-2" style="font-size: 0.6rem;">Host</span>' 
+            : '';
+
+        const youBadge = isOwn 
+            ? '<span class="badge bg-light text-dark ms-2" style="font-size: 0.6rem;">You</span>'
+            : '';
+
+        messageDiv.innerHTML = `
+            <div class="d-flex ${isOwn ? 'justify-content-end' : 'justify-content-start'}">
+                <div class="message-content ${isOwn ? 'bg-primary text-white' : 'bg-light'} rounded p-3" style="max-width: 70%;">
+                    <div class="d-flex align-items-center mb-2">
+                        ${profilePicHtml}
+                        <small class="fw-bold ${isOwn ? 'text-white' : 'text-primary'}">
+                            ${message.user_profile.team_name}
+                        </small>
+                        ${hostBadge}
+                        ${youBadge}
+                    </div>
+                    <div class="message-text">${message.message}</div>
+                    <small class="${isOwn ? 'text-white-50' : 'text-muted'} d-block mt-1">
+                        ${new Date(message.timestamp).toLocaleString()}
+                    </small>
+                </div>
+            </div>
+        `;
+
+        chatMessages.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    // Poll for new messages every 3 seconds
+    function pollMessages() {
+        fetch(`/api/chat_messages/${leagueCode}`)
+            .then(response => response.json())
+            .then(messages => {
+                // Clear existing messages
+                chatMessages.innerHTML = '';
+                
+                // Add all messages
+                messages.forEach(message => {
+                    addMessageToChat(message, message.username === '{{ username }}');
+                });
+            })
+            .catch(error => {
+                console.error('Error polling messages:', error);
+            });
+    }
+
+    // Start polling
+    setInterval(pollMessages, 3000);
+
+    // Focus on input
+    messageInput.focus();
+
+    // Handle Enter key
+    messageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            chatForm.dispatchEvent(new Event('submit'));
+        }
+    });
+});
+</script>
+{% endblock %}

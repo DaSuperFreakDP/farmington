@@ -1,0 +1,20 @@
+{
+    "ty": {
+        "story_message": "First,\nJosh tried their best to Repair Tha Barn and somehow made it look like a five-star resort for farm animals. Everyone cheered and started to square-dance!\nThen,\nTyrone tried their best to Lift Tha Hay but they got squashed like a bug. Josh and Dante were both very disappointed in Tyrone.\nFinally,\nDante tried their best to Chase Tha Coyote but ran headfirst into a wall that was painted to look like a tunnel. Josh and Tyrone were both very disappointed in Dante.\nDue to because he tried to arm wrestle a gangster cow and lost, Dante became injured and will miss 1 matchday(s).\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "Oh no! Dante got heat stroke and struggled to do their task.",
+        "miss_days": {
+            "Josh": 0,
+            "Tyrone": 0,
+            "Dante": 1
+        }
+    },
+    "jared": {
+        "story_message": "First,\nZach tried their best to Repair Tha Barn but turned it into a 'do-it-yourself' disaster that'll be on HGTV's blooper reel. Tyler and Vrock were both very disappointed in Zach.\nThen,\nTyler tried their best to Harvest tha Crops but accidentally harvested his own damn boot. Fucking dumbass. Zach and Vrock were both very disappointed in Tyler.\nFinally,\nVrock tried their best to Shovel Tha Manure but now it's a 'scent-sational' disaster! Zach and Tyler were both very disappointed in Vrock.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "No catastrophe today!",
+        "miss_days": {
+            "Zach": 0,
+            "Tyler": 0,
+            "Vrock": 0
+        }
+    }
+}

@@ -1,0 +1,524 @@
+[
+  {
+    "id": 1,
+    "name": "Josh",
+    "strength": 1,
+    "handy": 7,
+    "stamina": 6,
+    "physical": 6,
+    "image": "images/farmers/1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Zach",
+    "strength": 5,
+    "handy": 4,
+    "stamina": 8,
+    "physical": 8,
+    "image": "images/farmers/2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Tyler",
+    "strength": 10,
+    "handy": 3,
+    "stamina": 8,
+    "physical": 10,
+    "image": "images/farmers/3.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Tyrone",
+    "strength": 4,
+    "handy": 7,
+    "stamina": 7,
+    "physical": 9,
+    "image": "images/farmers/4.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Luke",
+    "strength": 9,
+    "handy": 3,
+    "stamina": 6,
+    "physical": 7,
+    "image": "images/farmers/5.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Vrock",
+    "strength": 6,
+    "handy": 5,
+    "stamina": 5,
+    "physical": 6,
+    "image": "images/farmers/6.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Jared",
+    "strength": 5,
+    "handy": 8,
+    "stamina": 9,
+    "physical": 8,
+    "image": "images/farmers/7.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Mezzy",
+    "strength": 8,
+    "handy": 9,
+    "stamina": 8,
+    "physical": 8,
+    "image": "images/farmers/8.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Daisy Plowman",
+    "strength": 6,
+    "handy": 9,
+    "stamina": 4,
+    "physical": 8,
+    "image": "images/farmers/9.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Nellie Pickens",
+    "strength": 6,
+    "handy": 8,
+    "stamina": 3,
+    "physical": 3,
+    "image": "images/farmers/10.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Beau Dilly",
+    "strength": 5,
+    "handy": 6,
+    "stamina": 6,
+    "physical": 3,
+    "image": "images/farmers/11.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Buford Duggan",
+    "strength": 5,
+    "handy": 10,
+    "stamina": 6,
+    "physical": 4,
+    "image": "images/farmers/12.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Rufus Barnwell",
+    "strength": 5,
+    "handy": 6,
+    "stamina": 5,
+    "physical": 9,
+    "image": "images/farmers/13.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Mose Tractorbeam",
+    "strength": 3,
+    "handy": 4,
+    "stamina": 4,
+    "physical": 6,
+    "image": "images/farmers/14.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Nellie Goatley",
+    "strength": 8,
+    "handy": 4,
+    "stamina": 4,
+    "physical": 9,
+    "image": "images/farmers/15.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Mose Stubblefield",
+    "strength": 10,
+    "handy": 4,
+    "stamina": 9,
+    "physical": 6,
+    "image": "images/farmers/16.jpg"
+  },
+  {
+    "id": 17,
+    "name": "June Goatley",
+    "strength": 5,
+    "handy": 8,
+    "stamina": 6,
+    "physical": 5,
+    "image": "images/farmers/17.jpg"
+  },
+  {
+    "id": 18,
+    "name": "Gus Mulewhistle",
+    "strength": 3,
+    "handy": 8,
+    "stamina": 6,
+    "physical": 6,
+    "image": "images/farmers/18.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Dusty Plowman",
+    "strength": 4,
+    "handy": 8,
+    "stamina": 6,
+    "physical": 9,
+    "image": "images/farmers/19.jpg"
+  },
+  {
+    "id": 20,
+    "name": "Bo Plowman",
+    "strength": 8,
+    "handy": 3,
+    "stamina": 3,
+    "physical": 10,
+    "image": "images/farmers/20.jpg"
+  },
+  {
+    "id": 21,
+    "name": "Cletus McCracken",
+    "strength": 8,
+    "handy": 10,
+    "stamina": 5,
+    "physical": 7,
+    "image": "images/farmers/21.jpg"
+  },
+  {
+    "id": 22,
+    "name": "Beau McCracken",
+    "strength": 7,
+    "handy": 5,
+    "stamina": 7,
+    "physical": 7,
+    "image": "images/farmers/22.jpg"
+  },
+  {
+    "id": 23,
+    "name": "Bo Turnipseed",
+    "strength": 4,
+    "handy": 5,
+    "stamina": 3,
+    "physical": 5,
+    "image": "images/farmers/23.jpg"
+  },
+  {
+    "id": 24,
+    "name": "Gus Stubblefield",
+    "strength": 10,
+    "handy": 7,
+    "stamina": 6,
+    "physical": 6,
+    "image": "images/farmers/24.jpg"
+  },
+  {
+    "id": 25,
+    "name": "Pearl Hogshead",
+    "strength": 6,
+    "handy": 5,
+    "stamina": 10,
+    "physical": 9,
+    "image": "images/farmers/25.jpg"
+  },
+  {
+    "id": 26,
+    "name": "Beau Bales",
+    "strength": 3,
+    "handy": 8,
+    "stamina": 3,
+    "physical": 5,
+    "image": "images/farmers/26.jpg"
+  },
+  {
+    "id": 27,
+    "name": "Billy Hogshead",
+    "strength": 3,
+    "handy": 10,
+    "stamina": 4,
+    "physical": 3,
+    "image": "images/farmers/27.jpg"
+  },
+  {
+    "id": 28,
+    "name": "Buford Mulewhistle",
+    "strength": 6,
+    "handy": 9,
+    "stamina": 5,
+    "physical": 6,
+    "image": "images/farmers/28.jpg"
+  },
+  {
+    "id": 29,
+    "name": "Ellie Dilly",
+    "strength": 8,
+    "handy": 8,
+    "stamina": 6,
+    "physical": 5,
+    "image": "images/farmers/29.jpg"
+  },
+  {
+    "id": 30,
+    "name": "Otis McCracken",
+    "strength": 5,
+    "handy": 4,
+    "stamina": 7,
+    "physical": 6,
+    "image": "images/farmers/30.jpg"
+  },
+  {
+    "id": 31,
+    "name": "Shirley Turnipseed",
+    "strength": 10,
+    "handy": 8,
+    "stamina": 4,
+    "physical": 7,
+    "image": "images/farmers/31.jpg"
+  },
+  {
+    "id": 32,
+    "name": "Clara Pickens",
+    "strength": 3,
+    "handy": 3,
+    "stamina": 9,
+    "physical": 5,
+    "image": "images/farmers/32.jpg"
+  },
+  {
+    "id": 33,
+    "name": "Shirley Dilly",
+    "strength": 6,
+    "handy": 7,
+    "stamina": 4,
+    "physical": 5,
+    "image": "images/farmers/33.jpg"
+  },
+  {
+    "id": 34,
+    "name": "Beau Wheatstone",
+    "strength": 8,
+    "handy": 4,
+    "stamina": 5,
+    "physical": 10,
+    "image": "images/farmers/34.jpg"
+  },
+  {
+    "id": 35,
+    "name": "Cora Cabbage",
+    "strength": 5,
+    "handy": 3,
+    "stamina": 7,
+    "physical": 6,
+    "image": "images/farmers/35.jpg"
+  },
+  {
+    "id": 36,
+    "name": "Billy Dilly",
+    "strength": 5,
+    "handy": 4,
+    "stamina": 9,
+    "physical": 9,
+    "image": "images/farmers/36.jpg"
+  },
+  {
+    "id": 37,
+    "name": "Beau Cornblossom",
+    "strength": 4,
+    "handy": 10,
+    "stamina": 3,
+    "physical": 6,
+    "image": "images/farmers/37.jpg"
+  },
+  {
+    "id": 38,
+    "name": "Gus McCracken",
+    "strength": 9,
+    "handy": 7,
+    "stamina": 10,
+    "physical": 5,
+    "image": "images/farmers/38.jpg"
+  },
+  {
+    "id": 39,
+    "name": "June Duggan",
+    "strength": 6,
+    "handy": 10,
+    "stamina": 6,
+    "physical": 8,
+    "image": "images/farmers/39.jpg"
+  },
+  {
+    "id": 40,
+    "name": "Ellie Duggan",
+    "strength": 4,
+    "handy": 9,
+    "stamina": 8,
+    "physical": 6,
+    "image": "images/farmers/40.jpg"
+  },
+  {
+    "id": 41,
+    "name": "Shirley Bales",
+    "strength": 5,
+    "handy": 7,
+    "stamina": 9,
+    "physical": 9,
+    "image": "images/farmers/41.jpg"
+  },
+  {
+    "id": 42,
+    "name": "Bo Stubblefield",
+    "strength": 6,
+    "handy": 3,
+    "stamina": 9,
+    "physical": 3,
+    "image": "images/farmers/42.jpg"
+  },
+  {
+    "id": 43,
+    "name": "Dusty Cabbage",
+    "strength": 3,
+    "handy": 6,
+    "stamina": 5,
+    "physical": 3,
+    "image": "images/farmers/43.jpg"
+  },
+  {
+    "id": 44,
+    "name": "Beau Turnipseed",
+    "strength": 8,
+    "handy": 3,
+    "stamina": 3,
+    "physical": 4,
+    "image": "images/farmers/44.jpg"
+  },
+  {
+    "id": 45,
+    "name": "Ellie Goatley",
+    "strength": 10,
+    "handy": 5,
+    "stamina": 4,
+    "physical": 3,
+    "image": "images/farmers/45.jpg"
+  },
+  {
+    "id": 46,
+    "name": "Jed Duggan",
+    "strength": 8,
+    "handy": 4,
+    "stamina": 6,
+    "physical": 10,
+    "image": "images/farmers/46.jpg"
+  },
+  {
+    "id": 47,
+    "name": "Bo Barnwell",
+    "strength": 9,
+    "handy": 3,
+    "stamina": 6,
+    "physical": 6,
+    "image": "images/farmers/47.jpg"
+  },
+  {
+    "id": 48,
+    "name": "Buford Stubblefield",
+    "strength": 6,
+    "handy": 8,
+    "stamina": 9,
+    "physical": 5,
+    "image": "images/farmers/48.jpg"
+  },
+  {
+    "id": 49,
+    "name": "Rufus Goatley",
+    "strength": 7,
+    "handy": 4,
+    "stamina": 3,
+    "physical": 7,
+    "image": "images/farmers/49.jpg"
+  },
+  {
+    "id": 50,
+    "name": "Skeeter Hayes",
+    "strength": 4,
+    "handy": 6,
+    "stamina": 7,
+    "physical": 6,
+    "image": "images/farmers/50.jpg"
+  },
+  {
+    "id": 51,
+    "name": "Bubba Stubblefield",
+    "strength": 7,
+    "handy": 6,
+    "stamina": 8,
+    "physical": 4,
+    "image": "images/farmers/51.jpg"
+  },
+  {
+    "id": 52,
+    "name": "Rufus Stubblefield",
+    "strength": 8,
+    "handy": 7,
+    "stamina": 8,
+    "physical": 7,
+    "image": "images/farmers/52.jpg"
+  },
+  {
+    "id": 53,
+    "name": "Cletus Hayes",
+    "strength": 8,
+    "handy": 8,
+    "stamina": 9,
+    "physical": 9,
+    "image": "images/farmers/53.jpg"
+  },
+  {
+    "id": 54,
+    "name": "Billy Cabbage",
+    "strength": 6,
+    "handy": 10,
+    "stamina": 5,
+    "physical": 9,
+    "image": "images/farmers/54.jpg"
+  },
+  {
+    "id": 55,
+    "name": "Beau Cabbage",
+    "strength": 6,
+    "handy": 5,
+    "stamina": 8,
+    "physical": 5,
+    "image": "images/farmers/55.jpg"
+  },
+  {
+    "id": 56,
+    "name": "Buford Plowman",
+    "strength": 8,
+    "handy": 4,
+    "stamina": 9,
+    "physical": 3,
+    "image": "images/farmers/56.jpg"
+  },
+  {
+    "id": 57,
+    "name": "Skeeter Goatley",
+    "strength": 10,
+    "handy": 5,
+    "stamina": 10,
+    "physical": 6,
+    "image": "images/farmers/57.jpg"
+  },
+  {
+    "id": 58,
+    "name": "Shirley Hayes",
+    "strength": 10,
+    "handy": 6,
+    "stamina": 10,
+    "physical": 9,
+    "image": "images/farmers/58.jpg"
+  }
+]

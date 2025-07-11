@@ -1,0 +1,207 @@
+
+{% extends "base.html" %}
+
+{% block title %}{{ archived_data.team_name }}'s Archived Team - Farmington{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <!-- Header Section -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="card-title mb-0">
+                                <i class="fas fa-archive me-2"></i>Archived Team: {{ archived_data.team_name }}
+                            </h2>
+                            <small class="text-muted">{{ league.name }} League Champion Team</small>
+                        </div>
+                        <div class="col-auto">
+                            {% if archived_data.profile_pic %}
+                                <img src="{{ url_for('static', filename='images/profile_pics/' + archived_data.profile_pic) }}" 
+                                     class="rounded-circle" 
+                                     alt="Profile" 
+                                     style="width: 60px; height: 60px; object-fit: cover;">
+                            {% else %}
+                                <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" 
+                                     style="width: 60px; height: 60px;">
+                                    <i class="fas fa-user text-white fa-2x"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6 class="text-muted">League Information</h6>
+                            <p><strong>League:</strong> {{ league.name }}</p>
+                            <p><strong>Season:</strong> {{ league.season|title }}</p>
+                            <p><strong>Manager:</strong> @{{ username }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Final Statistics</h6>
+                            <p><strong>Final Points:</strong> {{ archived_data.final_points }}</p>
+                            <p><strong>Matchdays Played:</strong> {{ archived_data.matchdays_played }}</p>
+                            <p><strong>Status:</strong> <span class="badge bg-success">Archived</span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">League Status</h6>
+                            {% if league.winner == username %}
+                                <p><strong>Result:</strong> <span class="badge bg-warning text-dark">🏆 League Champion</span></p>
+                            {% else %}
+                                <p><strong>Result:</strong> <span class="badge bg-secondary">League Participant</span></p>
+                            {% endif %}
+                            <p><strong>Completion Date:</strong> {{ league.completion_date[:10] if league.completion_date else 'Unknown' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Lineup Section -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="card-title mb-0">
+                        <i class="fas fa-users me-2"></i>Final Team Lineup
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% if team %}
+                        <div class="row g-4">
+                            {% set roles = ["Fix Meiser", "Speed Runner", "Lift Tender", "Bench 1", "Bench 2"] %}
+                            {% for role in roles %}
+                                {% set farmer = team.get(role) %}
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card farmer-display-card h-100 {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}border-success{% else %}border-secondary{% endif %}">
+                                        <div class="card-header {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}bg-success text-white{% else %}bg-secondary text-white{% endif %}">
+                                            <h6 class="card-title mb-0">
+                                                {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                                                    <i class="fas fa-star me-2"></i>
+                                                {% else %}
+                                                    <i class="fas fa-user me-2"></i>
+                                                {% endif %}
+                                                {{ role }}
+                                            </h6>
+                                        </div>
+
+                                        {% if farmer and farmer.name %}
+                                            {% if farmer.image %}
+                                                <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+                                                     style="height: 500px; object-fit: cover;">
+                                            {% else %}
+                                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                                     style="height: 500px;">
+                                                    <i class="fas fa-user fa-4x text-muted"></i>
+                                                </div>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                                 style="height: 300px;">
+                                                <div class="text-center">
+                                                    <i class="fas fa-user fa-4x text-muted mb-3"></i>
+                                                    <p class="text-muted mb-0">No farmer assigned</p>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="card-body">
+                                            {% if farmer and farmer.name %}
+                                                <h5 class="card-title text-center">{{ farmer.name }}</h5>
+
+                                                <div class="row text-center">
+                                                    <div class="col-6">
+                                                        <div class="stat-item">
+                                                            <div class="stat-value text-danger fw-bold">{{ farmer.strength }}</div>
+                                                            <div class="stat-label text-muted small">Strength</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="stat-item">
+                                                            <div class="stat-value text-warning fw-bold">{{ farmer.handy }}</div>
+                                                            <div class="stat-label text-muted small">Handy</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row text-center mt-2">
+                                                    <div class="col-6">
+                                                        <div class="stat-item">
+                                                            <div class="stat-value text-info fw-bold">{{ farmer.stamina }}</div>
+                                                            <div class="stat-label text-muted small">Stamina</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="stat-item">
+                                                            <div class="stat-value text-success fw-bold">{{ farmer.physical }}</div>
+                                                            <div class="stat-label text-muted small">Physical</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-3 mb-2">
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar bg-primary" 
+                                                             style="width: {{ ((farmer.strength + farmer.handy + farmer.stamina + farmer.physical) / 40 * 100)|round }}%"></div>
+                                                    </div>
+                                                    <small class="text-muted">Overall Rating: {{ farmer.strength + farmer.handy + farmer.stamina + farmer.physical }}/40</small>
+                                                </div>
+
+                                                <!-- Crop Preferences -->
+                                                {% if farmer.crop_preferences %}
+                                                <div class="text-center">
+                                                    <small class="text-muted d-block">🌾 Crop Preferences:</small>
+                                                    <div class="mt-1">
+                                                        <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">☀️ {{ farmer.crop_preferences.summer|title if farmer.crop_preferences.summer else 'N/A' }}</span>
+                                                        <span class="badge bg-success" style="font-size: 0.6rem;">🍂 {{ farmer.crop_preferences.fall|title if farmer.crop_preferences.fall else 'N/A' }}</span>
+                                                    </div>
+                                                    <div class="mt-1">
+                                                        <span class="badge bg-info" style="font-size: 0.6rem;">❄️ {{ farmer.crop_preferences.winter|title if farmer.crop_preferences.winter else 'N/A' }}</span>
+                                                        <span class="badge bg-light text-dark" style="font-size: 0.6rem;">🌸 {{ farmer.crop_preferences.spring|title if farmer.crop_preferences.spring else 'N/A' }}</span>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                            {% else %}
+                                                <div class="text-center py-4">
+                                                    <h6 class="text-muted">Empty Position</h6>
+                                                    <p class="text-muted small mb-0">No farmer was assigned</p>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+
+                                        {% if farmer and farmer.name %}
+                                        <div class="card-footer bg-light text-center">
+                                            {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                                                <span class="badge bg-success">
+                                                    <i class="fas fa-star me-1"></i>Starting Position
+                                                </span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">
+                                                    <i class="fas fa-chair me-1"></i>Bench
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            No archived team data available.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="text-center mt-4">
+                <a href="{{ url_for('index', tab='leagues') }}" class="btn btn-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Leagues
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

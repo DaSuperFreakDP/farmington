@@ -1,0 +1,513 @@
+{% extends "base.html" %}
+
+{% block title %}The Farmers Market - Farmington{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="display-5 fw-bold text-success mb-0">
+                        <i class="fas fa-store me-2"></i>The Farmers Market
+                    </h1>
+                    <p class="text-muted mb-0">Track undrafted farmer performance and discover hidden gems</p>
+                </div>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-home me-2"></i>Back to Dashboard
+                </a>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-info text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-users me-2"></i>Available Farmers
+                            </h5>
+                            <h3 class="mb-0">{{ available_farmers|length }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-warning text-dark">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-chart-line me-2"></i>Top Performer
+                            </h5>
+                            <h6 class="mb-0">
+                                {% if available_farmers %}
+                                    {{ available_farmers[0].name }}
+                                    <small>({{ "%.1f"|format(available_farmers[0].avg_points) }} avg)</small>
+                                {% else %}
+                                    No data yet
+                                {% endif %}
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-sync me-2"></i>Market Updates
+                            </h5>
+                            <h6 class="mb-0">Every 2 minutes</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-dark text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-info-circle me-2"></i>How The Market Works
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-random me-2"></i>Best Role Format</h6>
+                                    <p class="small mb-0">Undrafted farmers are assigned roles that match their best stat</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-chart-bar me-2"></i>Performance Tracking</h6>
+                                    <p class="small mb-0">Points are tracked but don't count toward user scores</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-history me-2"></i>Recent Form</h6>
+                                    <p class="small mb-0">Last 5 performances show current ability</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-seedling me-2"></i>No Crops</h6>
+                                    <p class="small mb-0">These scores are not including crop scores</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-info text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-question-circle me-2"></i>Performance Legend
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge bg-success me-2">📈 Hot Streak</span>
+                                <small class="text-muted">Scoring in last 3+ games</small>
+                            </div>
+                            <div class="mb-2">
+                                <span class="badge bg-danger me-2">📉 Cold Streak</span>
+                                <small class="text-muted">Zero points in last 3+ games</small>
+                            </div>
+                            <div class="mb-2">
+                                <span class="badge bg-primary me-2">🎯 Consistent</span>
+                                <small class="text-muted">Similar scores each game</small>
+                            </div>
+                            <div class="mb-2">
+                                <span class="badge bg-warning me-2">⚡ Volatile</span>
+                                <small class="text-muted">Unpredictable performance</small>
+                            </div>
+                            <div class="mb-0">
+                                <span class="text-warning me-2">🔥</span>
+                                <small class="text-muted">5 consecutive scoring games</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-users me-2"></i>Available Farmers
+                                <span class="badge bg-light text-dark ms-2">{{ available_farmers|length }}</span>
+                            </h4>
+                        </div>
+                        <div class="col-auto">
+                            <div class="dropdown">
+                                <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-sort me-2"></i>Sort By
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="sortFarmers('avg_points')">Average Points</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="sortFarmers('total_points')">Total Points</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="sortFarmers('matchdays_played')">Experience</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="sortFarmers('name')">Name</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if available_farmers %}
+                        <div class="row g-4" id="farmers-container">
+                            {% for farmer in available_farmers %}
+                                <div class="col-md-6 col-lg-4 col-xl-3 farmer-item" 
+                                     data-avg="{{ farmer.avg_points }}" 
+                                     data-total="{{ farmer.total_points }}" 
+                                     data-matches="{{ farmer.matchdays_played }}"
+                                     data-name="{{ farmer.name }}">
+                                    <div class="card farmer-market-card h-100 border-success">
+                                        <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+                                             style="height: 200px; object-fit: cover; object-position: center top;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                {{ farmer.name }}
+                                                {% if farmer.is_hot %}
+                                                    <span class="text-warning ms-1" title="5 consecutive scoring performances!">🔥</span>
+                                                {% endif %}
+                                            </h5>
+                                            
+                                            <div class="mb-2">
+                                                <small class="text-muted">Suggested Role:</small>
+                                                <span class="badge bg-info">{{ farmer.suggested_role }}</span>
+                                                {% if farmer.trend == 'hot_streak' %}
+                                                    <span class="badge bg-success ms-1">📈 Hot Streak</span>
+                                                {% elif farmer.trend == 'cold_streak' %}
+                                                    <span class="badge bg-danger ms-1">📉 Cold Streak</span>
+                                                {% elif farmer.trend == 'consistent' %}
+                                                    <span class="badge bg-primary ms-1">🎯 Consistent</span>
+                                                {% elif farmer.trend == 'volatile' %}
+                                                    <span class="badge bg-warning ms-1">⚡ Volatile</span>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <div class="row mb-3">
+                                                <div class="col-6">
+                                                    <small><strong>STR:</strong> {{ farmer.strength }}</small><br>
+                                                    <small><strong>HANDY:</strong> {{ farmer.handy }}</small>
+                                                </div>
+                                                <div class="col-6">
+                                                    <small><strong>STA:</strong> {{ farmer.stamina }}</small><br>
+                                                    <small><strong>PHYS:</strong> {{ farmer.physical }}</small>
+                                                </div>
+                                            </div>
+
+                                            <!-- Crop Preferences -->
+                                            <div class="mb-3">
+                                                <small class="text-muted">🌾 Crop Preferences:</small>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-warning text-dark me-1">☀️ {{ farmer.crop_preferences.summer|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                    <span class="badge bg-success me-1">🍂 {{ farmer.crop_preferences.fall|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-info me-1">❄️ {{ farmer.crop_preferences.winter|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                    <span class="badge bg-light text-dark">🌸 {{ farmer.crop_preferences.spring|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-top pt-3">
+                                                <h6 class="text-success mb-2">
+                                                    <i class="fas fa-chart-line me-1"></i>Market Performance
+                                                </h6>
+                                                
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <small class="text-muted">Total Points:</small><br>
+                                                        <strong class="text-primary">{{ farmer.total_points }}</strong>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <small class="text-muted">Sample Matchdays:</small><br>
+                                                        <strong class="text-info">{{ farmer.matchdays_played }}/5</strong><br>
+                                                        <small class="text-muted">{{ farmer.matchdays_played }} out of 5 market games played</small>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-2">
+                                                    <div class="col-6">
+                                                        <small class="text-muted">Average:</small><br>
+                                                        <strong class="text-success">{{ "%.1f"|format(farmer.avg_points) }}</strong>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <small class="text-muted">Form:</small><br>
+                                                        {% if farmer.recent_form %}
+                                                            <div class="recent-form">
+                                                                {% for points in farmer.recent_form %}
+                                                                    <span class="badge {% if points > 0 %}bg-success{% else %}bg-secondary{% endif %} me-1">{{ points }}</span>
+                                                                {% endfor %}
+                                                            </div>
+                                                        {% else %}
+                                                            <small class="text-muted">No data</small>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+
+                                                {% if farmer.matchdays_played > 0 %}
+                                                    <div class="progress mb-2" style="height: 8px;">
+                                                        <div class="progress-bar bg-success" 
+                                                             style="width: {{ farmer.performance_rating }}%"></div>
+                                                    </div>
+                                                    <small class="text-muted">Relative Performance Rating ({{ farmer.performance_rating }}%)</small>
+                                                {% else %}
+                                                    <div class="text-center">
+                                                        <span class="badge bg-warning">Untested</span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <!-- Swap Button -->
+                                            <div class="card-footer bg-light">
+                                                <button class="btn btn-success btn-sm w-100" 
+                                                        onclick="openSwapModal('{{ farmer.name }}', '{{ farmer.suggested_role }}')"
+                                                        data-bs-toggle="modal" 
+                                                        data-bs-target="#swapModal">
+                                                    <i class="fas fa-exchange-alt me-2"></i>Swap for This Farmer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No Available Farmers</h5>
+                            <p class="text-muted">All farmers have been drafted!</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Swap Modal -->
+<div class="modal fade" id="swapModal" tabindex="-1" aria-labelledby="swapModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="swapModalLabel">
+                    <i class="fas fa-exchange-alt me-2"></i>Swap Farmer
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="{{ url_for('swap_farmer') }}">
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Select one of your current farmers to swap with <strong id="targetFarmerName"></strong>. 
+                        The market farmer will take the exact role of your selected farmer.
+                    </div>
+                    
+                    <input type="hidden" name="market_farmer" id="marketFarmerInput">
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Choose farmer to replace:</label>
+                        <div id="currentTeamOptions">
+                            <!-- Current team options will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="row" id="swapPreview" style="display: none;">
+                        <div class="col-md-6">
+                            <div class="card border-danger">
+                                <div class="card-header bg-danger text-white text-center">
+                                    <small>Releasing</small>
+                                </div>
+                                <div class="card-body text-center" id="releasingFarmer">
+                                    <!-- Current farmer info -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-success">
+                                <div class="card-header bg-success text-white text-center">
+                                    <small>Acquiring</small>
+                                </div>
+                                <div class="card-body text-center" id="acquiringFarmer">
+                                    <!-- Market farmer info -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success" id="confirmSwapBtn" disabled>
+                        <i class="fas fa-exchange-alt me-2"></i>Confirm Swap
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function sortFarmers(criteria) {
+    const container = document.getElementById('farmers-container');
+    const items = Array.from(container.querySelectorAll('.farmer-item'));
+    
+    items.sort((a, b) => {
+        let aVal, bVal;
+        
+        switch(criteria) {
+            case 'avg_points':
+                aVal = parseFloat(a.dataset.avg);
+                bVal = parseFloat(b.dataset.avg);
+                return bVal - aVal; // Descending
+            case 'total_points':
+                aVal = parseInt(a.dataset.total);
+                bVal = parseInt(b.dataset.total);
+                return bVal - aVal; // Descending
+            case 'matchdays_played':
+                aVal = parseInt(a.dataset.matches);
+                bVal = parseInt(b.dataset.matches);
+                return bVal - aVal; // Descending
+            case 'name':
+                aVal = a.dataset.name.toLowerCase();
+                bVal = b.dataset.name.toLowerCase();
+                return aVal.localeCompare(bVal); // Ascending
+            default:
+                return 0;
+        }
+    });
+    
+    // Clear container and re-append sorted items
+    container.innerHTML = '';
+    items.forEach(item => container.appendChild(item));
+}
+
+// Auto-refresh market data every 2 minutes
+setInterval(() => {
+    location.reload();
+}, 120000);
+
+// Swap modal functionality
+let currentTeam = {};
+let marketFarmerData = {};
+
+async function openSwapModal(farmerName, suggestedRole) {
+    document.getElementById('targetFarmerName').textContent = farmerName;
+    document.getElementById('marketFarmerInput').value = farmerName;
+    
+    // Store market farmer data
+    marketFarmerData = {
+        name: farmerName,
+        role: suggestedRole
+    };
+    
+    // Load current team
+    try {
+        const response = await fetch('/api/current_team');
+        currentTeam = await response.json();
+        
+        renderTeamOptions();
+        updateAcquiringFarmer();
+    } catch (error) {
+        console.error('Error loading team:', error);
+    }
+}
+
+function renderTeamOptions() {
+    const container = document.getElementById('currentTeamOptions');
+    container.innerHTML = '';
+    
+    const roles = ["Fix Meiser", "Speed Runner", "Lift Tender", "Bench 1", "Bench 2"];
+    let hasAnyPositions = false;
+    
+    roles.forEach(role => {
+        const farmer = currentTeam[role];
+        hasAnyPositions = true;
+        
+        const option = document.createElement('div');
+        option.className = 'form-check mb-2';
+        
+        if (farmer && farmer.name) {
+            // Existing farmer
+            option.innerHTML = `
+                <input class="form-check-input" type="radio" name="current_farmer_role" 
+                       value="${role}" id="farmer_${role}" onchange="selectCurrentFarmer('${role}')">
+                <label class="form-check-label w-100" for="farmer_${role}">
+                    <div class="card card-body py-2">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong>${farmer.name}</strong>
+                                <br><small class="text-muted">${role}</small>
+                            </div>
+                            <div class="col-auto">
+                                <small>STR:${farmer.strength} HANDY:${farmer.handy} STA:${farmer.stamina}</small>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            `;
+        } else {
+            // Empty position
+            option.innerHTML = `
+                <input class="form-check-input" type="radio" name="current_farmer_role" 
+                       value="${role}" id="farmer_${role}" onchange="selectCurrentFarmer('${role}')">
+                <label class="form-check-label w-100" for="farmer_${role}">
+                    <div class="card card-body py-2 border-dashed">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <strong class="text-muted">Empty Position</strong>
+                                <br><small class="text-muted">${role}</small>
+                            </div>
+                            <div class="col-auto">
+                                <small class="text-success">Available for assignment</small>
+                            </div>
+                        </div>
+                    </div>
+                </label>
+            `;
+        }
+        container.appendChild(option);
+    });
+    
+    if (!hasAnyPositions) {
+        container.innerHTML = `
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                You need to have a drafted team before you can make swaps.
+            </div>
+        `;
+    }
+}
+
+function selectCurrentFarmer(role) {
+    const farmer = currentTeam[role];
+    
+    // Update releasing farmer display
+    const releasingDiv = document.getElementById('releasingFarmer');
+    
+    if (farmer && farmer.name) {
+        // Existing farmer
+        releasingDiv.innerHTML = `
+            <h6>${farmer.name}</h6>
+            <p class="mb-1"><strong>${role}</strong></p>
+            <small>STR:${farmer.strength} HANDY:${farmer.handy} STA:${farmer.stamina}</small>
+        `;
+    } else {
+        // Empty position
+        releasingDiv.innerHTML = `
+            <h6 class="text-muted">Empty Position</h6>
+            <p class="mb-1"><strong>${role}</strong></p>
+            <small class="text-success">Ready to be filled</small>
+        `;
+    }
+    
+    // Show preview
+    document.getElementById('swapPreview').style.display = 'block';
+    document.getElementById('confirmSwapBtn').disabled = false;
+}
+
+function updateAcquiringFarmer() {
+    const acquiringDiv = document.getElementById('acquiringFarmer');
+    acquiringDiv.innerHTML = `
+        <h6>${marketFarmerData.name}</h6>
+        <p class="mb-1"><strong>Will take selected role</strong></p>
+        <small class="text-muted">Market Farmer</small>
+    `;
+}
+</script>
+{% endblock %}

@@ -1,0 +1,132 @@
+ERROR:app:Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\app.py", line 576, in index
+    stats_html = get_match_stats_html(username)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\stats.py", line 160, in get_match_stats_html
+    avg = matchday_avgs[matchday][name]
+          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'Vrock'
+INFO:werkzeug:127.0.0.1 - - [03/Jul/2025 21:17:57] "GET /?tab=results HTTP/1.1" 500 -
+ERROR:app:Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\app.py", line 576, in index
+    stats_html = get_match_stats_html(username)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\stats.py", line 160, in get_match_stats_html
+    avg = matchday_avgs[matchday][name]
+          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'Vrock'
+INFO:werkzeug:127.0.0.1 - - [03/Jul/2025 21:18:01] "GET / HTTP/1.1" 500 -
+ERROR:app:Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\app.py", line 576, in index
+    stats_html = get_match_stats_html(username)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\stats.py", line 160, in get_match_stats_html
+    avg = matchday_avgs[matchday][name]
+          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'Vrock'
+INFO:werkzeug:127.0.0.1 - - [03/Jul/2025 21:18:01] "GET / HTTP/1.1" 500 -
+ERROR:app:Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\app.py", line 576, in index
+    stats_html = get_match_stats_html(username)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\stats.py", line 160, in get_match_stats_html
+    avg = matchday_avgs[matchday][name]
+          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'Zach'
+INFO:werkzeug:127.0.0.1 - - [03/Jul/2025 21:18:03] "GET /?tab=leagues HTTP/1.1" 500 -
+ERROR:app:Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\app.py", line 576, in index
+    stats_html = get_match_stats_html(username)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\stats.py", line 160, in get_match_stats_html
+    avg = matchday_avgs[matchday][name]
+          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'Zach'
+INFO:werkzeug:127.0.0.1 - - [03/Jul/2025 21:18:03] "GET /?tab=leagues HTTP/1.1" 500 -
+ERROR:app:Exception on / [GET]
+Traceback (most recent call last):
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kickm\AppData\Local\spyder-6\envs\spyder-runtime\Lib\site-packages\flask\app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\app.py", line 576, in index
+    stats_html = get_match_stats_html(username)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\users\kickm\downloads\farmington-back-a-step (1)\farmington-back-a-step\stats.py", line 160, in get_match_stats_html
+    avg = matchday_avgs[matchday][name]
+          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+KeyError: 'Zach'
+INFO:werkzeug:127.0.0.1 - - [03/Jul/2025 21:18:04] "GET /?tab=leagues HTTP/1.1" 500 -
