@@ -1,0 +1,106 @@
+{
+    "users": {
+        "ty": {
+            "matchday": 0,
+            "drafted_team": {
+                "Fix Meiser": {
+                    "id": 1,
+                    "name": "Josh",
+                    "strength": 1,
+                    "handy": 5,
+                    "stamina": 6,
+                    "physical": 6,
+                    "image": "/static/images/farmers/josh.png"
+                },
+                "Speed Runner": {
+                    "id": 4,
+                    "name": "Tyrone",
+                    "strength": 4,
+                    "handy": 9,
+                    "stamina": 7,
+                    "physical": 9,
+                    "image": "/static/images/farmers/tyrone.png"
+                },
+                "Lift Tender": {
+                    "id": 5,
+                    "name": "Luke",
+                    "strength": 10,
+                    "handy": 3,
+                    "stamina": 6,
+                    "physical": 7,
+                    "image": "/static/images/farmers/luke.png"
+                },
+                "Bench 1": {
+                    "id": 8,
+                    "name": "Mezzy",
+                    "strength": 8,
+                    "handy": 10,
+                    "stamina": 8,
+                    "physical": 8,
+                    "image": "/static/images/farmers/mezzy.png"
+                },
+                "Bench 2": {
+                    "id": 9,
+                    "name": "Morris",
+                    "strength": 7,
+                    "handy": 3,
+                    "stamina": 4,
+                    "physical": 6,
+                    "image": "/static/images/farmers/morris.png"
+                }
+            },
+            "data": []
+        },
+        "jared": {
+            "matchday": 0,
+            "drafted_team": {
+                "Fix Meiser": {
+                    "id": 2,
+                    "name": "Zach",
+                    "strength": 5,
+                    "handy": 4,
+                    "stamina": 9,
+                    "physical": 8,
+                    "image": "/static/images/farmers/zach.png"
+                },
+                "Speed Runner": {
+                    "id": 3,
+                    "name": "Tyler",
+                    "strength": 10,
+                    "handy": 3,
+                    "stamina": 8,
+                    "physical": 10,
+                    "image": "/static/images/farmers/tyler.jpg"
+                },
+                "Lift Tender": {
+                    "id": 6,
+                    "name": "Vrock",
+                    "strength": 4,
+                    "handy": 5,
+                    "stamina": 5,
+                    "physical": 6,
+                    "image": "/static/images/farmers/vrock.png"
+                },
+                "Bench 1": {
+                    "id": 7,
+                    "name": "Jared",
+                    "strength": 5,
+                    "handy": 8,
+                    "stamina": 7,
+                    "physical": 8,
+                    "image": "/static/images/farmers/jared.png"
+                },
+                "Bench 2": {
+                    "id": 10,
+                    "name": "Hunter",
+                    "strength": 6,
+                    "handy": 6,
+                    "stamina": 6,
+                    "physical": 5,
+                    "image": "/static/images/farmers/hunter.png"
+                }
+            },
+            "data": []
+        }
+    }
+}

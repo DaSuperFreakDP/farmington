@@ -1,0 +1,92 @@
+
+{% extends "base.html" %}
+
+{% block title %}Profile - Farmington{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-user-cog me-2"></i>Profile Settings
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <!-- Current Profile Display -->
+                        <div class="text-center mb-4">
+                            {% if user_profile.profile_pic %}
+                                <img src="{{ url_for('static', filename='images/profile_pics/' + user_profile.profile_pic) }}" 
+                                     class="rounded-circle mb-3" 
+                                     alt="Profile Picture" 
+                                     style="width: 120px; height: 120px; object-fit: cover;">
+                            {% else %}
+                                <div class="bg-secondary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" 
+                                     style="width: 120px; height: 120px;">
+                                    <i class="fas fa-user fa-3x text-white"></i>
+                                </div>
+                            {% endif %}
+                            <h4 class="text-primary">{{ user_profile.team_name }}</h4>
+                            <p class="text-muted">@{{ username }}</p>
+                        </div>
+
+                        <!-- Team Name -->
+                        <div class="mb-3">
+                            <label for="team_name" class="form-label">
+                                <i class="fas fa-flag me-2"></i>Fantasy Team Name
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="team_name" 
+                                   name="team_name" 
+                                   value="{{ user_profile.team_name }}" 
+                                   placeholder="Enter your fantasy team name"
+                                   maxlength="50">
+                            <div class="form-text">This will be displayed on leaderboards and matchups</div>
+                        </div>
+
+                        <!-- Team Chant -->
+                        <div class="mb-3">
+                            <label for="team_chant" class="form-label">
+                                <i class="fas fa-bullhorn me-2"></i>Team Chant
+                            </label>
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="team_chant" 
+                                   name="team_chant" 
+                                   value="{{ user_profile.team_chant or '' }}" 
+                                   placeholder="Enter your team's chant or motto"
+                                   maxlength="100">
+                            <div class="form-text">Optional: This will be displayed in matchup results (e.g., "Let's go Roughnecks!")</div>
+                        </div>
+
+                        <!-- Profile Picture Upload -->
+                        <div class="mb-3">
+                            <label for="profile_pic" class="form-label">
+                                <i class="fas fa-camera me-2"></i>Profile Picture
+                            </label>
+                            <input type="file" 
+                                   class="form-control" 
+                                   id="profile_pic" 
+                                   name="profile_pic" 
+                                   accept="image/*">
+                            <div class="form-text">Upload a profile picture (PNG, JPG, JPEG, or GIF)</div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Update Profile
+                            </button>
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

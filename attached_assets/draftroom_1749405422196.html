@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Draft Room - Farmington</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #fdfaf3; padding: 20px; }
+    .farmer-card { border: 1px solid #ccc; border-radius: 8px; padding: 10px; background: white; margin-bottom: 15px; text-align: center; }
+    .farmer-card img { max-width: 100%; height: 150px; object-fit: cover; border-radius: 4px; }
+    .disabled { opacity: 0.5; pointer-events: none; }
+    .sidebar { background: #fffbe7; border: 1px solid #ddd; padding: 10px; border-radius: 10px; }
+    .fade-banner { transition: opacity 0.5s ease-in-out; opacity: 1; }
+    .order-list li.current { font-weight: bold; color: #007bff; }
+    .order-list li.done { text-decoration: line-through; color: #777; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/leagues" class="btn btn-sm btn-outline-secondary mb-3">← Back to Leagues</a>
+    <h1>🐍 Draft Room</h1>
+    <p><strong>League Code:</strong> {{ league_code }}</p>
+
+    {% if last_pick_message %}
+      <div id="pick-banner" class="alert alert-info fade-banner">
+        <strong>{{ last_pick_message }}</strong>
+      </div>
+    {% endif %}
+
+    <div class="mb-3">
+      <span class="badge bg-primary">Current Turn: {{ current_user_turn }}</span>
+      <span class="ms-3 text-danger fw-bold">⏳ <span id="global-timer">Loading...</span></span>
+    </div>
+
+    {% if not user_draft_complete and username == current_user_turn %}
+      <div class="mb-3">
+        <label for="role" class="form-label">Select Role:</label>
+        <select class="form-select" id="role">
+          <option value="" disabled selected>Choose role</option>
+          {% for role in available_roles %}
+            <option value="{{ role }}">{{ role }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    {% endif %}
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          {% for farmer in farmer_pool %}
+            {% if farmer.name not in picked_farmer_names %}
+              <div class="col-md-6">
+                <div class="farmer-card {% if username != current_user_turn or user_draft_complete %}disabled{% endif %}">
+                  <img src="{{ farmer.image }}" alt="{{ farmer.name }}">
+                  <h5>{{ farmer.name }}</h5>
+                  <p>
+                    STR: {{ farmer.strength }} |
+                    HANDY: {{ farmer.handy }} |
+                    STA: {{ farmer.stamina }} |
+                    PHYS: {{ farmer.physical }}
+                  </p>
+                  {% if username == current_user_turn and not user_draft_complete %}
+                    <form method="post" action="/submit_pick">
+                      <input type="hidden" name="farmer_index" value="{{ loop.index0 }}">
+                      <input type="hidden" name="league_code" value="{{ league_code }}">
+                      <input type="hidden" name="selected_role" id="selected_role_input_{{ loop.index0 }}">
+<button type="submit" class="btn btn-success mt-2" onclick="document.getElementById('selected_role_input_{{ loop.index0 }}').value = document.getElementById('role').value;">Select</button>
+                    </form>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="sidebar mb-4">
+          <h5>Your Selections</h5>
+          <ul class="list-group">
+            {% for role in ["Fix Meiser", "Speed Runner", "Lift Tender", "Bench 1", "Bench 2"] %}
+              <li class="list-group-item">
+                <strong>{{ role }}:</strong>
+                {% if drafted[role] %}
+                  {{ drafted[role].name }} (STR {{ drafted[role].strength }}, HANDY {{ drafted[role].handy }}, STA {{ drafted[role].stamina }}, PHYS {{ drafted[role].physical }})
+                {% else %}
+                  <em>empty</em>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="sidebar">
+          <h5>Snake Draft Order</h5>
+<ol class="order-list">
+  {% for user in snake_order %}
+    {% set idx = loop.index0 %}
+    {% if idx < picks_made %}
+      <li class="done">{{ user }}</li>
+    {% elif idx == picks_made %}
+      <li class="current">⏳ {{ user }}</li>
+    {% else %}
+      <li>{{ user }}</li>
+    {% endif %}
+  {% endfor %}
+</ol>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+const timerEl = document.getElementById("global-timer");
+const pickStart = new Date("{{ pick_start_time }}").getTime();
+let hasSkipped = false;
+
+function updateGlobalTimer() {
+  const now = Date.now();
+  const diff = Math.floor((pickStart + 120000 - now) / 1000);
+  const mins = Math.floor(diff / 60);
+  const secs = diff % 60;
+
+  if (diff <= 0) {
+    timerEl.innerText = "0:00";
+    if (!hasSkipped && "{{ username }}" === "{{ current_user_turn }}") {
+      hasSkipped = true;
+      console.log("⏳ Skipping turn...");
+      fetch("/skip_turn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ league_code: "{{ league_code }}" })
+      })
+      .then(res => res.text())
+      .then(msg => {
+        console.log("✅ Skip result:", msg);
+        setTimeout(() => location.reload(), 1000);  // delay reload slightly to avoid race
+      })
+      .catch(err => console.error("⚠️ Skip error:", err));
+    }
+  } else {
+    timerEl.innerText = `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+}
+
+setInterval(updateGlobalTimer, 1000);
+updateGlobalTimer();
+</script>
+
+</body>
+</html>

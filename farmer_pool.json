@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "Josh",
+    "strength": 1,
+    "handy": 7,
+    "stamina": 6,
+    "physical": 6,
+    "image": "/static/images/farmers/josh.png"
+  },
+  {
+    "id": 2,
+    "name": "Zach",
+    "strength": 5,
+    "handy": 4,
+    "stamina": 8,
+    "physical": 8,
+    "image": "/static/images/farmers/zach.png"
+  },
+  {
+    "id": 3,
+    "name": "Tyler",
+    "strength": 10,
+    "handy": 3,
+    "stamina": 8,
+    "physical": 10,
+    "image": "/static/images/farmers/tyler.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Tyrone",
+    "strength": 4,
+    "handy": 7,
+    "stamina": 7,
+    "physical": 9,
+    "image": "/static/images/farmers/tyrone.png"
+  },
+  {
+    "id": 5,
+    "name": "Luke",
+    "strength": 9,
+    "handy": 3,
+    "stamina": 6,
+    "physical": 7,
+    "image": "/static/images/farmers/luke.png"
+  },
+  {
+    "id": 6,
+    "name": "Vrock",
+    "strength": 6,
+    "handy": 5,
+    "stamina": 5,
+    "physical": 6,
+    "image": "/static/images/farmers/vrock.png"
+  },
+  {
+    "id": 7,
+    "name": "Jared",
+    "strength": 5,
+    "handy": 8,
+    "stamina": 9,
+    "physical": 8,
+    "image": "/static/images/farmers/jared.png"
+  },
+  {
+    "id": 8,
+    "name": "Mezzy",
+    "strength": 8,
+    "handy": 9,
+    "stamina": 8,
+    "physical": 8,
+    "image": "/static/images/farmers/mezzy.png"
+  },
+  {
+    "id": 9,
+    "name": "Morris",
+    "strength": 7,
+    "handy": 3,
+    "stamina": 4,
+    "physical": 5,
+    "image": "/static/images/farmers/morris.png"
+  },
+  {
+    "id": 10,
+    "name": "Hunter",
+    "strength": 6,
+    "handy": 8,
+    "stamina": 6,
+    "physical": 6,
+    "image": "/static/images/farmers/hunter.png"
+  },
+  {
+    "id": 11,
+    "name": "Nelson",
+    "strength": 4,
+    "handy": 8,
+    "stamina": 4,
+    "physical": 7,
+    "image": "/static/images/farmers/nelson.png"
+  },
+  {
+    "id": 12,
+    "name": "Dante",
+    "strength": 7,
+    "handy": 4,
+    "stamina": 5,
+    "physical": 7,
+    "image": "/static/images/farmers/dante.png"
+  },
+  {
+    "id": 13,
+    "name": "Christian",
+    "strength": 6,
+    "handy": 4,
+    "stamina": 5,
+    "physical": 9,
+    "image": "/static/images/farmers/christian.png"
+  },
+  {
+    "id": 14,
+    "name": "Marc-Anthony",
+    "strength": 5,
+    "handy": 6,
+    "stamina": 4,
+    "physical": 6,
+    "image": "/static/images/farmers/marc.png"
+  },
+  {
+    "id": 15,
+    "name": "Daniel",
+    "strength": 5,
+    "handy": 4,
+    "stamina": 7,
+    "physical": 7,
+    "image": "/static/images/farmers/daniel.png"
+  },
+  {
+    "id": 16,
+    "name": "Nick Rebello",
+    "strength": 9,
+    "handy": 1,
+    "stamina": 4,
+    "physical": 7,
+    "image": "/static/images/farmers/rebello.png"
+  },
+  {
+    "id": 17,
+    "name": "Kieran Richards",
+    "strength": 3,
+    "handy": 7,
+    "stamina": 6,
+    "physical": 3,
+    "image": "/static/images/farmers/kieran.png"
+  },
+  {
+    "id": 18,
+    "name": "Gus Mulewhistle",
+    "strength": 3,
+    "handy": 8,
+    "stamina": 6,
+    "physical": 6,
+    "image": "https://via.placeholder.com/150x150/FFDEAD/000000?text=Gus"
+  },
+  {
+    "id": 19,
+    "name": "Dusty Plowman",
+    "strength": 4,
+    "handy": 8,
+    "stamina": 6,
+    "physical": 9,
+    "image": "https://via.placeholder.com/150x150/F5DEB3/000000?text=Dusty"
+  },
+  {
+    "id": 20,
+    "name": "Bo Plowman",
+    "strength": 8,
+    "handy": 3,
+    "stamina": 3,
+    "physical": 10,
+    "image": "https://via.placeholder.com/150x150/D2B48C/000000?text=Bo"
+  }
+]

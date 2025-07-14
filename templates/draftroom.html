@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+
+{% block title %}Draft Room - Farmington{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="display-6 fw-bold text-primary mb-0">
+                        <i class="fas fa-users me-2"></i>Snake Draft Room
+                    </h1>
+                    <p class="text-muted mb-0">League Code: <code>{{ league_code }}</code></p>
+                </div>
+                <a href="{{ url_for('index', tab='leagues') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Leagues
+                </a>
+            </div>
+
+            {% if last_pick_message %}
+                <div id="pick-banner" class="alert alert-info alert-dismissible fade show">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>{{ last_pick_message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endif %}
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-clock me-2"></i>Current Turn
+                            </h5>
+                            <h3 class="mb-0">{{ current_user_turn }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-hourglass-half me-2"></i>Time Remaining
+                            </h5>
+                            <h3 class="mb-0" id="global-timer">Loading...</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if not user_draft_complete and username == current_user_turn %}
+                <div class="card mb-4 border-success">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="card-title mb-0">
+                            <i class="fas fa-hand-pointer me-2"></i>Your Turn - Select Role
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <label for="role" class="form-label fw-bold">Choose role for your pick:</label>
+                                <select class="form-select form-select-lg" id="role">
+                                    <option value="" disabled selected>Choose role</option>
+                                    {% for role in available_roles %}
+                                        <option value="{{ role }}">{{ role }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="alert alert-warning mb-0">
+                                    <i class="fas fa-clock me-2"></i>
+                                    <strong>2 minutes</strong> to pick!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    <h4 class="card-title mb-0">
+                        <i class="fas fa-users me-2"></i>Available Farmers
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for farmer in farmer_pool %}
+                            {% if farmer.name not in picked_farmer_names %}
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card farmer-card h-100 {% if username != current_user_turn or user_draft_complete %}disabled{% endif %}">
+                                        <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" style="height: 400px; object-fit: cover;">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ farmer.name }}</h5>
+                                            <div class="row text-sm mb-2">
+                                                <div class="col-6">
+                                                    <small><strong>STR:</strong> {{ farmer.strength }}</small><br>
+                                                    <small><strong>HANDY:</strong> {{ farmer.handy }}</small>
+                                                </div>
+                                                <div class="col-6">
+                                                    <small><strong>STA:</strong> {{ farmer.stamina }}</small><br>
+                                                    <small><strong>PHYS:</strong> {{ farmer.physical }}</small>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Crop Preferences -->
+                                            <div class="text-center">
+                                                <small class="text-muted d-block">🌾 Crop Preferences:</small>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">☀️ {{ farmer.crop_preferences.summer|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                    <span class="badge bg-success" style="font-size: 0.6rem;">🍂 {{ farmer.crop_preferences.fall|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-info" style="font-size: 0.6rem;">❄️ {{ farmer.crop_preferences.winter|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                    <span class="badge bg-light text-dark" style="font-size: 0.6rem;">🌸 {{ farmer.crop_preferences.spring|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Previous Season Performance -->
+                                            {% if farmer.prev_season_stats %}
+                                                <div class="text-center mt-2">
+                                                    <small class="text-muted d-block" style="font-size: 0.7rem;">📊 Last Season:</small>
+                                                    <div class="mt-1">
+                                                        <span class="badge bg-primary me-1" style="font-size: 0.6rem;">{{ farmer.prev_season_stats.total_points }} pts</span>
+                                                        <span class="badge {% if farmer.prev_season_stats.total_injuries > 5 %}bg-danger{% elif farmer.prev_season_stats.total_injuries > 2 %}bg-warning text-dark{% else %}bg-success{% endif %}" style="font-size: 0.6rem;">{{ farmer.prev_season_stats.total_injuries }} inj</span>
+                                                    </div>
+                                                    {% if farmer.prev_season_stats.games_played > 0 %}
+                                                        <small class="text-muted" style="font-size: 0.6rem;">{{ "%.1f"|format(farmer.prev_season_stats.total_points / farmer.prev_season_stats.games_played) }} avg</small>
+                                                    {% endif %}
+                                                    {% if farmer.prev_season_stats.was_drafted %}
+                                                        <div class="mt-1">
+                                                            <span class="badge bg-info" style="font-size: 0.5rem;">Previously Drafted</span>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <div class="text-center mt-2">
+                                                    <small class="text-muted" style="font-size: 0.7rem;">📊 No previous data</small>
+                                                </div>
+                                            {% endif %}
+                                            
+                                            {% if username == current_user_turn and not user_draft_complete %}
+                                                <form method="post" action="{{ url_for('submit_pick') }}" class="mt-3">
+                                                    <input type="hidden" name="farmer_index" value="{{ loop.index0 }}">
+                                                    <input type="hidden" name="league_code" value="{{ league_code }}">
+                                                    <input type="hidden" name="selected_role" id="selected_role_input_{{ loop.index0 }}">
+                                                    <button type="submit" class="btn btn-success w-100" 
+                                                    onclick="
+                                                        const role = document.getElementById('role').value;
+                                                        if (!role) {
+                                                            alert('Please select a role before picking a farmer.');
+                                                            return false;
+                                                        }
+                                                        document.getElementById('selected_role_input_{{ loop.index0 }}').value = role;
+                                                    ">
+                                             <i class="fas fa-check me-2"></i>Select
+                                                    </button>
+                                                </form>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-clipboard-list me-2"></i>Your Selections
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for role in ["Fix Meiser", "Speed Runner", "Lift Tender", "Bench 1", "Bench 2"] %}
+                            <li class="list-group-item">
+                                <strong>{{ role }}:</strong>
+                                {% if drafted[role] %}
+                                    <div class="mt-2">
+                                        <span class="badge bg-success">{{ drafted[role].name }}</span>
+                                        <small class="d-block text-muted">
+                                            STR {{ drafted[role].strength }}, HANDY {{ drafted[role].handy }}, 
+                                            STA {{ drafted[role].stamina }}, PHYS {{ drafted[role].physical }}
+                                        </small>
+                                    </div>
+                                {% else %}
+                                    <em class="text-muted">empty</em>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-list-ol me-2"></i>Draft Order
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ol class="list-unstyled mb-0">
+                        {% for user in snake_order %}
+                            {% set idx = loop.index0 %}
+                            <li class="mb-2 {% if idx < picks_made %}text-muted{% elif idx == picks_made %}text-primary fw-bold{% endif %}">
+                                {% if idx < picks_made %}
+                                    <i class="fas fa-check text-success me-2"></i>
+                                {% elif idx == picks_made %}
+                                    <i class="fas fa-clock text-primary me-2"></i>
+                                {% else %}
+                                    <i class="fas fa-hourglass text-muted me-2"></i>
+                                {% endif %}
+                                {{ user }}
+                                {% if idx == picks_made %}
+                                    <span class="badge bg-primary ms-2">Current</span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const timerEl = document.getElementById("global-timer");
+const pickStart = new Date("{{ pick_start_time }}").getTime();
+let hasSkipped = false;
+let isMyTurn = "{{ username }}" === "{{ current_user_turn }}";
+
+function updateGlobalTimer() {
+    const now = Date.now();
+    const diff = Math.floor((pickStart + 120000 - now) / 1000);
+    const mins = Math.floor(diff / 60);
+    const secs = diff % 60;
+
+    if (diff <= 0) {
+        timerEl.innerText = "0:00";
+        // Only skip if it's actually the current user's turn and they haven't been skipped yet
+        if (!hasSkipped && isMyTurn) {
+            hasSkipped = true;
+            console.log("⏳ Time's up! Skipping turn...");
+            fetch("{{ url_for('skip_turn') }}", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ league_code: "{{ league_code }}" })
+            })
+            .then(res => {
+                if (res.ok) {
+                    console.log("✅ Turn skipped successfully");
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    console.error("⚠️ Failed to skip turn:", res.status);
+                }
+            })
+            .catch(err => console.error("⚠️ Skip error:", err));
+        }
+    } else {
+        timerEl.innerText = `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+}
+
+// Start the timer
+const timerInterval = setInterval(updateGlobalTimer, 1000);
+updateGlobalTimer();
+
+// Auto-refresh every 3 seconds if not current user's turn to catch new picks
+if (!isMyTurn) {
+    setInterval(() => {
+        if (!hasSkipped) {
+            location.reload();
+        }
+    }, 3000);
+}
+
+// Handle form submissions to ensure proper page refresh after pick
+document.querySelectorAll('form[action="{{ url_for("submit_pick") }}"]').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        // Clear the timer to prevent any race conditions
+        clearInterval(timerInterval);
+        hasSkipped = true; // Prevent skip from firing while form is submitting
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+{
+  "summer": [
+    "tomatoes",
+    "corn", 
+    "peppers",
+    "cucumbers",
+    "watermelons",
+    "zucchini"
+  ],
+  "fall": [
+    "pumpkins",
+    "apples",
+    "squash", 
+    "sweet_potatoes",
+    "cranberries",
+    "carrots"
+  ],
+  "winter": [
+    "kale",
+    "brussels_sprouts",
+    "potatoes",
+    "onions",
+    "winter_wheat",
+    "cabbage"
+  ],
+  "spring": [
+    "lettuce",
+    "radishes",
+    "peas",
+    "strawberries", 
+    "spinach",
+    "asparagus"
+  ]
+}

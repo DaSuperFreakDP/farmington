@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block title %}{{ username }}'s Team - Farmington{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="display-6 fw-bold text-primary mb-0">
+                        <i class="fas fa-user me-2"></i>{{ username }}'s Farm Team
+                    </h1>
+                    <p class="text-muted mb-0">View this player's drafted farmers and team composition</p>
+                </div>
+                <a href="{{ url_for('index', tab='leaderboard') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Leaderboard
+                </a>
+            </div>
+
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title mb-0">
+                        <i class="fas fa-users me-2"></i>Team Roster
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% if team %}
+                        <div class="row g-4">
+                            {% for role, farmer in team.items() %}
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card farmer-display-card h-100 {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}border-success{% else %}border-secondary{% endif %}">
+                                        <div class="card-header {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}bg-success text-white{% else %}bg-secondary text-white{% endif %}">
+                                            <h6 class="card-title mb-0">
+                                                {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                                                    <i class="fas fa-star me-2"></i>
+                                                {% else %}
+                                                    <i class="fas fa-user me-2"></i>
+                                                {% endif %}
+                                                {{ role }}
+                                            </h6>
+                                        </div>
+                                        
+                                        {% if farmer.image %}
+                                            <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+                                                 style="height: 300px; object-fit: cover;">
+                                        {% else %}
+                                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                                 style="height: 300px;">
+                                                <i class="fas fa-user fa-4x text-muted"></i>
+                                            </div>
+                                        {% endif %}
+                                        
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">{{ farmer.name }}</h5>
+                                            
+                                            <div class="row text-center">
+                                                <div class="col-6">
+                                                    <div class="stat-item">
+                                                        <div class="stat-value text-danger fw-bold">{{ farmer.strength }}</div>
+                                                        <div class="stat-label text-muted small">Strength</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="stat-item">
+                                                        <div class="stat-value text-warning fw-bold">{{ farmer.handy }}</div>
+                                                        <div class="stat-label text-muted small">Handy</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row text-center mt-2">
+                                                <div class="col-6">
+                                                    <div class="stat-item">
+                                                        <div class="stat-value text-info fw-bold">{{ farmer.stamina }}</div>
+                                                        <div class="stat-label text-muted small">Stamina</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="stat-item">
+                                                        <div class="stat-value text-success fw-bold">{{ farmer.physical }}</div>
+                                                        <div class="stat-label text-muted small">Physical</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-3 mb-2">
+                                                <div class="progress" style="height: 8px;">
+                                                    <div class="progress-bar bg-primary" 
+                                                         style="width: {{ ((farmer.strength + farmer.handy + farmer.stamina + farmer.physical) / 40 * 100)|round }}%"></div>
+                                                </div>
+                                                <small class="text-muted">Overall Rating: {{ farmer.strength + farmer.handy + farmer.stamina + farmer.physical }}/40</small>
+                                            </div>
+
+                                            <!-- Crop Preferences -->
+                                            <div class="text-center">
+                                                <small class="text-muted d-block">🌾 Crop Preferences:</small>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">☀️ {{ farmer.crop_preferences.summer|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                    <span class="badge bg-success" style="font-size: 0.6rem;">🍂 {{ farmer.crop_preferences.fall|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                </div>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-info" style="font-size: 0.6rem;">❄️ {{ farmer.crop_preferences.winter|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                    <span class="badge bg-light text-dark" style="font-size: 0.6rem;">🌸 {{ farmer.crop_preferences.spring|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Team Summary -->
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <div class="card bg-light">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">
+                                            <i class="fas fa-chart-bar me-2"></i>Team Summary
+                                        </h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row text-center">
+                                            <div class="col-md-3">
+                                                <div class="stat-summary">
+                                                    <h4 class="text-danger">{{ team.values() | sum(attribute='strength') }}</h4>
+                                                    <p class="mb-0">Total Strength</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="stat-summary">
+                                                    <h4 class="text-warning">{{ team.values() | sum(attribute='handy') }}</h4>
+                                                    <p class="mb-0">Total Handy</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="stat-summary">
+                                                    <h4 class="text-info">{{ team.values() | sum(attribute='stamina') }}</h4>
+                                                    <p class="mb-0">Total Stamina</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="stat-summary">
+                                                    <h4 class="text-success">{{ team.values() | sum(attribute='physical') }}</h4>
+                                                    <p class="mb-0">Total Physical</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <h3 class="text-primary">
+                                                    {{ team.values() | sum(attribute='strength') + team.values() | sum(attribute='handy') + team.values() | sum(attribute='stamina') + team.values() | sum(attribute='physical') }}
+                                                </h3>
+                                                <p class="mb-0 text-muted">Total Team Rating</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-users fa-4x text-muted mb-4"></i>
+                            <h4 class="text-muted">No Team Data</h4>
+                            <p class="text-muted">This user has not drafted a team yet.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add hover effects for stat cards
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.farmer-display-card');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+});
+</script>
+{% endblock %}
