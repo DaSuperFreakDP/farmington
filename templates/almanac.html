@@ -1,0 +1,618 @@
+
+{% extends "base.html" %}
+
+{% block title %}The Farmer's Almanac - Farmington{% endblock %}
+
+{% block head %}
+<style>
+/* Farmer's Almanac Specific Styles */
+.almanac-container {
+    background: #8B4513 url('/static/images/brown-paper-texture.jpg') center center/cover no-repeat fixed;
+    min-height: 100vh;
+    padding: 2rem 0;
+    position: relative;
+}
+
+.almanac-book {
+    background: rgba(245, 222, 179, 0.75);
+    border-radius: 15px;
+    box-shadow: 
+        0 0 30px rgba(0,0,0,0.4),
+        inset 0 2px 10px rgba(255,255,255,0.3),
+        inset 0 -2px 10px rgba(0,0,0,0.1);
+    border: 3px solid #8B4513;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(1px);
+}
+
+.almanac-book::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 20px, #8B4513 20px, #8B4513 calc(100% - 20px), transparent calc(100% - 20px));
+    box-shadow: 1px 0 2px rgba(0,0,0,0.2);
+}
+
+.almanac-header {
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    color: #F5DEB3;
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 3px solid #654321;
+    position: relative;
+}
+
+.almanac-title {
+    font-family: 'Times New Roman', serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 0.5rem;
+}
+
+.almanac-subtitle {
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+.almanac-nav {
+    background: #DEB887;
+    border-bottom: 2px solid #8B4513;
+    padding: 1rem;
+}
+
+.almanac-nav .nav-tabs {
+    border: none;
+    justify-content: center;
+}
+
+.almanac-nav .nav-link {
+    background: linear-gradient(135deg, #F5DEB3, #DEB887);
+    border: 2px solid #8B4513;
+    border-radius: 10px 10px 0 0;
+    color: #654321;
+    font-weight: bold;
+    margin: 0 2px;
+    padding: 0.75rem 1.5rem;
+    font-family: 'Times New Roman', serif;
+    transition: all 0.3s ease;
+}
+
+.almanac-nav .nav-link:hover {
+    background: linear-gradient(135deg, #FFE4B5, #F5DEB3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.almanac-nav .nav-link.active {
+    background: linear-gradient(135deg, #FFE4B5, #F0E68C);
+    border-bottom: 2px solid #FFE4B5;
+    color: #8B4513;
+    font-weight: bold;
+}
+
+.almanac-content {
+    background: rgba(255, 248, 220, 0.65);
+    padding: 3rem;
+    min-height: 600px;
+    font-family: 'Times New Roman', serif;
+    line-height: 1.8;
+    color: #654321;
+    position: relative;
+}
+
+.almanac-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1.4rem,
+            rgba(139, 69, 19, 0.1) 1.4rem,
+            rgba(139, 69, 19, 0.1) 1.5rem
+        );
+    pointer-events: none;
+}
+
+.almanac-content > * {
+    position: relative;
+    z-index: 1;
+}
+
+.almanac-section h2 {
+    color: #8B4513;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #DEB887;
+    font-family: 'Times New Roman', serif;
+}
+
+.almanac-section h3 {
+    color: #A0522D;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 1.5rem 0 1rem 0;
+    font-family: 'Times New Roman', serif;
+}
+
+.almanac-section p {
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.almanac-section ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.almanac-section li {
+    margin-bottom: 0.5rem;
+}
+
+.almanac-section strong {
+    color: #8B4513;
+    font-weight: bold;
+}
+
+.almanac-section em {
+    color: #A0522D;
+    font-style: italic;
+}
+
+.almanac-image {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid #8B4513;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    margin: 1rem 0;
+}
+
+.almanac-backlink {
+    color: #8B4513;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dotted #8B4513;
+    transition: all 0.3s ease;
+}
+
+.almanac-backlink:hover {
+    color: #A0522D;
+    text-decoration: none;
+    border-bottom: 1px solid #A0522D;
+}
+
+.almanac-callout {
+    background: linear-gradient(135deg, rgba(255, 228, 181, 0.8), rgba(245, 222, 179, 0.8));
+    border: 2px solid #DEB887;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 5px solid #8B4513;
+}
+
+.almanac-callout h4 {
+    color: #8B4513;
+    margin-bottom: 1rem;
+    font-family: 'Times New Roman', serif;
+}
+
+.page-corner {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-bottom: 20px solid #A0522D;
+}
+
+.page-corner::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: -18px;
+    width: 0;
+    height: 0;
+    border-left: 18px solid transparent;
+    border-bottom: 18px solid #F5DEB3;
+}
+
+@media (max-width: 768px) {
+    .almanac-content {
+        padding: 1.5rem;
+    }
+    
+    .almanac-title {
+        font-size: 2rem;
+    }
+    
+    .almanac-nav .nav-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="almanac-container">
+    <div class="container">
+        <div class="almanac-book">
+            <div class="almanac-header">
+                <div class="page-corner"></div>
+                <h1 class="almanac-title">🌾 The Farmer's Almanac 🌾</h1>
+                <p class="almanac-subtitle">Your Complete Guide to Farmington Fantasy Farming</p>
+            </div>
+            
+            <div class="almanac-nav">
+                <ul class="nav nav-tabs" id="almanacTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">
+                            📖 Overview
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="stats-guide-tab" data-bs-toggle="tab" data-bs-target="#stats-guide" type="button" role="tab">
+                            📊 Match Stats
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="farm-management-tab" data-bs-toggle="tab" data-bs-target="#farm-management" type="button" role="tab">
+                            🚜 Farm Management
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="farmer-selection-tab" data-bs-toggle="tab" data-bs-target="#farmer-selection" type="button" role="tab">
+                            👨‍🌾 Farmer Selection
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="strategy-tab" data-bs-toggle="tab" data-bs-target="#strategy" type="button" role="tab">
+                            🎯 Strategy Guide
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="almanac-content">
+                <div class="tab-content" id="almanacTabContent">
+                    <!-- Overview Tab -->
+                    <div class="tab-pane fade show active almanac-section" id="overview" role="tabpanel">
+                        <h2>Welcome to Farmington</h2>
+                        <p>Welcome to Farmington, where fantasy meets farming! This ain't your typical fantasy sporting event. This is a fantasy farming tournament where players choose familiar faces to be a part of their farming team.</p>
+                        
+                        <div class="almanac-callout">
+                            <h4>🎮 How the Game Works</h4>
+                            <p>Each matchday, your farmers participate in tasks based on their position. Success earns points, failure doesn't (kinda). Crop yields also contribute to your total score. Face off against other players in your league to see who can accumulate the most points in a three-day match cycle.</p>
+                        </div>
+                        
+                        <h3>Core Gameplay Elements</h3>
+                        <ul>
+                            <li><strong>Random Number Generation:</strong> While luck plays a role, strategy in team selection, trading, and management determines success</li>
+                            <li><strong>Three-Day Cycles:</strong> Compete against opponents over 3-day periods</li>
+                            <li><strong>Role-Based Tasks:</strong> Each farmer position has specific responsibilities and tasks</li>
+                            <li><strong>Crop Harvesting:</strong> Successful task completion leads to better crop yields</li>
+                        </ul>
+                        
+                        <h3>Quick Navigation</h3>
+                        <p>Jump to specific sections of this almanac:</p>
+                        <ul>
+                            <li><a href="#stats-guide" class="almanac-backlink" onclick="showTab('stats-guide-tab')">📊 Match Stats Guide</a> - Learn to read performance data</li>
+                            <li><a href="#farm-management" class="almanac-backlink" onclick="showTab('farm-management-tab')">🚜 Farm Management</a> - Manage your team positions</li>
+                            <li><a href="#farmer-selection" class="almanac-backlink" onclick="showTab('farmer-selection-tab')">👨‍🌾 Farmer Selection</a> - Choose the right farmers</li>
+                            <li><a href="#strategy" class="almanac-backlink" onclick="showTab('strategy-tab')">🎯 Strategy Guide</a> - Advanced tactics and tips</li>
+                        </ul>
+                        
+                        <div class="almanac-callout">
+                            <h4>🐔 The Chicken Timer</h4>
+                            <p>Watch for the chicken timer on your main dashboard! When the chickens wake up and start dancing, new matchday results are ready. You might need to refresh the page to see the latest updates.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Match Stats Tab -->
+                    <div class="tab-pane fade almanac-section" id="stats-guide" role="tabpanel">
+                        <h2>📊 Understanding Match Stats</h2>
+                        <p>The Match Stats tab shows day-by-day performance data for your team. Here's how to read and interpret this crucial information.</p>
+                        
+                        <h3>Season Summary</h3>
+                        <p>The top area displays total points accumulated this season, sorted by your farmers' performance.</p>
+                        
+                        <h3>Reading Matchday History</h3>
+                        <p>Focus on the <strong>TOTAL column</strong> for each farmer's points earned that matchday. Here's what each column means:</p>
+                        
+                        <div class="almanac-callout">
+                            <h4>📋 Column Breakdown</h4>
+                            <ul>
+                                <li><strong>NAME:</strong> Farmer names (❤️ emoji indicates crop preference match)</li>
+                                <li><strong>JOB:</strong> Position assigned for that matchday</li>
+                                <li><strong>TASK PTS:</strong> Points from completing daily tasks</li>
+                                <li><strong>CROP PTS:</strong> Points from harvesting crops</li>
+                                <li><strong>TOTAL:</strong> Combined points for the matchday</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>Task Points System</h3>
+                        <p>Farmers earn 1 point for passing their task, plus bonus points based on how much their stat exceeded the random roll. For example: if a farmer has 10 strength and the random number is 7, they earn 4 total task points (1 base + 3 bonus).</p>
+                        
+                        <div class="text-center my-4">
+                            <img src="/static/images/how_matchdays_work.png" alt="How matchdays work - detailed example" class="almanac-image" style="max-width: 100%; height: auto;">
+                            <p class="text-muted mt-2"><em>Detailed example of how farmers complete tasks and earn points during matchdays</em></p>
+                        </div>
+                        
+                        <h3>Crop Harvesting</h3>
+                        <p>Successful farmers harvest 30-50 crops, while failed attempts yield only 5-20 crops. Several factors affect harvest amounts:</p>
+                        
+                        <h4>Harvest Multipliers</h4>
+                        <ol>
+                            <li><strong>Farmer Preferences (1.5x):</strong> When daily crop matches farmer's preferred crop type</li>
+                            <li><strong>Injuries (0.4x):</strong> Injured farmers have reduced harvest efficiency</li>
+                            <li><strong>Level 1 Catastrophes (0.4x):</strong> Environmental disasters reduce yields</li>
+                        </ol>
+                        
+                        <div class="almanac-callout">
+                            <h4>⚠️ Important: Multiplier Stacking</h4>
+                            <p>Multipliers can stack! The order is: preference → catastrophe → injury = final value</p>
+                            <p>Example: 30 crops × 1.5 (preference) × 0.4 (catastrophe) × 0.4 (injury) = 7.2 crops</p>
+                        </div>
+                        
+                        <h3>Additional Stats Explained</h3>
+                        <ul>
+                            <li><strong>CATLOSS:</strong> Points lost to catastrophes ("ABC" = Affected By Catastrophe)</li>
+                            <li><strong>INJLOSS:</strong> Points lost to injuries that matchday</li>
+                            <li><strong>INJTOT:</strong> Total injuries this season</li>
+                            <li><strong>INJPTTOTAL:</strong> Total points lost to injuries this season</li>
+                            <li><strong>AVG PTS:</strong> Average total points per matchday</li>
+                        </ul>
+                        
+                        <h3>Catastrophe Levels</h3>
+                        <ul>
+                            <li><strong>Level 1:</strong> One farmer loses 1 point (minor disasters)</li>
+                            <li><strong>Level 2:</strong> All farmers lose 2 points each</li>
+                            <li><strong>Level 3:</strong> All farmers collect no points (very rare)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Farm Management Tab -->
+                    <div class="tab-pane fade almanac-section" id="farm-management" role="tabpanel">
+                        <h2>🚜 Managing Your Farm</h2>
+                        <p>The My Farm tab allows you to reassign farmer positions to optimize your team's performance.</p>
+                        
+                        <h3>The Three Positions</h3>
+                        
+                        <div class="almanac-callout">
+                            <h4>🔧 Fix Meiser</h4>
+                            <p>Responsible for fixing mishaps and creating tools on the farm. High <strong>Handiness</strong> stat is crucial for success in this role.</p>
+                        </div>
+                        
+                        <div class="almanac-callout">
+                            <h4>💪 Lift Tender</h4>
+                            <p>Handles heavy lifting tasks from hay bales to moving equipment. High <strong>Strength</strong> stat is essential for this position.</p>
+                        </div>
+                        
+                        <div class="almanac-callout">
+                            <h4>🏃 Speed Runner</h4>
+                            <p>Completes endurance and agility-based tasks requiring quick movement. High <strong>Stamina</strong> stat is vital for success.</p>
+                        </div>
+                        
+                        <h3>Physical Health Importance</h3>
+                        <p>The <strong>Physical Health</strong> stat affects injury probability. Farmers with higher physical stats are more durable and less likely to get injured during tasks.</p>
+                        
+                        <h3>How to Reassign Positions</h3>
+                        <ol>
+                            <li>Click the dropdown for the position you want to change</li>
+                            <li>Select the farmer you want to move to that position</li>
+                            <li>In the replacing farmer's dropdown, select the farmer being replaced</li>
+                            <li>Click "Apply Changes" to save your lineup</li>
+                        </ol>
+                        
+                        <div class="almanac-callout">
+                            <h4>💡 Pro Tip: Bench Players</h4>
+                            <p>Don't forget about your bench players! While they don't participate in daily tasks, they can be valuable for trades or as injury replacements.</p>
+                        </div>
+                        
+                        <h3>Related Sections</h3>
+                        <p>Learn more about optimizing your team:</p>
+                        <ul>
+                            <li><a href="#farmer-selection" class="almanac-backlink" onclick="showTab('farmer-selection-tab')">👨‍🌾 Farmer Selection Criteria</a></li>
+                            <li><a href="#strategy" class="almanac-backlink" onclick="showTab('strategy-tab')">🎯 Strategic Position Management</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Farmer Selection Tab -->
+                    <div class="tab-pane fade almanac-section" id="farmer-selection" role="tabpanel">
+                        <h2>👨‍🌾 Choosing the Right Farmers</h2>
+                        <p>Selecting the right farmers is crucial for success. Consider multiple factors when building your team.</p>
+                        
+                        <h3>📊 Stats Analysis</h3>
+                        <p>Look for farmers with optimal stats for their intended roles:</p>
+                        
+                        <div class="almanac-callout">
+                            <h4>🎯 Target Stats by Position</h4>
+                            <ul>
+                                <li><strong>Fix Meiser:</strong> High Handiness (primary), decent Physical</li>
+                                <li><strong>Lift Tender:</strong> High Strength (primary), decent Physical</li>
+                                <li><strong>Speed Runner:</strong> High Stamina (primary), decent Physical</li>
+                            </ul>
+                        </div>
+                        
+                        <h4>The Physical Stat Advantage</h4>
+                        <p>Don't underestimate Physical Health! Farmers with higher physical stats have better injury resistance, maintaining consistent performance throughout the season.</p>
+                        
+                        <h3>🌽 Crop Preference Strategies</h3>
+                        <p>Crop preferences provide 1.5x harvest multipliers when the daily crop matches a farmer's preference. With 6 crop types per season, you have a 1/6 chance for any specific preference each matchday.</p>
+                        
+                        <h4>Strategy 1: Unified Preference</h4>
+                        <div class="almanac-callout">
+                            <h4>🌾 All Same Crop</h4>
+                            <p>Select farmers who all prefer the same crop type. When that crop appears, your entire team gets the 1.5x multiplier, potentially scoring massive points that matchday.</p>
+                            <p><strong>Example:</strong> Three tomato-preferring farmers each harvest 30 crops → 45 points each (15 extra points total)</p>
+                        </div>
+                        
+                        <h4>Strategy 2: Diversification</h4>
+                        <div class="almanac-callout">
+                            <h4>🎨 Variety Approach</h4>
+                            <p>Choose farmers with different crop preferences to increase the likelihood that at least one farmer gets the multiplier each matchday.</p>
+                            <p><strong>Example:</strong> One prefers tomatoes, one watermelon, one corn</p>
+                        </div>
+                        
+                        <h3>📈 Performance Analysis</h3>
+                        <p>When unsure about stats and preferences, check the <a href="{{ url_for('index', tab='farmer_stats') }}" class="almanac-backlink">Farmer Stats</a> tab to compare:</p>
+                        <ul>
+                            <li>Average performance across matchdays</li>
+                            <li>Consistency of output</li>
+                            <li>Comparison with other farmers in the same role</li>
+                            <li>Performance trends and recent form</li>
+                        </ul>
+                        
+                        <h3>📈 Using the Market and Trading</h3>
+                        <p>Don't forget about the <a href="{{ url_for('market') }}" class="almanac-backlink">Farmers Market</a> and <a href="{{ url_for('trading') }}" class="almanac-backlink">Trading Hub</a>:</p>
+                        <ul>
+                            <li>Monitor available farmers' recent performance</li>
+                            <li>Propose trades with other players for better fits</li>
+                            <li>Look for undervalued farmers with strong stats</li>
+                        </ul>
+                        
+                        <div class="text-center my-4">
+                            <img src="/static/images/market_explanation.png" alt="How to read the Farmers Market interface" class="almanac-image" style="max-width: 100%; height: auto;">
+                            <p class="text-muted mt-2"><em>Understanding the Farmers Market interface and performance metrics</em></p>
+                        </div>
+                        
+                        <h3>Related Sections</h3>
+                        <ul>
+                            <li><a href="#farm-management" class="almanac-backlink" onclick="showTab('farm-management-tab')">🚜 Position Assignment Guide</a></li>
+                            <li><a href="#strategy" class="almanac-backlink" onclick="showTab('strategy-tab')">🎯 Advanced Selection Strategies</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Strategy Tab -->
+                    <div class="tab-pane fade almanac-section" id="strategy" role="tabpanel">
+                        <h2>🎯 Advanced Strategy Guide</h2>
+                        <p>Master these advanced concepts to dominate your league and climb the leaderboards.</p>
+                        
+                        <h3>🏆 Understanding League Systems</h3>
+                        <p>Check the <a href="{{ url_for('index', tab='leagues') }}" class="almanac-backlink">Leagues tab</a> to see your current matchup opponent and 3-day cycle statistics. Accumulating more wins helps you advance in playoff brackets.</p>
+                        
+                        <div class="almanac-callout">
+                            <h4>📊 Playoff vs Points Systems</h4>
+                            <p>Some leagues use playoff brackets while others focus on total points. Check your league settings to understand how winners are determined.</p>
+                        </div>
+                        
+                        <h3>📈 Market Timing</h3>
+                        <p>Use the <a href="{{ url_for('market') }}" class="almanac-backlink">Farmers Market</a> strategically:</p>
+                        <ul>
+                            <li><strong>Hot Streaks:</strong> Look for farmers on 5-game scoring streaks (🔥 indicator)</li>
+                            <li><strong>Trend Analysis:</strong> Monitor recent form patterns</li>
+                            <li><strong>Performance Ratings:</strong> Compare relative performance rankings</li>
+                            <li><strong>Role Suggestions:</strong> Consider optimal position assignments</li>
+                        </ul>
+                        
+                        <h3>🤝 Trading Strategies</h3>
+                        <p>Master the <a href="{{ url_for('trading') }}" class="almanac-backlink">Trading Hub</a>:</p>
+                        
+                        <h4>When to Trade</h4>
+                        <ul>
+                            <li>Before injury-prone farmers get hurt</li>
+                            <li>To acquire farmers with favorable crop preferences</li>
+                            <li>When you need specific stat distributions</li>
+                            <li>To block opponents from getting key farmers</li>
+                        </ul>
+                        
+                        <h4>Trade Negotiation Tips</h4>
+                        <ul>
+                            <li>Offer farmers that complement the other player's strategy</li>
+                            <li>Consider position needs beyond just raw stats</li>
+                            <li>Factor in injury history and durability</li>
+                            <li>Time trades around crop preference cycles</li>
+                        </ul>
+                        
+                        <h3>⚠️ Risk Management</h3>
+                        
+                        <h4>Injury Prevention</h4>
+                        <div class="almanac-callout">
+                            <h4>💊 Durability Focus</h4>
+                            <p>Prioritize farmers with high Physical stats, especially for key positions. Injured farmers are significantly less productive.</p>
+                        </div>
+                        
+                        <h4>Catastrophe Planning</h4>
+                        <ul>
+                            <li>Maintain balanced stats across positions</li>
+                            <li>Don't put all eggs in one farmer's basket</li>
+                            <li>Keep competitive bench players ready</li>
+                        </ul>
+                        
+                        <h3>📊 Performance Tracking</h3>
+                        <p>Use the <a href="{{ url_for('index', tab='farmer_stats') }}" class="almanac-backlink">Farmer Stats</a> and <a href="{{ url_for('index', tab='leaderboard') }}" class="almanac-backlink">Leaderboard</a> tabs to:</p>
+                        <ul>
+                            <li>Monitor your farmers vs opponents in same roles</li>
+                            <li>Identify underperforming positions</li>
+                            <li>Track seasonal trends and patterns</li>
+                            <li>Compare league vs global standings</li>
+                        </ul>
+                        
+                        <h3>🎮 Seasonal Planning</h3>
+                        
+                        <h4>Early Season</h4>
+                        <ul>
+                            <li>Focus on acquiring high-stat farmers</li>
+                            <li>Test different crop preference strategies</li>
+                            <li>Build trading relationships</li>
+                        </ul>
+                        
+                        <h4>Mid Season</h4>
+                        <ul>
+                            <li>Optimize based on performance data</li>
+                            <li>Make strategic trades for playoff positioning</li>
+                            <li>Monitor bracket implications</li>
+                        </ul>
+                        
+                        <h4>Late Season/Playoffs</h4>
+                        <ul>
+                            <li>Focus on consistency over high-risk plays</li>
+                            <li>Ensure your best farmers are healthy</li>
+                            <li>Consider opponent strategies when making decisions</li>
+                        </ul>
+                        
+                        <div class="almanac-callout">
+                            <h4>🏅 Championship Mindset</h4>
+                            <p>Remember: while luck plays a role in daily outcomes, consistent strategic decision-making over time determines championship success!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showTab(tabId) {
+    const tabTrigger = new bootstrap.Tab(document.getElementById(tabId));
+    tabTrigger.show();
+}
+
+// Add smooth scrolling for internal links
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('.almanac-backlink[onclick]');
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tabId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+            showTab(tabId);
+        });
+    });
+});
+</script>
+{% endblock %}

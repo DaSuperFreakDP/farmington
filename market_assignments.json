@@ -1,0 +1,62 @@
+{
+    "Nick Rebello": {
+        "farmer": {
+            "id": 16,
+            "name": "Nick Rebello",
+            "strength": 9,
+            "handy": 1,
+            "stamina": 4,
+            "physical": 7,
+            "image": "/static/images/farmers/rebello.png"
+        },
+        "role": "Lift Tender"
+    },
+    "Kieran Richards": {
+        "farmer": {
+            "id": 17,
+            "name": "Kieran Richards",
+            "strength": 3,
+            "handy": 7,
+            "stamina": 6,
+            "physical": 3,
+            "image": "/static/images/farmers/kieran.png"
+        },
+        "role": "Fix Meiser"
+    },
+    "Gus Mulewhistle": {
+        "farmer": {
+            "id": 18,
+            "name": "Gus Mulewhistle",
+            "strength": 3,
+            "handy": 8,
+            "stamina": 6,
+            "physical": 6,
+            "image": "https://via.placeholder.com/150x150/FFDEAD/000000?text=Gus"
+        },
+        "role": "Fix Meiser"
+    },
+    "Dusty Plowman": {
+        "farmer": {
+            "id": 19,
+            "name": "Dusty Plowman",
+            "strength": 4,
+            "handy": 8,
+            "stamina": 6,
+            "physical": 9,
+            "image": "https://via.placeholder.com/150x150/F5DEB3/000000?text=Dusty"
+        },
+        "role": "Fix Meiser"
+    },
+    "Bo Plowman": {
+        "farmer": {
+            "id": 20,
+            "name": "Bo Plowman",
+            "strength": 8,
+            "handy": 3,
+            "stamina": 3,
+            "physical": 10,
+            "image": "https://via.placeholder.com/150x150/D2B48C/000000?text=Bo"
+        },
+        "role": "Lift Tender"
+    }
+}

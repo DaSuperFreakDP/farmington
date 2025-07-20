@@ -1,0 +1,2280 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Farmington{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="display-5 fw-bold text-primary">
+                <i class="fas fa-seedling me-2"></i>Welcome to Farmington
+            </h1>
+            <div class="badge bg-success fs-6">
+                <i class="fas fa-user me-1"></i>{{ username }}
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs nav-fill mb-4" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'stats' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='stats') }}'"
+                        type="button">
+                    <i class="fas fa-chart-bar me-2"></i>Match Stats
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'results' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='results') }}'"
+                        type="button">
+                    <i class="fas fa-newspaper me-2"></i>Results
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'draft' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='draft') }}'"
+                        type="button">
+                    <i class="fas fa-users me-2"></i>My Farm
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'leaderboard' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='leaderboard') }}'"
+                        type="button">
+                    <i class="fas fa-trophy me-2"></i>Leaderboard
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'farmer_stats' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='farmer_stats') }}'"
+                        type="button">
+                    <i class="fas fa-chart-bar me-2"></i>Farmer Stats
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {% if tab == 'leagues' %}active{% endif %}" 
+                        onclick="location.href='{{ url_for('index', tab='leagues') }}'"
+                        type="button">
+                    <i class="fas fa-users-cog me-2"></i>Leagues
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            {% if tab == 'stats' %}
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-chart-line me-2"></i>Matchday Statistics
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-content">
+                            {{ stats_html | safe }}
+                        </div>
+                    </div>
+                </div>
+
+            {% elif tab == 'results' %}
+                <div class="card shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-newspaper me-2"></i>Latest Matchday Report
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="impressive-timer mb-4" id="countdown">
+                            <div class="timer-description">
+                                <i class="fas fa-clock me-2"></i>Next Matchday Countdown
+                            </div>
+                            <div class="chicken-coop" id="chicken-coop">
+                                <div class="chicken sleeping" id="chicken1">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken2">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken4">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken5">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                                <div class="chicken sleeping" id="chicken6">
+                                    <div class="chicken-body">
+                                        <div class="chicken-head">
+                                            <div class="chicken-beak"></div>
+                                            <div class="chicken-comb"></div>
+                                        </div>
+                                        <div class="chicken-wing"></div>
+                                        <div class="chicken-tail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timer-display">
+                                <div id="timer" class="timer-text">--:--</div>
+                                <div class="timer-label">Time Left</div>
+                            </div>
+                        </div>
+
+                        <div class="result-box mb-4">
+                            <h4><i class="fas fa-book-open me-2"></i> Story</h4>
+                            <div class="bg-light p-3 rounded">
+                                <p class="mb-0">{{ story_message | safe }}</p>
+                            </div>
+                        </div>
+
+                        <div class="result-box mb-4">
+                            <h4><i class="fas fa-exclamation-triangle me-2"></i> Catastrophe</h4>
+                            <div class="bg-warning bg-opacity-25 p-3 rounded">
+                                <!-- Original catastrophe message -->
+                                <p class="mb-2">{{ catastrophe_message }}</p>
+
+                                <!-- Additional level and point loss information -->
+                                {% if latest_matchday_data %}
+                                    {% set catastrophe_loss = latest_matchday_data.get('catastrophe_loss', 0) %}
+                                    {% set affected_farmer = latest_matchday_data.get('affected_farmer') %}
+
+                                    {% if catastrophe_loss == 0 %}
+                                        <p class="mb-0"><strong>🌟 Level:</strong> <span class='text-success'>None - Perfect day!</span></p>
+                                        <p class="mb-0"><strong>Points Lost:</strong> <span class='text-success'>0 points</span></p>
+                                    {% elif catastrophe_loss == 1 %}
+                                        <p class="mb-0"><strong>⚠️ Level:</strong> <span class='text-warning'>Level 1 Catastrophe</span> - {{ affected_farmer }} will lose 1 point</p>
+                                    {% elif catastrophe_loss == 2 %}
+                                        <p class="mb-0"><strong>🚨 Level:</strong> <span class='text-danger'>Level 2 Catastrophe</span> - ALL farmers lose 2 points each</p>
+                                    {% else %}
+                                        <p class="mb-0"><strong>🔥 Level:</strong> <span class='text-danger'>Level 3 Catastrophe</span> - ALL farmers lose ALL points!</p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="result-box">
+                            <h4><i class="fas fa-hospital me-2"></i> Upcoming Miss-Days</h4>
+                            <div class="bg-danger bg-opacity-25 p-3 rounded">
+                                {% if miss_days %}
+                                    <ul class="mb-0">
+                                        {% for name, days in miss_days.items() %}
+                                            <li><strong>{{ name }}</strong>: will miss {{ days }} matchday(s)</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p class="mb-0">No farmers are currently injured.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% elif tab == 'draft' %}
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-4">
+                            <i class="fas fa-hammer me-2"></i>Manage Your Farm Team
+                        </h3>
+
+                        {% if team %}
+                            <div class="card shadow-sm mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    <h4 class="card-title mb-0">
+                                        <i class="fas fa-cogs me-2"></i>Role Assignments
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <form method="post" action="{{ url_for('draft') }}">
+                                        <div class="row">
+                                            {% for role in roles %}
+                                                <div class="col-md-6 col-lg-4 mb-3">
+                                                    <label class="form-label fw-bold">
+                                                        <i class="fas fa-user-tag me-2"></i>{{ role }}
+                                                        {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                                                            <span class="badge bg-warning text-dark ms-2">Starting</span>
+                                                        {% endif %}
+                                                    </label>
+                                                    <select name="{{ role }}" class="form-select draft-select">
+                                                        <option value="">No farmer assigned</option>
+                                                        {% for farmer in team %}
+                                                            <option value="{{ farmer.name }}" 
+                                                                    {% if current_team[role] and current_team[role].name == farmer.name %}selected{% endif %}>
+                                                                {{ farmer.name }} (STR: {{ farmer.strength }}, HANDY: {{ farmer.handy }}, STA: {{ farmer.stamina }}, PHYS: {{ farmer.physical }})
+                                                            </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            <strong>Assignment Rules:</strong>
+                                            <ul class="mb-0 mt-2">
+                                                <li>All drafted farmers must be assigned to a role</li>
+                                                <li>You can leave starting positions empty if desired</li>
+                                                <li>Games will run with however many farmers you assign to starting positions</li>
+                                            </ul>
+                                        </div>
+                                        <button type="submit" class="btn btn-success btn-lg">
+                                            <i class="fas fa-save me-2"></i>Save Team Assignments
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-success text-white">
+                                    <h4 class="card-title mb-0">
+                                        <i class="fas fa-users me-2"></i>Current Team Lineup
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-4">
+                                        {% for role in roles %}
+                                            {% set farmer = current_team[role] %}
+                                            <div class="col-md-6 col-lg-4">
+                                                <div class="card farmer-display-card h-100 {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}border-success{% else %}border-secondary{% endif %}">
+                                                    <div class="card-header {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}bg-success text-white{% else %}bg-secondary text-white{% endif %}">
+                                                        <h6 class="card-title mb-0">
+                                                            {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] %}
+                                                                <i class="fas fa-star me-2"></i>
+                                                            {% else %}
+                                                                <i class="fas fa-user me-2"></i>
+                                                            {% endif %}
+                                                            {{ role }}
+                                                        </h6>
+                                                    </div>
+
+                                                    {% if farmer %}
+                                                        {% if farmer.image %}
+                                                            <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+                                                                 style="height: 500px; object-fit: cover;">
+                                                        {% else %}
+                                                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                                                 style="height: 500px;">
+                                                                <i class="fas fa-user fa-4x text-muted"></i>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                                             style="height: 300px;">
+                                                            <div class="text-center">
+                                                                <i class="fas fa-user fa-4x text-muted mb-3"></i>
+                                                                <p class="text-muted mb-0">No farmer assigned</p>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
+
+                                                    <div class="card-body">
+                                                        {% if farmer %}
+                                                            <h5 class="card-title text-center">{{ farmer.name }}</h5>
+
+                                                            <div class="row text-center">
+                                                                <div class="col-6">
+                                                                    <div class="stat-item">
+                                                                        <div class="stat-value text-danger fw-bold">{{ farmer.strength }}</div>
+                                                                        <div class="stat-label text-muted small">Strength</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="stat-item">
+                                                                        <div class="stat-value text-warning fw-bold">{{ farmer.handy }}</div>
+                                                                        <div class="stat-label text-muted small">Handy</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row text-center mt-2">
+                                                                <div class="col-6">
+                                                                    <div class="stat-item">
+                                                                        <div class="stat-value text-info fw-bold">{{ farmer.stamina }}</div>
+                                                                        <div class="stat-label text-muted small">Stamina</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="stat-item">
+                                                                        <div class="stat-value text-success fw-bold">{{ farmer.physical }}</div>
+                                                                        <div class="stat-label text-muted small">Physical</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mt-3 mb-2">
+                                                                <div class="progress" style="height: 8px;">
+                                                                    <div class="progress-bar bg-primary" 
+                                                                         style="width: {{ ((farmer.strength + farmer.handy + farmer.stamina + farmer.physical) / 40 * 100)|round }}%"></div>
+                                                                </div>
+                                                                <small class="text-muted">Overall Rating: {{ farmer.strength + farmer.handy + farmer.stamina + farmer.physical }}/40</small>
+                                                            </div>
+
+                                                            <!-- Crop Preferences -->
+                                                            <div class="text-center">
+                                                                <small class="text-muted d-block">🌾 Crop Preferences:</small>
+                                                                <div class="mt-1">
+                                                                    <span class="badge bg-warning text-dark" style="font-size: 0.6rem;">☀️ {{ farmer.crop_preferences.summer|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                                    <span class="badge bg-success" style="font-size: 0.6rem;">🍂 {{ farmer.crop_preferences.fall|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                                </div>
+                                                                <div class="mt-1">
+                                                                    <span class="badge bg-info" style="font-size: 0.6rem;">❄️ {{ farmer.crop_preferences.winter|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                                    <span class="badge bg-light text-dark" style="font-size: 0.6rem;">🌸 {{ farmer.crop_preferences.spring|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="text-center py-4">
+                                                                <h6 class="text-muted">Empty Position</h6>
+                                                                <p class="text-muted small mb-0">Assign a farmer to this role</p>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                You haven't drafted any farmers yet. Join a league and complete the draft first!
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% elif tab == 'leaderboard' %}
+                                {% if current_league and league_leaderboard %}
+                                    <!-- League Leaderboard -->
+                                    <div class="card shadow-sm mb-4">
+                                        <div class="card-header {% if current_league.get('brackets_created', False) %}bg-gradient text-white{% else %}bg-primary text-white{% endif %}" 
+                                             {% if current_league.get('brackets_created', False) %}style="background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #ffc107 100%);"{% endif %}>
+                                            <h3 class="card-title mb-0">
+                                                <i class="fas fa-users me-2"></i>{{ current_league.name }} League Standings
+                                                {% if current_league.get('brackets_created', False) %}
+                                                    <span class="badge bg-warning text-dark ms-2">
+                                                        <i class="fas fa-fire me-1"></i>PLAYOFF SEASON
+                                                    </span>
+                                                {% else %}
+                                                    <span class="badge bg-info ms-2">
+                                                        <i class="fas fa-clock me-1"></i>REGULAR SEASON
+                                                    </span>
+                                                {% endif %}
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            {% if current_league.get('brackets_created', False) %}
+                                                <!-- Playoff Season Rankings -->
+                                                <div class="alert alert-info mb-3">
+                                                    <i class="fas fa-info-circle me-2"></i>
+                                                    <strong>Playoff Rankings:</strong> Winners bracket players are ranked first by wins, followed by losers bracket players.
+                                                </div>
+
+                                                {% set winners_bracket = current_league.playoff_brackets.get('winners', []) %}
+                                                {% set losers_bracket = current_league.playoff_brackets.get('losers', []) %}
+
+                                                {% set winners_entries = [] %}
+                                                {% set losers_entries = [] %}
+
+                                                {% for entry in league_leaderboard %}
+                                                    {% if entry.username in winners_bracket %}
+                                                        {% set _ = winners_entries.append(entry) %}
+                                                    {% elif entry.username in losers_bracket %}
+                                                        {% set _ = losers_entries.append(entry) %}
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                        <thead class="table-dark">
+                                                            <tr>
+                                                                <th><i class="fas fa-medal me-2"></i>Rank</th>
+                                                                <th><i class="fas fa-user me-2"></i>Player</th>
+                                                                <th><i class="fas fa-shield-alt me-2"></i>Bracket</th>
+                                                                <th><i class="fas fa-trophy me-2"></i>Record (W-L-T)</th>
+                                                                <th><i class="fas fa-star me-2"></i>Total Points</th>
+                                                                <th><i class="fas fa-eye me-2"></i>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% set rank_counter = [1] %}
+
+                                                            <!-- Winners Bracket Section -->
+                                                            {% if winners_entries %}
+                                                                <tr class="table-success">
+                                                                    <td colspan="6" class="text-center fw-bold">
+                                                                        <i class="fas fa-crown me-2"></i>WINNERS BRACKET
+                                                                    </td>
+                                                                </tr>
+                                                                {% for entry in winners_entries %}
+                                                                    <tr {% if entry.is_current_user %}class="table-warning"{% endif %}>
+                                                                        <td>
+                                                                            {% if rank_counter[0] == 1 %}
+                                                                                <span class="badge bg-warning text-dark">🥇 {{ rank_counter[0] }}</span>
+                                                                            {% elif rank_counter[0] == 2 %}
+                                                                                <span class="badge bg-secondary">🥈 {{ rank_counter[0] }}</span>
+                                                                            {% elif rank_counter[0] == 3 %}
+                                                                                <span class="badge bg-dark">🥉 {{ rank_counter[0] }}</span>
+                                                                            {% else %}
+                                                                                <span class="badge bg-success">{{ rank_counter[0] }}</span>
+                                                                            {% endif %}
+                                                                            {% set _ = rank_counter.append(rank_counter.pop() + 1) %}
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                {% if entry.profile_pic %}
+                                                                                    <img src="{{ url_for('static', filename='images/profile_pics/' + entry.profile_pic) }}" 
+                                                                                         class="rounded-circle me-2" 
+                                                                                         alt="Profile" 
+                                                                                         style="width: 42px; height: 42px; object-fit: cover;">
+                                                                                {% else %}
+                                                                                    <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" 
+                                                                                         style="width: 42px; height: 42px;">
+                                                                                        <i class="fas fa-user text-white" style="font-size: 14px;"></i>
+                                                                                    </div>
+                                                                                {% endif %}
+                                                                                <div>
+                                                                                    <strong>{{ entry.team_name }}</strong>
+                                                                                    <div class="small text-muted">@{{ entry.username }}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% if entry.is_current_user %}
+                                                                                <span class="badge bg-success ms-2">You</span>
+                                                                            {% endif %}
+                                                                            {% if entry.username == current_league.host %}
+                                                                                <span class="badge bg-warning ms-2">Host</span>
+                                                                            {% endif %}
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="badge bg-success">
+                                                                                <i class="fas fa-crown me-1"></i>Winners
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="fw-bold text-primary">
+                                                                                {{ entry.get('wins', 0) }}-{{ entry.get('losses', 0) }}-{{ entry.get('ties', 0) }}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="fw-bold text-success">{{ entry.total_points }}</span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="{{ url_for('view_user_team', username=entry.username) }}" 
+                                                                               class="btn btn-sm btn-outline-primary">
+                                                                                <i class="fas fa-eye me-1"></i>View Team
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                {% endfor %}
+                                                            {% endif %}
+
+                                                            <!-- Losers Bracket Section -->
+                                                            {% if losers_entries %}
+                                                                <tr class="table-warning">
+                                                                    <td colspan="6" class="text-center fw-bold">
+                                                                        <i class="fas fa-shield-alt me-2"></i>LOSERS BRACKET
+                                                                    </td>
+                                                                </tr>
+                                                                {% for entry in losers_entries %}
+                                                                    <tr {% if entry.is_current_user %}class="table-warning"{% endif %}>
+                                                                        <td>
+                                                                            <span class="badge bg-warning text-dark">{{ rank_counter[0] }}</span>
+                                                                            {% set _ = rank_counter.append(rank_counter.pop() + 1) %}
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="d-flex align-items-center">
+                                                                                {% if entry.profile_pic %}
+                                                                                    <img src="{{ url_for('static', filename='images/profile_pics/' + entry.profile_pic) }}" 
+                                                                                         class="rounded-circle me-2" 
+                                                                                         alt="Profile" 
+                                                                                         style="width: 42px; height: 42px; object-fit: cover;">
+                                                                                {% else %}
+                                                                                    <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" 
+                                                                                         style="width: 42px; height: 42px;">
+                                                                                        <i class="fas fa-user text-white" style="font-size: 14px;"></i>
+                                                                                    </div>
+                                                                                {% endif %}
+                                                                                <div>
+                                                                                    <strong>{{ entry.team_name }}</strong>
+                                                                                    <div class="small text-muted">@{{ entry.username }}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                            {% if entry.is_current_user %}
+                                                                                <span class="badge bg-success ms-2">You</span>
+                                                                            {% endif %}
+                                                                            {% if entry.username == current_league.host %}
+                                                                                <span class="badge bg-warning ms-2">Host</span>
+                                                                            {% endif %}
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="badge bg-warning text-dark">
+                                                                                <i class="fas fa-shield-alt me-1"></i>Losers
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="fw-bold text-primary">
+                                                                                {{ entry.get('wins', 0) }}-{{ entry.get('losses', 0) }}-{{ entry.get('ties', 0) }}
+                                                                            </span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="fw-bold text-success">{{ entry.total_points }}</span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="{{ url_for('view_user_team', username=entry.username) }}" 
+                                                                               class="btn btn-sm btn-outline-primary">
+                                                                                <i class="fas fa-eye me-1"></i>View Team
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            {% else %}
+                                                <!-- Regular Season Rankings -->
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover">
+                                                        <thead class="table-dark">
+                                                            <tr>
+                                                                <th><i class="fas fa-medal me-2"></i>Rank</th>
+                                                                <th><i class="fas fa-user me-2"></i>Player</th>
+                                                                {% if current_league.get('use_playoffs', True) %}
+                                                                    <th><i class="fas fa-trophy me-2"></i>Record (W-L-T)</th>
+                                                                {% endif %}
+                                                                <th><i class="fas fa-star me-2"></i>Total Points</th>
+                                                                <th><i class="fas fa-eye me-2"></i>Actions</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for entry in league_leaderboard %}
+                                                                <tr {% if entry.is_current_user %}class="table-warning"{% endif %}>
+                                                                    <td>
+                                                                        {% if loop.index == 1 %}
+                                                                            <span class="badge bg-warning text-dark">🥇 {{ loop.index }}</span>
+                                                                        {% elif loop.index == 2 %}
+                                                                            <span class="badge bg-secondary">🥈 {{ loop.index }}</span>
+                                                                        {% elif loop.index == 3 %}
+                                                                            <span class="badge bg-dark">🥉 {{ loop.index }}</span>
+                                                                        {% else %}
+                                                                            <span class="badge bg-primary">{{ loop.index }}</span>
+                                                                        {% endif %}
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="d-flex align-items-center">
+                                                                            {% if entry.profile_pic %}
+                                                                                <img src="{{ url_for('static', filename='images/profile_pics/' + entry.profile_pic) }}" 
+                                                                                     class="rounded-circle me-2" 
+                                                                                     alt="Profile" 
+                                                                                     style="width: 42px; height: 42px; object-fit: cover;">
+                                                                            {% else %}
+                                                                                <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" 
+                                                                                     style="width: 42px; height: 42px;">
+                                                                                    <i class="fas fa-user text-white" style="font-size: 14px;"></i>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                            <div>
+                                                                                <strong>{{ entry.team_name }}</strong>
+                                                                                <div class="small text-muted">@{{ entry.username }}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        {% if entry.is_current_user %}
+                                                                            <span class="badge bg-success ms-2">You</span>
+                                                                        {% endif %}
+                                                                        {% if entry.username == current_league.host %}
+                                                                            <span class="badge bg-warning ms-2">Host</span>
+                                                                        {% endif %}
+                                                                    </td>
+                                                                    {% if current_league.get('use_playoffs', True) %}
+                                                                        <td>
+                                                                            <span class="fw-bold text-primary">
+                                                                                {{ entry.get('wins', 0) }}-{{ entry.get('losses', 0) }}-{{ entry.get('ties', 0) }}
+                                                                            </span>
+                                                                        </td>
+                                                                    {% endif %}
+                                                                    <td>
+                                                                        <span class="fw-bold text-success">{{ entry.total_points }}</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="{{ url_for('view_user_team', username=entry.username) }}" 
+                                                                           class="btn btn-sm btn-outline-primary">
+                                                                            <i class="fas fa-eye me-1"></i>View Team
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                <!-- Global Leaderboard -->
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-warning text-dark">
+                                        <h3 class="card-title mb-0">
+                                            <i class="fas fa-trophy me-2"></i>Global Leaderboard
+                                        </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th><i class="fas fa-medal me-2"></i>Rank</th>
+                                                        <th><i class="fas fa-user me-2"></i>Player</th>
+                                                        <th><i class="fas fa-star me-2"></i>Total Points</th>
+                                                        <th><i class="fas fa-eye me-2"></i>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for entry in global_leaderboard %}
+                                                        <tr {% if entry.is_current_user %}class="table-warning"{% endif %}>
+                                                            <td>
+                                                                {% if loop.index == 1 %}
+                                                                    <span class="badge bg-warning text-dark">🏆 {{ loop.index }}</span>
+                                                                {% elif loop.index <= 3 %}
+                                                                    <span class="badge bg-secondary">{{ loop.index }}</span>
+                                                                {% elif loop.index <= 10 %}
+                                                                    <span class="badge bg-primary">{{ loop.index }}</span>
+                                                                {% else %}
+                                                                    <span class="badge bg-light text-dark">{{ loop.index }}</span>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    {% if entry.profile_pic %}
+                                                                        <img src="{{ url_for('static', filename='images/profile_pics/' + entry.profile_pic) }}" 
+                                                                             class="rounded-circle me-2" 
+                                                                             alt="Profile" 
+                                                                             style="width: 42px; height: 42px; object-fit: cover;">
+                                                                    {% else %}
+                                                                        <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" 
+                                                                             style="width: 42px; height: 42px;">
+                                                                            <i class="fas fa-user text-white" style="font-size: 14px;"></i>
+                                                                        </div>
+                                                                                                   {% endif %}
+                                                                     <div>
+                                                                         <strong>{{ entry.team_name }}</strong>
+                                                                         <div class="small text-muted">@{{ entry.username }}</div>
+                                                                     </div>
+                                                                 </div>
+                                                                 {% if entry.is_current_user %}
+                                                                     <span class="badge bg-success ms-2">You</span>
+                                                                 {% endif %}
+                                                             </td>
+                                                             <td>
+                                                                 <span class="fw-bold text-success">{{ entry.total_points }}</span>
+                                                             </td>
+                                                             <td>
+                                                                 <a href="{{ url_for('view_user_team', username=entry.username) }}" 
+                                                                    class="btn btn-sm btn-outline-primary">
+                                                                     <i class="fas fa-eye me-1"></i>View Team
+                                                                 </a>
+                                                             </td>
+                         </tr>
+                     {% endfor %}
+                 </tbody>
+             </table>
+         </div>
+     </div>
+ </div>
+
+{% elif tab == 'farmer_stats' %}
+ <div class="card shadow-sm">
+     <div class="card-header bg-primary text-white">
+         <h3 class="card-title mb-0">
+             <i class="fas fa-chart-bar me-2"></i>Farmer Statistics
+         </h3>
+     </div>
+     <div class="card-body">
+         {% if farmers and farmers|length > 0 %}
+             <div class="table-responsive">
+                 <table class="table table-hover" id="farmer-stats-table">
+                     <thead class="table-dark">
+                         <tr>
+                             <th class="sortable" data-column="name" data-type="string">
+                                 Name <i class="fas fa-sort text-muted"></i>
+                             </th>
+                             <th class="sortable" data-column="owner_team_name" data-type="string">
+                                 Owner <i class="fas fa-sort text-muted"></i>
+                             </th>
+                             <th class="sortable" data-column="role" data-type="string">
+                                 Role <i class="fas fa-sort text-muted"></i>
+                             </th>
+                             <th class="sortable" data-column="total_points" data-type="number">
+                                 Total Points <i class="fas fa-sort text-muted"></i>
+                             </th>
+                             <th class="sortable" data-column="matchdays" data-type="number">
+                                 Matchdays <i class="fas fa-sort text-muted"></i>
+                             </th>
+                             <th class="sortable" data-column="average" data-type="number">
+                                 Average <i class="fas fa-sort text-muted"></i>
+                             </th>
+                             <th class="sortable" data-column="best" data-type="number">
+                                 Best <i class="fas fa-sort text-muted"></i>
+                             </th>
+                             <th class="sortable" data-column="vs_your_role_diff" data-type="number">
+                                 Point Difference (vs. Yours) <i class="fas fa-sort text-muted"></i>
+                             </th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         {% for farmer in farmers %}
+                             <tr data-name="{{ farmer.name }}" 
+                                 data-owner="{{ farmer.owner_team_name }}" 
+                                 data-role="{{ farmer.role }}" 
+                                 data-total_points="{{ farmer.total_points }}" 
+                                 data-matchdays="{{ farmer.matchdays }}" 
+                                 data-average="{{ farmer.average if farmer.average != '-' else 0 }}" 
+                                 data-best="{{ farmer.best }}" 
+                                 data-vs_your_role_diff="{{ farmer.vs_your_role_diff if farmer.vs_your_role_diff is not none else 999999 }}">
+                                 <td>
+                                     <a href="{{ url_for('view_farmer_profile', farmer_name=farmer.name) }}" 
+                                        class="text-decoration-none fw-bold text-primary">
+                                         {{ farmer.name }}
+                                     </a>
+                                 </td>
+                                 <td>{{ farmer.owner_team_name }} <small class="text-muted">(@{{ farmer.owner }})</small></td>
+                                 <td>{{ farmer.role }}</td>
+                                 <td>{{ farmer.total_points }}</td>
+                                 <td>{{ farmer.matchdays }}</td>
+                                 <td>{{ farmer.average }}</td>
+                                 <td>{{ farmer.best }}</td>
+                                 <td>
+                                     {% if farmer.vs_your_role_diff is not none %}
+                                         {% if farmer.vs_your_role_diff > 0 %}
+                                             <span class="text-success">+{{ farmer.vs_your_role_diff }}</span>
+                                         {% elif farmer.vs_your_role_diff < 0 %}
+                                             <span class="text-danger">{{ farmer.vs_your_role_diff }}</span>
+                                         {% else %}
+                                             <span class="text-muted">0</span>
+                                         {% endif %}
+                                     {% else %}
+                                         —
+                                     {% endif %}
+                                 </td>
+                             </tr>
+                         {% endfor %}
+                     </tbody>
+                 </table>
+             </div>
+         {% else %}
+             <p>No farmer stats available.</p>
+         {% endif %}
+     </div>
+ </div>
+
+{% elif tab == 'leagues' %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h3 class="mb-0">
+                                <i class="fas fa-users-cog me-2"></i>League Management
+                            </h3>
+                            {% if current_league %}
+                                <a href="{{ url_for('league_chat') }}" class="btn btn-primary">
+                                    <i class="fas fa-comments me-2"></i>League Chat
+                                </a>
+                            {% endif %}
+                        </div>
+
+         {% if current_league %}
+
+<!-- Current Matchup Display -->
+             {% if current_league.get('use_playoffs', True) and current_league.status != 'finished' %}
+
+                 <!-- Playoff Brackets Display -->
+                 {% if current_league.get('brackets_created', False) %}
+                 <div class="card mb-4">
+                     <div class="card-header">
+                         <h5 class="mb-0">
+                             <i class="fas fa-trophy me-2"></i>Playoff Brackets
+                         </h5>
+                     </div>
+                     <div class="card-body">
+                         <div class="row">
+                             <div class="col-md-6">
+                                 <h6 class="text-success">
+                                     <i class="fas fa-crown me-1"></i>Winners Bracket
+                                 </h6>
+                                 <ul class="list-group list-group-flush">
+                                     {% for player in current_league.playoff_brackets.winners %}
+                                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                                         {{ player }}
+                                         {% if player == username %}
+                                         <span class="badge bg-primary">You</span>
+                                         {% endif %}
+                                         <span class="badge bg-success">
+                                             {{ current_league.playoff_records.get(player, {}).get('wins', 0) }}W-{{ current_league.playoff_records.get(player, {}).get('losses', 0) }}L-{{ current_league.playoff_records.get(player, {}).get('ties', 0) }}T
+                                         </span>
+                                     </li>
+                                     {% endfor %}
+                                 </ul>
+                             </div>
+                             <div class="col-md-6">
+                                 <h6 class="text-warning">
+                                     <i class="fas fa-shield-alt me-1"></i>Losers Bracket
+                                 </h6>
+                                 <ul class="list-group list-group-flush">
+                                     {% for player in current_league.playoff_brackets.losers %}
+                                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                                         {{ player }}
+                                         {% if player == username %}
+                                         <span class="badge bg-primary">You</span>
+                                         {% endif %}
+                                         <span class="badge bg-warning">
+                                             {{ current_league.playoff_records.get(player, {}).get('wins', 0) }}W-{{ current_league.playoff_records.get(player, {}).get('losses', 0) }}L-{{ current_league.playoff_records.get(player, {}).get('ties', 0) }}T
+                                         </span>
+                                     </li>
+                                     {% endfor %}
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 {% endif %}
+
+                 <div class="card shadow-lg mb-4 border-warning">
+                     <div class="card-header bg-gradient text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                         <h4 class="card-title mb-0 text-center">
+                             <i class="fas fa-fire me-2"></i>Current Matchup
+                             {% if matchup_progress %}
+                                 <span class="badge bg-warning text-dark ms-2">
+                                     Day {{ (matchup_progress.games_played % 3) + 1 }}/3 
+                                     {% if matchup_progress.games_remaining > 0 %}
+                                         ({{ matchup_progress.games_remaining }} days remaining)
+                                     {% else %}
+                                         (Complete!)
+                                     {% endif %}
+                                 </span>
+                             {% endif %}
+                         </h4>
+                     </div>
+                     <div class="card-body">
+                         {% if current_matchup %}
+                             <!-- Regular Matchup -->
+                             <div class="row align-items-center">
+                                 <!-- Player 1 (Current User) -->
+                                 <div class="col-lg-4">
+                                     <div class="text-center p-3 border rounded bg-primary bg-opacity-10">
+                                         <div class="d-flex align-items-center justify-content-center mb-3">
+                                             <div id="user-profile-photo" class="me-2">
+                                                 <!-- Profile photo will be loaded here -->
+                                             </div>
+                                             <div class="text-center">
+                                                 <h5 class="text-primary mb-1">
+                                                     <span id="user-team-name">{{ username }}</span>
+                                                     <span class="badge bg-primary ms-2">YOU</span>
+                                                 </h5>
+                                                 <small class="text-muted">@<span id="user-username">{{ username }}</span></small>
+                                             </div>
+                                         </div>
+
+                                         <div class="mb-3" id="user-team-info">
+                                             <h6 class="text-muted mb-2">Starting Lineup:</h6>
+                                             <div class="d-flex flex-wrap justify-content-center gap-1">
+                                                 {% for role, farmer in current_team.items() %}
+                                                     {% if role in ['Fix Meiser', 'Speed Runner', 'Lift Tender'] and farmer %}
+                                                         <span class="badge bg-success" style="font-size: 0.7rem;">{{ farmer.name }}</span>
+                                                     {% endif %}
+                                                 {% endfor %}
+                                             </div>
+                                         </div>
+
+                                         <!-- Current Cycle Points -->
+                                         <div class="row text-center mb-2">
+                                             <div class="col-6">
+                                                 <div class="h4 text-success mb-1">
+                                                     <i class="fas fa-star me-1"></i>
+                                                     <span id="user-matchup-points">0</span>
+                                                 </div>
+                                                 <div class="small text-muted">Current Cycle</div>
+                                             </div>
+                                             <div class="col-6">
+                                                 <div class="h4 text-info mb-1">
+                                                     <i class="fas fa-trophy me-1"></i>
+                                                     <span id="user-total-points">0</span>
+                                                 </div>
+                                                 <div class="small text-muted">Season Total</div>
+                                             </div>
+                                         </div>
+
+                                         <div id="user-farmer-breakdown" class="mt-2">
+                                             <small class="text-muted">Individual Performance:</small>
+                                             <div id="user-farmer-points" class="mt-1 farmer-breakdown">
+                                                 <div class="text-muted small">Loading...</div>
+                                             </div>
+                                         </div>
+                                         <div class="mt-3">
+                                             <div class="text-center">
+                                                 <div class="h5 text-primary mb-1">
+                                                     <span id="user-win-probability">50</span>%
+                                                 </div>
+                                                 <div class="small text-muted">Win Probability</div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <!-- Progress Plant -->
+                                 <div class="col-lg-4 text-center">
+                                     <div class="p-3">
+                                         <div class="plant-container position-relative" style="height: 200px; background: linear-gradient(to top, #8B4513 20%, #87CEEB 20%); border-radius: 10px; overflow: hidden;">
+                                             <div id="plant-growth" class="plant-stage">
+                                                 <!-- Plant will be rendered here -->
+                                             </div>
+                                         </div>
+
+                                         {% set cycle_day = (global_matchday % 3) + 1 %}
+                                         {% if global_matchday == 0 %}
+                                             {% set cycle_day = 1 %}
+                                         {% endif %}
+
+                                         <div class="progress mb-2" style="height: 20px;">
+                                             <div class="progress-bar bg-success" role="progressbar" 
+                                                  style="width: {{ ((cycle_day) / 3 * 100)|round }}%">
+                                                 <small class="fw-bold">Day {{ cycle_day }}/3</small>
+                                             </div>
+                                         </div>
+                                         <div class="text-center">
+                                             <div class="plant-progress">
+                                                 {% if cycle_day == 1 %}
+                                                     <i class="fas fa-seedling text-success fa-2x" title="Just planted - Day 1"></i>
+                                                 {% elif cycle_day == 2 %}
+                                                     <i class="fas fa-leaf text-success fa-2x" title="Growing - Day 2"></i>
+                                                 {% else %}
+                                                     <i class="fas fa-apple-alt text-warning fa-2x" title="Bearing fruit - Day 3!"></i>
+                                                 {% endif %}
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+
+                                 <!-- Player 2 (Opponent) -->
+                                 <div class="col-lg-4">
+                                     <div class="text-center p-3 border rounded bg-danger bg-opacity-10">
+                                         <div class="d-flex align-items-center justify-content-center mb-3">
+                                             <div id="opponent-profile-photo" class="me-2">
+                                                 <!-- Profile photo will be loaded here -->
+                                             </div>
+                                             <div class="text-center">
+                                                 <h5 class="text-danger mb-1">
+                                                     <span id="opponent-team-name">{{ current_matchup }}</span>
+                                                     <span class="badge bg-danger ms-2">OPPONENT</span>
+                                                 </h5>
+                                                 <small class="text-muted">@<span id="opponent-username">{{ current_matchup }}</span></small>
+                                             </div>
+                                         </div>
+
+                                         <div class="mb-3" id="opponent-team-info">
+                                             <h6 class="text-muted mb-2">Starting Lineup:</h6>
+                                             <div class="d-flex flex-wrap justify-content-center gap-1">
+                                                 <span class="badge bg-secondary" style="font-size: 0.7rem;">Loading...</span>
+                                             </div>
+                                         </div>
+
+                                         <!-- Current Cycle Points -->
+                                         <div class="row text-center mb-2">
+                                             <div class="col-6">
+                                                 <div class="h4 text-success mb-1">
+                                                     <i class="fas fa-star me-1"></i>
+                                                     <span id="opponent-matchup-points">0</span>
+                                                 </div>
+                                                 <div class="small text-muted">Current Cycle</div>
+                                             </div>
+                                             <div class="col-6">
+                                                 <div class="h4 text-info mb-1">
+                                                     <i class="fas fa-trophy me-1"></i>
+                                                     <span id="opponent-total-points">0</span>
+                                                 </div>
+                                                 <div class="small text-muted">Season Total</div>
+                                             </div>
+                                         </div>
+
+                                         <div id="opponent-farmer-breakdown" class="mt-2">
+                                             <small class="text-muted">Individual Performance:</small>
+                                             <div id="opponent-farmer-points" class="mt-1 farmer-breakdown">
+                                                 <div class="text-muted small">Loading...</div>
+                                             </div>
+                                         </div>
+                                         <div class="mt-3">
+                                             <div class="text-center">
+                                                 <div class="h5 text-danger mb-1">
+                                                     <span id="opponent-win-probability">50</span>%
+                                                 </div>
+                                                 <div class="small text-muted">Win Probability</div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+{% else %}
+         <!-- No Matchup Yet -->
+         <div class="text-center p-4">
+             <div class="mb-4">
+                 {% if current_league.get('draft_complete') %}
+                     <i class="fas fa-bed fa-4x text-success mb-3"></i>
+                     <h3 class="text-success">Bye Week</h3>
+                     <p class="text-muted">You have a bye this cycle - automatic win!</p>
+                 {% else %}
+                     <i class="fas fa-hourglass-half fa-4x text-warning mb-3"></i>
+                     <h3 class="text-warning">Waiting for Draft</h3>
+                     <p class="text-muted">No matchup yet until the league draft is completed!</p>
+                 {% endif %}
+             </div>
+             {% if current_league.get('draft_complete') %}
+                 <div class="row justify-content-center">
+                     <div class="col-md-6">
+                         <div class="card bg-success bg-opacity-10 border-success">
+                             <div class="card-body text-center">
+                                 <h5 class="text-success mb-2">
+                                     <i class="fas fa-trophy me-2"></i>Automatic Win
+                                 </h5>
+                                 <p class="mb-0">Your team gets to rest and recover while earning a victory!</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 {% if matchup_progress %}
+                     <div class="mt-4">
+                         <div class="plant-container position-relative mx-auto" style="height: 150px; width: 200px;">
+                             <div id="plant-growth" class="plant-stage">
+                                 <!-- Bye week plant will be fully grown -->
+                             </div>
+                         </div>
+                         <div class="mt-2">
+                             <div class="progress" style="height: 8px;">
+                                 <div class="progress-bar bg-success" style="width: 100%;"></div>
+                             </div>
+                             <small class="text-muted">Bye Week Complete</small>
+                         </div>
+                     </div>
+                 {% endif %}
+             {% endif %}
+         </div>
+     {% endif %}
+                                 </div>
+                             </div>
+                         {% endif %}
+
+                         <div class="card shadow-sm mb-4">
+                             <div class="card-header {% if current_league.status == 'finished' %}bg-success{% else %}bg-primary{% endif %} text-white">
+                                 <h4 class="card-title mb-0">
+                                     <i class="fas fa-trophy me-2"></i>{{ current_league.name }}
+                                     {% if current_league.status == 'finished' %}
+                                         <span class="badge bg-warning text-dark ms-2">FINISHED</span>
+                                     {% endif %}
+                                 </h4>
+                             </div>
+                             <div class="card-body">
+                                 <h5 class="card-title">{{ current_league.name }}</h5>
+                                 <p class="card-text">
+                                     <strong>Code:</strong> {{ current_league.code }}<br>
+                                     <strong>Host:</strong> {{ current_league.host }}<br>
+                                     <strong>Players:</strong> {{ current_league.players|length }}<br>
+                                     <strong>Season:</strong> {{ current_league.season|title() }}<br>
+                                     <strong>Season Length:</strong> {{ current_league.matchdays }} matchdays<br>
+                                     <strong>Current Matchday:</strong> {{ global_matchday + 1 }} / {{ current_league.matchdays }}<br>
+                                     <strong>System:</strong> 
+                                         {% if current_league.get('use_playoffs', True) %}
+                                             <span class="badge bg-info">Playoff System</span>
+                                         {% else %}
+                                             <span class="badge bg-secondary">Point System</span>
+                                         {% endif %}
+                                     </p>
+                                     {% if current_league.get('use_playoffs', True) %}
+                                         <p><strong>Market Lock:</strong> 
+                                             {% if current_league.get('lock_market_in_playoffs', True) %}
+                                                 <span class="badge bg-warning text-dark">Locked in Playoffs</span>
+                                             {% else %}
+                                                 <span class="badge bg-success">Always Open</span>
+                                             {% endif %}
+                                         </p>
+                                     {% endif %}
+                                     <strong>Draft Status:</strong> 
+                                     {% if current_league.draft_complete %}
+                                         <span class="badge bg-success">Complete</span>
+                                     {% elif current_league.draft_time %}
+                                         <span class="badge bg-warning">Scheduled</span>
+                                     {% else %}
+                                         <span class="badge bg-secondary">Not Scheduled</span>
+                                     {% endif %}
+                                 </p>
+                                 <div class="row">
+                                     <div class="col-md-6">
+                                         <p><strong>League Code:</strong> <code>{{ current_league.code }}</code></p>
+                                         <p><strong>Host:</strong> {{ current_league.host }}</p>
+                                         <p><strong>Season:</strong> {{ current_league.season|title if current_league.season else 'Summer' }}</p>
+                                         <p><strong>Season Length:</strong> {{ current_league.matchdays }} matchdays</p>
+                                         <p><strong>System:</strong> 
+                                             {% if current_league.get('use_playoffs', True) %}
+                                                 <span class="badge bg-info">Playoff System</span>
+                                             {% else %}
+                                                 <span class="badge bg-secondary">Point System</span>
+                                             {% endif %}
+                                         </p>
+                                         {% if current_league.get('use_playoffs', True) %}
+                                         {% endif %}
+                                         {% if current_league.status == 'finished' %}
+                                             <p><strong>Winner:</strong> 
+                                                 <span class="badge bg-warning text-dark">👑 {{ current_league.winner }}</span>
+                                             </p>
+                                             <p><strong>Completed:</strong> {{ current_league.completion_date[:10] if current_league.completion_date else 'Unknown' }}</p>
+                                         {% endif %}
+                                     </div>
+                                     <div class="col-md-6">
+                                         {% if current_league.status != 'finished' and session.user ==current_league.host %}
+                                             <form method="post" action="/leagues" class="mb-3">
+                                                 <input type="hidden" name="action" value="set_matchdays">
+
+
+                                             {% if current_league.get('use_playoffs', True) %}
+                                             {% endif %}
+                                         {% endif %}
+                                     </div>
+                                 </div>
+
+                                 <div class="row">
+                                     {% if current_league.status == 'finished' %}
+                                         <!-- Final Standings for Finished League -->
+                                         <div class="col-md-8">
+                                             <div class="card shadow-sm">
+                                                 <div class="card-header bg-warning text-dark">
+                                                     <h5 class="card-title mb-0">
+                                                         <i class="fas fa-trophy me-2"></i>Final Standings
+                                                     </h5>
+                                                 </div>
+                                                 <div class="card-body">
+                                                     {% if current_league.final_standings %}
+                                                         <div class="table-responsive">
+                                                             <table class="table table-hover">
+                                                                 <thead class="table-dark">
+                                                                     <tr>
+                                                                         <th>Rank</th>
+                                                                         <th>Player</th>
+                                                                         <th>Final Score</th>
+                                                                         <th>Archived Team</th>
+                                                                     </tr>
+                                                                 </thead>
+                                                                 <tbody>
+                                                                     {% for standing in current_league.final_standings %}
+                                                         {% set player = standing[0] %}
+                                                         {% set total_points = standing[1] %}
+                                                         {% set record = standing[2] if standing|length > 2 else current_league.get('playoff_records', {}).get(player, {"wins": 0, "losses": 0, "ties": 0}) %}
+                                                         {% set player_profile = get_user_profile(player) %}
+                                                         {% set brackets = current_league.get('playoff_brackets', {}) %}
+                                                         {% set winners_bracket = brackets.get('winners', []) %}
+                                                         {% set losers_bracket = brackets.get('losers', []) %}
+                                                         <tr {% if player == session.user %}class="table-warning"{% endif %}>
+                                                             <td>
+                                                                 {% if loop.index == 1 %}
+                                                                     <span class="badge bg-warning text-dark">🏆 {{ loop.index }}</span>
+                                                                 {% elif loop.index == 2 %}
+                                                                     <span class="badge bg-secondary">🥈 {{ loop.index }}</span>
+                                                                 {% elif loop.index == 3 %}
+                                                                     <span class="badge bg-dark text-white">🥉 {{ loop.index }}</span>
+                                                                 {% else %}
+                                                                     <span class="badge bg-light text-dark">{{ loop.index }}</span>
+                                                                 {% endif %}
+                                                             </td>
+                                                             <td>
+                                                                 <div class="d-flex align-items-center">
+                                                                     {% if player_profile.profile_pic %}
+                                                                         <img src="{{ url_for('static', filename='images/profile_pics/' + player_profile.profile_pic) }}" 
+                                                                              class="rounded-circle me-2" 
+                                                                              alt="Profile" 
+                                                                              style="width: 32px; height: 32px; object-fit: cover;">
+                                                                     {% else %}
+                                                                         <div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center me-2" 
+                                                                              style="width: 32px; height: 32px;">
+                                                                             <i class="fas fa-user text-white" style="font-size: 14px;"></i>
+                                                                         </div>
+                                                                     {% endif %}
+                                                                     <div>
+                                                                         <strong>{{ player_profile.team_name }}</strong>
+                                                                         <div class="small text-muted">@{{ player }}</div>
+                                                                     </div>
+                                                                 </div>
+                                                                 {% if player == current_league.winner %}
+                                                                     <span class="badge bg-success ms-2">🏆 Champion</span>
+                                                                 {% endif %}
+                                                                 {% if player in winners_bracket %}
+                                                                     <span class="badge bg-info ms-2">Winners Bracket</span>
+                                                                 {% elif player in losers_bracket %}
+                                                                     <span class="badge bg-warning text-dark ms-2">Losers Bracket</span>
+                                                                 {% endif %}
+                                                             </td>
+                                                             <td>
+                                                                 {% if current_league.get('use_playoffs', True) %}
+                                                                     <div class="fw-bold text-primary">
+                                                                         {{ record.wins }}-{{ record.losses }}-{{ record.ties }}
+                                                                     </div>
+                                                                     <div class="small text-muted">W-L-T Record</div>
+                                                                 {% endif %}
+                                                                 <div class="fw-bold text-success">
+                                                                     {{ total_points }} pts
+                                                                 </div>
+                                                                 <div class="small text-muted">Total Points</div>
+                                                             </td>
+                                                             <td>
+                                                                 {% if current_league.archived_teams and current_league.archived_teams.get(player) %}
+                                                                     <a href="{{ url_for('view_archived_user_team', league_code=current_league.code, username=player) }}" 
+                                                                        class="btn btn-sm btn-outline-info">
+                                                                         <i class="fas fa-eye me-1"></i>View Team
+                                                                     </a>
+                                                                 {% else %}
+                                                                     <span class="text-muted">No data</span>
+                                                                 {% endif %}
+                                                             </td>
+                                                         </tr>
+                                                     {% endfor %}
+                                                                 </tbody>
+                                                             </table>
+                                                         </div>
+                                                     {% else %}
+                                                         <p class="text-muted">Final standings not available.</p>
+                                                     {% endif %}
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-4">
+                                             <div class="card shadow-sm">
+                                                 <div class="card-header bg-info text-white">
+                                                     <h5 class="card-title mb-0">
+                                                         <i class="fas fa-info-circle me-2"></i>League Complete
+                                                     </h5>
+                                                 </div>
+                                                 <div class="card-body">
+                                                     <p>This league has finished its {{ current_league.matchdays }}-matchday season.</p>
+                                                     <p>Your team has been reset for new leagues.</p>
+                                                     {% if session.user == current_league.host %}
+                                                         <form method="post" action="{{ url_for('leagues') }}" class="mb-3">
+                                                             <input type="hidden" name="action" value="play_again">
+                                                             <button type="submit" class="btn btn-success w-100">
+                                                                 <i class="fas fa-play me-2"></i>Play Again (New Season)
+                                                             </button>
+                                                         </form>
+                                                         <form method="post" action="{{ url_for('leagues') }}" 
+                                                               onsubmit="return confirm('Delete this completed league?');">
+                                                             <input type="hidden" name="action" value="delete">
+                                                             <button class="btn btn-danger w-100">
+                                                                 <i class="fas fa-trash me-2"></i>Delete League
+                                                             </button>
+                                                         </form>
+                                                     {% endif %}
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                         <!-- Previous Matchup Results -->
+                                         {% if global_matchday > 0 and (global_matchday % 3 == 0 or global_matchday % 3 == 1) %}
+                                             <div class="card mt-4 bg-light">
+                                                 <div class="card-header bg-secondary text-white">
+                                                     <h5 class="card-title mb-0">
+                                                         <i class="fas fa-history me-2"></i>Previous Matchup Results
+                                                     </h5>
+                                                 </div>
+                                                 <div class="card-body">
+                                                     <div id="previous-matchup-results" class="text-center">
+                                                         <div class="text-muted">Loading previous results...</div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         {% endif %}
+                                     {% else %}
+                                         <!-- Active League Members -->
+                                         <div class="col-md-6">
+                                             <div class="card shadow-sm">
+                                                 <div class="card-header bg-success text-white">
+                                                     <h5 class="card-title mb-0">
+                                                         <i class="fas fa-users me-2"></i>League Members
+                                                     </h5>
+                                                 </div>
+                                                 <div class="card-body">
+                                                     <ul class="list-group list-group-flush">
+                                                         {% for player in current_league.players %}
+                                                             <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                                 <span>
+                                                                     <i class="fas fa-user me-2"></i>{{ player }}
+                                                                     {% if player == current_league.host %}
+                                                                         <span class="badge bg-warning ms-2">Host</span>
+                                                                     {% endif %}
+                                                                 </span>
+                                                                 {% if session.user == current_league.host and player != current_league.host %}
+                                                                     <form method="post" action="/leagues" class="m-0">
+                                                                         <input type="hidden" name="action" value="kick">
+                                                                         <input type="hidden" name="kick_user" value="{{ player }}">
+                                                                         <button class="btn btn-sm btn-danger">
+                                                                             <i class="fas fa-times me-1"></i>Kick
+                                                                         </button>
+                                                                     </form>
+                                                                 {% endif %}
+                                                             </li>
+                                                         {% endfor %}
+                                                     </ul>
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                         <div class="col-md-6">
+                                             {% if session.user == current_league.host %}
+                                                 <!-- League Settings (Host Only) -->
+                                                 <div class="card shadow-sm mb-3">
+                                                     <div class="card-header bg-warning text-dark">
+                                                         <h5 class="card-title mb-0">
+                                                             <i class="fas fa-cogs me-2"></i>League Settings
+                                                         </h5>
+                                                     </div>
+                                                     <div class="card-body">
+                                                         {% if not current_league.get('draft_time') %}
+                                                             <form method="post" action="/leagues" class="mb-3">
+                                                                 <input type="hidden" name="action" value="update_settings">
+                                                                 
+                                                                 <div class="mb-3">
+                                                                     <label class="form-label">Season:</label>
+                                                                     <select name="season" class="form-select">
+                                                                         <option value="summer" {% if current_league.season == 'summer' %}selected{% endif %}>Summer</option>
+                                                                         <option value="fall" {% if current_league.season == 'fall' %}selected{% endif %}>Fall</option>
+                                                                         <option value="winter" {% if current_league.season == 'winter' %}selected{% endif %}>Winter</option>
+                                                                         <option value="spring" {% if current_league.season == 'spring' %}selected{% endif %}>Spring</option>
+                                                                     </select>
+                                                                 </div>
+
+                                                                 <div class="mb-3">
+                                                                     <label class="form-label">Season Length:</label>
+                                                                     <select name="matchdays" class="form-select">
+                                                                         <option value="30" {% if current_league.matchdays == 30 %}selected{% endif %}>30 Matchdays</option>
+                                                                         <option value="60" {% if current_league.matchdays == 60 %}selected{% endif %}>60 Matchdays</option>
+                                                                         <option value="90" {% if current_league.matchdays == 90 %}selected{% endif %}>90 Matchdays</option>
+                                                                         <option value="120" {% if current_league.matchdays == 120 %}selected{% endif %}>120 Matchdays</option>
+                                                                     </select>
+                                                                 </div>
+
+                                                                 <div class="mb-3">
+                                                                     <label class="form-label">League System:</label>
+                                                                     <select name="league_system" class="form-select" id="league_system">
+                                                                         <option value="playoff" {% if current_league.get('use_playoffs', True) %}selected{% endif %}>Playoff System</option>
+                                                                         <option value="points" {% if not current_league.get('use_playoffs', True) %}selected{% endif %}>Point System</option>
+                                                                     </select>
+                                                                 </div>
+
+                                                                 <div class="mb-3" id="market_lock_section" {% if not current_league.get('use_playoffs', True) %}style="display: none;"{% endif %}>
+                                                                     <div class="form-check">
+                                                                         <input class="form-check-input" type="checkbox" name="lock_market_in_playoffs" id="lock_market_in_playoffs" {% if current_league.get('lock_market_in_playoffs', True) %}checked{% endif %}>
+                                                                         <label class="form-check-label" for="lock_market_in_playoffs">
+                                                                             Lock Farmers Market during playoffs
+                                                                         </label>
+                                                                     </div>
+                                                                 </div>
+
+                                                                 <button type="submit" class="btn btn-warning w-100">
+                                                                     <i class="fas fa-save me-2"></i>Update Settings
+                                                                 </button>
+                                                             </form>
+                                                         {% else %}
+                                                             <div class="alert alert-info">
+                                                                 <i class="fas fa-info-circle me-2"></i>
+                                                                 Settings are locked once draft starts.
+                                                             </div>
+                                                         {% endif %}
+                                                     </div>
+                                                 </div>
+                                             {% endif %}
+
+                                             <!-- League Actions -->
+                                             <div class="card shadow-sm">
+                                                 <div class="card-header bg-info text-white">
+                                                     <h5 class="card-title mb-0">
+                                                         <i class="fas fa-gamepad me-2"></i>League Actions
+                                                     </h5>
+                                                 </div>
+                                                 <div class="card-body">
+                                                     {% if session.user == current_league.host %}
+                                                         {% if not current_league.get('draft_time') %}
+                                                             <form method="post" action="/start_league" class="mb-3">
+                                                                 <button class="btn btn-success w-100">
+                                                                     <i class="fas fa-play me-2"></i>Start League Draft
+                                                                 </button>
+                                                             </form>
+                                                         {% endif %}
+
+                                                         <form method="post" action="/leagues" 
+                                                               onsubmit="return confirm('Delete this league?');" class="mb-3">
+                                                             <input type="hidden" name="action" value="delete">
+                                                             <button class="btn btn-danger w-100">
+                                                                 <i class="fas fa-trash me-2"></i>Delete League
+                                                             </button>
+                                                         </form>
+                                                     {% else %}
+                                                         <form method="post" action="/leagues" class="mb-3">
+                                                             <input type="hidden" name="action" value="leave">
+                                                             <button class="btn btn-warning w-100">
+                                                                 <i class="fas fa-sign-out-alt me-2"></i>Leave League
+                                                             </button>
+                                                         </form>
+                                                     {% endif %}
+
+                                                     {% if current_league.get('draft_time') and not current_league.get('draft_complete') %}
+                                                         <a href="/waitingroom" class="btn btn-primary w-100 mb-2">
+                                                             <i class="fas fa-hourglass-half me-2"></i>Go to Draft Room
+                                                         </a>
+                                                     {% endif %}
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     {% endif %}
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 {% else %}
+                     <!-- No League -->
+                     <div class="alert alert-info">
+                         <i class="fas fa-info-circle me-2"></i>
+                         You're not currently in a league. Create or join one to start playing!
+                     </div>
+                 {% endif %}
+
+                 <!-- Create/Join League Forms - Only show if not in a league -->
+                 {% if not current_league %}
+                     <!-- No League - Simple Create/Join Interface -->
+                     <div class="row justify-content-center mt-4">
+                         <div class="col-md-8">
+                             <div class="card shadow-lg">
+                                 <div class="card-header bg-primary text-white text-center">
+                                     <h4 class="card-title mb-0">
+                                         <i class="fas fa-users-cog me-2"></i>Join or Create a League
+                                     </h4>
+                                 </div>
+                                 <div class="card-body">
+                                     <div class="row">
+                                         <div class="col-md-6">
+                                             <div class="text-center mb-4">
+                                                 <i class="fas fa-plus-circle fa-3x text-success mb-3"></i>
+                                                 <h5>Create New League</h5>
+                                                 <p class="text-muted">Start your own farming league</p>
+                                                 <form method="post" action="/leagues">
+                                                     <input type="hidden" name="action" value="create">
+                                                     <div class="mb-3">
+                                                         <input type="text" name="league_name" class="form-control form-control-lg" 
+                                                                placeholder="League Name" required>
+                                                     </div>
+                                                     <button type="submit" class="btn btn-success btn-lg w-100">
+                                                         <i class="fas fa-plus me-2"></i>Create League
+                                                     </button>
+                                                 </form>
+                                             </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                             <div class="text-center mb-4">
+                                                 <i class="fas fa-sign-in-alt fa-3x text-primary mb-3"></i>
+                                                 <h5>Join League</h5>
+                                                 <p class="text-muted">Enter a league code to join</p>
+                                                 <form method="post" action="/leagues">
+                                                     <input type="hidden" name="action" value="join">
+                                                     <div class="mb-3">
+                                                         <input type="text" name="league_code" class="form-control form-control-lg" 
+                                                                placeholder="League Code" required>
+                                                     </div>
+                                                     <button type="submit" class="btn btn-primary btn-lg w-100">
+                                                         <i class="fas fa-sign-in-alt me-2"></i>Join League
+                                                     </button>
+                                                 </form>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 {% endif %}
+             </div>
+         </div>
+     {% endif %}
+ </div>
+
+<style>
+ /* Plant styles */
+ .plant-container {
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .plant-stage {
+     position: absolute;
+     bottom: 0;
+     width: 100%;
+     text-align: center;
+ }
+
+ /* Sorting styles */
+ .sortable {
+     cursor: pointer;
+     user-select: none;
+     position: relative;
+ }
+
+ .sortable:hover {
+     background-color: rgba(255, 255, 255, 0.1);
+ }
+
+ .sortable i {
+     margin-left: 5px;
+     font-size: 0.8em;
+ }
+
+ .sortable.asc i:before {
+     content: "\f0de";
+     color: #28a745;
+ }
+
+ .sortable.desc i:before {
+     content: "\f0dd";
+     color: #dc3545;
+ }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() { // League system toggle
+ const leagueSystemSelect = document.getElementById('league_system');
+ const marketLockSection = document.getElementById('market_lock_section');
+
+ if (leagueSystemSelect && marketLockSection) {
+     function toggleMarketLock() {
+         if (leagueSystemSelect.value === 'playoff') {
+             marketLockSection.style.display = 'block';
+         } else {
+             marketLockSection.style.display = 'none';
+         }
+     }
+
+     leagueSystemSelect.addEventListener('change', toggleMarketLock);
+     toggleMarketLock(); // Initial call
+ }
+
+ // Timer countdown functionality
+ function updateCountdown() {
+     const now = new Date().getTime();
+
+     // Calculate next 2-minute interval
+     // Automated matchday runs every 2 minutes (120 seconds)
+     const currentSeconds = Math.floor(now / 1000);
+     const intervalSeconds = 120; // 2 minutes
+     const secondsSinceLastInterval = currentSeconds % intervalSeconds;
+     const secondsUntilNextInterval = intervalSeconds - secondsSinceLastInterval;
+
+     const timeLeft = secondsUntilNextInterval * 1000;
+
+     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+     const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+     const timerElement = document.getElementById('timer');
+     const timerDisplay = document.querySelector('.timer-display');
+     const impressiveTimer = document.querySelector('.impressive-timer');
+     const chickenCoop = document.getElementById('chicken-coop');
+
+     if (timerElement) {
+         timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+     }
+
+     // Handle chickens and celebration
+     const chickens = document.querySelectorAll('.chicken');
+
+     if (timeLeft <= 1000) { // Timer finished - PARTY TIME!
+         // Start celebration
+         chickens.forEach(chicken => {
+             chicken.classList.remove('sleeping', 'awake');
+             chicken.classList.add('celebrating');
+         });
+
+         if (chickenCoop) {
+             chickenCoop.classList.add('party-time');
+         }
+         if (timerDisplay) {
+             timerDisplay.classList.add('celebration');
+         }
+         if (impressiveTimer) {
+             impressiveTimer.classList.add('celebration');
+         }
+         if (timerElement) {
+             timerElement.classList.add('celebration');
+             timerElement.textContent = '🎉 0:00 🎉';
+         }
+
+         // Add confetti effect
+         createConfetti();
+
+     } else if (timeLeft < 30000) { // Last 30 seconds - wake up chickens
+         chickens.forEach(chicken => {
+             chicken.classList.remove('sleeping', 'celebrating');
+             chicken.classList.add('awake');
+         });
+
+         // Remove celebration classes
+         if (chickenCoop) chickenCoop.classList.remove('party-time');
+         if (timerDisplay) timerDisplay.classList.remove('celebration');
+         if (impressiveTimer) impressiveTimer.classList.remove('celebration');
+         if (timerElement) timerElement.classList.remove('celebration');
+
+     } else { // Normal sleep time
+         chickens.forEach(chicken => {
+             chicken.classList.remove('awake', 'celebrating');
+             chicken.classList.add('sleeping');
+         });
+
+         // Remove celebration classes
+         if (chickenCoop) chickenCoop.classList.remove('party-time');
+         if (timerDisplay) timerDisplay.classList.remove('celebration');
+         if (impressiveTimer) impressiveTimer.classList.remove('celebration');
+         if (timerElement) timerElement.classList.remove('celebration');
+     }
+ }
+
+ function createConfetti() {
+     // Create confetti elements
+     const confettiContainer = document.createElement('div');
+     confettiContainer.style.position = 'fixed';
+     confettiContainer.style.top = '0';
+     confettiContainer.style.left = '0';
+     confettiContainer.style.width = '100%';
+     confettiContainer.style.height = '100%';
+     confettiContainer.style.pointerEvents = 'none';
+     confettiContainer.style.zIndex = '9999';
+
+     document.body.appendChild(confettiContainer);
+
+     // Create individual confetti pieces
+     for (let i = 0; i < 50; i++) {
+         const confetti = document.createElement('div');
+         confetti.style.position = 'absolute';
+         confetti.style.width = '10px';
+         confetti.style.height = '10px';
+         confetti.style.backgroundColor = ['#FF1493', '#FFD700', '#FF69B4', '#00CED1', '#32CD32'][Math.floor(Math.random() * 5)];
+         confetti.style.left = Math.random() * 100 + '%';
+         confetti.style.top = '-10px';
+         confetti.style.animation = `confetti-fall ${2 + Math.random() * 3}s linear forwards`;
+         confetti.style.borderRadius = '50%';
+
+         confettiContainer.appendChild(confetti);
+     }
+
+     // Remove confetti after animation
+     setTimeout(() => {
+         if (confettiContainer.parentNode) {
+             confettiContainer.parentNode.removeChild(confettiContainer);
+         }
+     }, 5000);
+ }
+
+ // Add confetti animation CSS
+ const style = document.createElement('style');
+ style.textContent = `
+     @keyframes confetti-fall {
+         to {
+             transform: translateY(100vh) rotate(360deg);
+         }
+     }
+ `;
+ document.head.appendChild(style);
+
+ setInterval(updateCountdown, 1000);
+ updateCountdown();
+
+ // Load matchup data if we're on leagues tab and have a current matchup
+ {% if tab == 'leagues' and current_league and current_league.get('use_playoffs', True) and current_matchup and current_league.status != 'finished' %}
+     loadMatchupData();
+ {% endif %}
+
+ // Load previous matchup results if applicable
+ {% if tab == 'leagues' and current_league and global_matchday > 0 and (global_matchday % 3 == 0 or global_matchday % 3 == 1) %}
+     loadPreviousMatchupResults();
+ {% endif %}
+});
+
+function calculateTeamExpectedScore(team) {
+ if (!team) return 25; // Default baseline
+
+ // Handle both array format and farmers object format
+ let farmers = [];
+ if (Array.isArray(team)) {
+     farmers = team;
+ } else if (team.farmers && Array.isArray(team.farmers)) {
+     farmers = team.farmers;
+ } else {
+     return 25; // Default baseline
+ }
+
+ let totalExpectedScore = 0;
+ const roleWeights = {
+     'Fix Meiser': { handy: 0.6, strength: 0.2, stamina: 0.1, physical: 0.1 },
+     'Speed Runner': { stamina: 0.6, physical: 0.2, handy: 0.1, strength: 0.1 },
+     'Lift Tender': { strength: 0.6, physical: 0.2, stamina: 0.1, handy: 0.1 }
+ };
+
+ // Only count starting positions
+ const startingRoles = ['Fix Meiser', 'Speed Runner', 'Lift Tender'];
+
+ farmers.forEach(farmer => {
+     if (farmer && farmer.role && startingRoles.includes(farmer.role) && roleWeights[farmer.role]) {
+         const weights = roleWeights[farmer.role];
+
+         // Extract stats from stats string if needed
+         let strength, handy, stamina, physical;
+         if (farmer.stats && typeof farmer.stats === 'string') {
+             // Parse stats string like "STR: 5, HANDY: 4, STA: 8, PHYS: 8"
+             const statsMatch = farmer.stats.match(/STR:\s*(\d+),\s*HANDY:\s*(\d+),\s*STA:\s*(\d+),\s*PHYS:\s*(\d+)/);
+             if (statsMatch) {
+                 strength = parseInt(statsMatch[1]);
+                 handy = parseInt(statsMatch[2]);
+                 stamina = parseInt(statsMatch[3]);
+                 physical = parseInt(statsMatch[4]);
+             }
+         } else {
+             // Use direct properties
+             strength = farmer.strength;
+             handy = farmer.handy;
+             stamina = farmer.stamina;
+             physical = farmer.physical;
+         }
+
+         const weightedScore = 
+             (handy || 5) * weights.handy +
+             (strength || 5) * weights.strength +
+             (stamina || 5) * weights.stamina +
+             (physical || 5) * weights.physical;
+
+         // Scale to expected 3-day cycle points (roughly 30-120 point range for good farmers over 3 days)
+         totalExpectedScore += weightedScore * 12; // Multiply by 12 to scale to realistic 3-day range
+     }
+ });
+
+ return Math.max(totalExpectedScore, 45); // Minimum baseline for 3-day cycle
+}
+
+function calculateWinProbability(userScore, opponentScore) {
+ // Handle edge cases
+ if (userScore <= 0 && opponentScore <= 0) return 50;
+ if (userScore <= 0) return 10;
+ if (opponentScore <= 0) return 90;
+
+ // Calculate total points for percentage-based probability
+ const totalPoints = userScore + opponentScore;
+ if (totalPoints === 0) return 50;
+
+ // Base probability on current score ratio
+ let baseProb = (userScore / totalPoints) * 100;
+
+ // Apply some smoothing to avoid extreme values early in cycle
+ // but allow for more dramatic swings as scores get higher
+ const maxScore = Math.max(userScore, opponentScore);
+
+ if (maxScore < 50) {
+     // Early in cycle: moderate the probability towards 50%
+     const moderationFactor = 0.5;
+     baseProb = 50 + (baseProb - 50) * moderationFactor;
+ } else if (maxScore < 100) {
+     // Mid cycle: slight moderation
+     const moderationFactor = 0.85;
+     baseProb = 50 + (baseProb - 50) * moderationFactor;
+ }
+ // Late cycle: full impact of score difference
+
+ // Cap between 10% and 90% to avoid overconfidence
+ return Math.max(10, Math.min(90, Math.round(baseProb)));
+}
+
+function loadMatchupData() {
+ const opponentUsername = '{{ current_matchup }}';
+ const currentUsername = '{{ username }}';
+
+ if (!opponentUsername) return;
+
+ // Load current user team info and update display
+ fetch(`/api/user_team/${currentUsername}`)
+     .then(response => response.json())
+     .then(data => {
+         // Update user team name
+         const userTeamNameElement = document.getElementById('user-team-name');
+         if (userTeamNameElement) {
+             userTeamNameElement.textContent = data.team_name || currentUsername;
+         }
+
+         // Update username display
+         const userUsernameElement = document.getElementById('user-username');
+         if (userUsernameElement) {
+             userUsernameElement.textContent = currentUsername;
+         }
+
+         // Update profile photo
+         const userProfilePhotoElement = document.getElementById('user-profile-photo');
+         if (userProfilePhotoElement) {
+             let profilePhotoHtml = '';
+             if (data.profile_pic) {
+                 profilePhotoHtml = `<img src="/static/images/profile_pics/${data.profile_pic}" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">`;
+             } else {
+                 profilePhotoHtml = `<div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;"><i class="fas fa-user text-white" style="font-size: 20px;"></i></div>`;
+             }
+             userProfilePhotoElement.innerHTML = profilePhotoHtml;
+         }
+
+         const userTeamInfo = document.getElementById('user-team-info');
+         if (userTeamInfo) {
+             const startingPositions = data.farmers.filter(f => 
+                 f.role === 'Fix Meiser' || f.role === 'Speed Runner' || f.role === 'Lift Tender'
+             );
+
+             const badgeHtml = startingPositions.map(farmer => 
+                 `<span class="badge bg-success" style="font-size: 0.7rem;">${farmer.name}</span>`
+             ).join('');
+
+             userTeamInfo.innerHTML = `
+                 <h6 class="text-muted mb-2">Starting Lineup:</h6>
+                 <div class="d-flex flex-wrap justify-content-center gap-1">
+                     ${badgeHtml || '<span class="badge bg-secondary" style="font-size: 0.7rem;">No lineup set</span>'}
+                 </div>
+             `;
+         }
+     })
+     .catch(error => console.error('Error loading user team:', error));
+
+ // Load opponent team info
+ fetch(`/api/user_team/${opponentUsername}`)
+     .then(response => response.json())
+     .then(teamData => {
+         // Update opponent team name
+         const opponentTeamNameElement = document.getElementById('opponent-team-name');
+         if (opponentTeamNameElement) {
+             opponentTeamNameElement.textContent = teamData.team_name || opponentUsername;
+         }
+
+         // Update opponent username display
+         const opponentUsernameElement = document.getElementById('opponent-username');
+         if (opponentUsernameElement) {
+             opponentUsernameElement.textContent = opponentUsername;
+         }
+
+         // Update opponent profile photo
+         const opponentProfilePhotoElement = document.getElementById('opponent-profile-photo');
+         if (opponentProfilePhotoElement) {
+             let profilePhotoHtml = '';
+             if (teamData.profile_pic) {
+                 profilePhotoHtml = `<img src="/static/images/profile_pics/${teamData.profile_pic}" class="rounded-circle" style="width: 48px; height: 48px; object-fit: cover;">`;
+             } else {
+                 profilePhotoHtml = `<div class="bg-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;"><i class="fas fa-user text-white" style="font-size: 20px;"></i></div>`;
+             }
+             opponentProfilePhotoElement.innerHTML = profilePhotoHtml;
+         }
+
+         const opponentLineupElement = document.getElementById('opponent-team-info');
+         if (opponentLineupElement) {
+             const startingPositions = teamData.farmers.filter(f => 
+                 f.role === 'Fix Meiser' || f.role === 'Speed Runner' || f.role === 'Lift Tender'
+             );
+
+             const badgeHtml = startingPositions.map(farmer => 
+                 `<span class="badge bg-danger" style="font-size: 0.7rem;">${farmer.name}</span>`
+             ).join('');
+
+             opponentLineupElement.innerHTML = `
+                 <h6 class="text-muted mb-2">Starting Lineup:</h6>
+                 <div class="d-flex flex-wrap justify-content-center gap-1">
+                     ${badgeHtml || '<span class="badge bg-secondary" style="font-size: 0.7rem;">No lineup set</span>'}
+                 </div>
+             `;
+         }
+     })
+     .catch(error => console.error('Error loading opponent team:', error));
+
+ // Load detailed matchup data for both players
+ loadDetailedMatchupData(currentUsername, 'user');
+ loadDetailedMatchupData(opponentUsername, 'opponent');
+
+ // Update plant growth based on progress
+ updatePlantGrowth();
+}
+
+function loadDetailedMatchupData(username, prefix) {
+ Promise.all([
+     fetch(`/api/matchup_points/${username}`),
+     fetch(`/api/matchup_farmer_breakdown/${username}`),
+     fetch(`/api/user_team/${username}`),
+     fetch(`/api/total_season_points/${username}`),
+ ]).then(([pointsResponse, farmersResponse, teamResponse, totalPointsResponse]) => {
+     return Promise.all([
+         pointsResponse.json(),
+         farmersResponse.ok ? farmersResponse.json() : { farmers: [] },
+         teamResponse.json(),
+         totalPointsResponse.json()
+     ]);
+ }).then(([pointsData, farmersData, teamData, totalPointsData]) => {
+     // Update current cycle points
+     const pointsElement = document.getElementById(`${prefix}-matchup-points`);
+     if (pointsElement) {
+         pointsElement.textContent = pointsData.points || 0;
+     }
+
+     // Update total season points
+     const totalPointsElement = document.getElementById(`${prefix}-total-points`);
+     if (totalPointsElement) {
+         totalPointsElement.textContent = totalPointsData.total_points || 0;
+     }
+
+     // Update farmer breakdown
+     const farmerPointsElement = document.getElementById(`${prefix}-farmer-points`);
+     if (farmerPointsElement) {
+         let farmerHtml = '';
+
+         if (farmersData.farmers && farmersData.farmers.length > 0) {
+             // Use actual points if available
+             farmerHtml = farmersData.farmers.map(farmer => 
+                 `<div class="d-flex justify-content-between align-items-center mb-1">
+                     <span class="small text-muted">${farmer.name}:</span>
+                     <span class="small fw-bold text-success">${farmer.points}pts</span>
+                 </div>`
+             ).join('');
+         } else if (teamData.farmers && teamData.farmers.length > 0) {
+             // Show starting farmers with 0 points before first matchday
+             const startingFarmers = teamData.farmers.filter(f => 
+                 f.role === 'Fix Meiser' || f.role === 'Speed Runner' || f.role === 'Lift Tender'
+             );
+             farmerHtml = startingFarmers.map(farmer => 
+                 `<div class="d-flex justify-content-between align-items-center mb-1">
+                     <span class="small text-muted">${farmer.name}:</span>
+                     <span class="small fw-bold text-muted">0pts</span>
+                 </div>`
+             ).join('');
+         } else {
+             farmerHtml = '<div class="text-muted small">No lineup set</div>';
+         }
+
+         farmerPointsElement.innerHTML = farmerHtml;
+     }
+
+     // Update win probability after loading points data
+     setTimeout(() => {
+         updateWinProbability();
+     }, 100);
+
+ }).catch(error => {
+     console.error(`Error loading detailed matchup data for ${username}:`, error);
+ });
+}
+
+function updateWinProbability() {
+ const userPoints = parseInt(document.getElementById('user-matchup-points')?.textContent || '0');
+ const opponentPoints = parseInt(document.getElementById('opponent-matchup-points')?.textContent || '0');
+
+ console.log(`Current points - User: ${userPoints}, Opponent: ${opponentPoints}`);
+
+ // Get team data
+ Promise.all([
+     fetch(`/api/user_team/{{ username }}`),
+     fetch(`/api/user_team/${'{{ current_matchup }}'}`)
+ ]).then(([userTeamResponse, opponentTeamResponse]) => {
+     return Promise.all([
+         userTeamResponse.json(),
+         opponentTeamResponse.json()
+     ]);
+ }).then(([userTeam, opponentTeam]) => {
+     console.log('User team:', userTeam);
+     console.log('Opponent team:', opponentTeam);
+
+     // Calculate expected scores based on team stats
+     const userExpectedScore = calculateTeamExpectedScore(userTeam);
+     const opponentExpectedScore = calculateTeamExpectedScore(opponentTeam);
+
+     console.log(`Expected scores - User: ${userExpectedScore}, Opponent: ${opponentExpectedScore}`);
+
+     // If no points have been earned yet, use pure stats-based comparison
+     if (userPoints === 0 && opponentPoints === 0) {
+         // Pure stats-based probability calculation using expected scores
+         let winProbability = calculateWinProbability(userExpectedScore, opponentExpectedScore);
+
+         console.log(`Stats-only win probability: ${winProbability}%`);
+
+         // Update display
+         const userProbElement = document.getElementById('user-win-probability');
+         const opponentProbElement = document.getElementById('opponent-win-probability');
+
+         if (userProbElement) userProbElement.textContent = winProbability;
+         if (opponentProbElement) opponentProbElement.textContent = 100 - winProbability;
+         return;
+     }
+
+     // Determine how much to weight current performance vs team stats
+     const currentDay = ({{ global_matchday }} % 3) + 1; // Day 1, 2, or 3
+     let currentPointsWeight, statsWeight;
+
+     if (currentDay === 1) {
+         // Day 1: Heavily favor team stats (80% stats, 20% current points)
+         statsWeight = 0.8;
+         currentPointsWeight = 0.2;
+     } else if (currentDay === 2) {
+         // Day 2: Balanced (60% stats, 40% current points)
+         statsWeight = 0.6;
+         currentPointsWeight = 0.4;
+     } else {
+         // Day 3: Heavily favor current points (30% stats, 70% current points)
+         statsWeight = 0.3;
+         currentPointsWeight = 0.7;
+     }
+
+     // Blend stats-based expectation with current point progress
+     const blendedUserScore = (userExpectedScore * statsWeight) + (userPoints * currentPointsWeight);
+     const blendedOpponentScore = (opponentExpectedScore * statsWeight) + (opponentPoints * currentPointsWeight);
+
+     console.log(`Blended scores (Day ${currentDay}) - User: ${blendedUserScore.toFixed(1)}, Opponent: ${blendedOpponentScore.toFixed(1)}`);
+
+     // Calculate win probability
+     let winProbability = calculateWinProbability(blendedUserScore, blendedOpponentScore);
+
+     console.log(`Win probability: ${winProbability}%`);
+
+     // Update display
+     const userProbElement = document.getElementById('user-win-probability');
+     const opponentProbElement = document.getElementById('opponent-win-probability');
+
+     if (userProbElement) userProbElement.textContent = winProbability;
+     if (opponentProbElement) opponentProbElement.textContent = 100 - winProbability;
+
+ }).catch(error => {
+     console.error('Error calculating win probability:', error);
+     // Fallback to 50/50 if no data available
+     const userProbElement = document.getElementById('user-win-probability');
+     const opponentProbElement = document.getElementById('opponent-win-probability');
+
+     if (userProbElement) userProbElement.textContent = 50;
+     if (opponentProbElement) opponentProbElement.textContent = 50;
+ });
+}
+
+function updatePlantGrowth() {
+ const plantElement = document.getElementById('plant-growth');
+ if (!plantElement) return;
+
+ // Get current matchday progress from global matchday
+ let currentDay = ({{ global_matchday }} % 3) + 1;
+ if ({{ global_matchday }} === 0) {
+     currentDay = 1;
+ }
+
+ let plantStage = '';
+
+ if (currentDay === 1) {
+     // Stage 1: Seed in soil
+     plantStage = `
+         <div style="position: absolute; bottom: 10px; width: 100%; text-align: center;">
+             <div style="font-size: 1.5rem;">🌱</div>
+             <div class="small text-muted mt-1">Seedling</div>
+         </div>
+     `;
+ } else if (currentDay === 2) {
+     // Stage 2: Growing plant
+     plantStage = `
+         <div style="position: absolute; bottom: 10px; width: 100%; text-align: center;">
+             <div style="font-size: 2.5rem; color: #28a745;">🌿</div>
+             <div class="small text-muted mt-1">Growing</div>
+         </div>
+     `;
+ } else {
+     // Stage 3: Mature plant with fruit
+     plantStage = `
+         <div style="position: absolute; bottom: 10px; width: 100%; text-align: center;">
+             <div style="font-size: 3rem; color: #28a745;">🌾</div>
+             <div style="font-size: 1.5rem; margin-top: -10px;">🍎</div>
+             <div class="small text-success fw-bold mt-1">Harvest!</div>
+         </div>
+     `;
+ }
+
+ // Check for bye week using proper DOM traversal
+ const badges = document.querySelectorAll('.badge');
+ let isByeWeek = false;
+ badges.forEach(badge => {
+     if (badge.textContent && badge.textContent.includes('Bye')) {
+         isByeWeek = true;
+     }
+ });
+
+ if (isByeWeek) {
+     plantStage = `
+         <div style="position: absolute; bottom: 10px; width: 100%; text-align: center;">
+             <div style="font-size: 3.5rem; color: #28a745;">🌳</div>
+             <div style="font-size: 1.5rem; margin-top: -10px;">🏆</div>
+             <div class="small text-warning fw-bold mt-1">Bye Victory!</div>
+         </div>
+     `;
+ }
+
+ plantElement.innerHTML = plantStage;
+}
+
+function calculateMatchupPoints(username, elementId) {
+ fetch(`/api/matchup_points/${username}`)
+     .then(response => {
+         if (response.ok) {
+             return response.json();
+         } else {
+             return { points: 0 };
+         }
+     })
+     .then(data => {
+         const pointsElement = document.getElementById(elementId);
+         if (pointsElement) {
+             pointsElement.textContent = data.points || 0;
+         }
+
+         // Update win probability after loading points
+         updateWinProbability();
+     })
+     .catch(error => {
+         console.error('Error calculating matchup points:', error);
+     });
+}
+
+function loadPreviousMatchupResults() {
+ const resultsElement = document.getElementById('previous-matchup-results');
+ if (!resultsElement) return;
+
+ const currentUsername = '{{ username }}';
+ const globalMatchday = {{ global_matchday }};
+
+ // Calculate the previous completed cycle
+ let previousCycle = Math.floor((globalMatchday - 1) / 3);
+ if (globalMatchday % 3 === 0) {
+     previousCycle = Math.floor(globalMatchday / 3) - 1;
+ }
+
+ if (previousCycle < 0) {
+     resultsElement.innerHTML = '<div class="text-muted">No previous matchup results available.</div>';
+     return;
+ }
+
+ // Get previous opponent and calculate points for the completed cycle
+ fetch(`/api/previous_matchup_results/${currentUsername}/${previousCycle}`)
+     .then(response => {
+         if (response.ok) {
+             return response.json();
+         } else {
+             throw new Error('Failed to load previous results');
+         }
+     })
+     .then(data => {
+         if (data.opponent) {
+             const resultText = data.userPoints > data.opponentPoints ? 'won against' : 
+                              data.userPoints < data.opponentPoints ? 'lost to' : 'tied with';
+
+             let // Format team names with chants
+             const formatTeamDisplay = (teamName, chant) => {
+                 if (chant && chant.trim()) {
+                     return `${teamName} "${chant}"`;
+                 }
+                 return teamName;
+             };
+
+             const userTeamDisplay = formatTeamDisplay(data.userTeamName || currentUsername, data.userChant);
+             const opponentTeamDisplay = formatTeamDisplay(data.opponentTeamName || data.opponent, data.opponentChant);
+
+             resultHtml = `
+                 <div class="row">
+                     <div class="col-md-6">
+                         <h6 class="text-primary">Previous Matchup: You ${resultText} ${opponentTeamDisplay}</h6>
+                         <div class="mb-2">
+                             <strong>Your Total (${userTeamDisplay}):</strong> ${data.userPoints} points
+                         </div>
+                         <div class="mb-2">
+                             <strong>Your Farmers:</strong>
+                             <ul class="list-unstyled">
+             `;
+
+             data.userFarmers.forEach(farmer => {
+                 resultHtml += `<li>${farmer.name}: ${farmer.points} points</li>`;
+             });
+
+             resultHtml += `
+                             </ul>
+                         </div>
+                     </div>
+                     <div class="col-md-6">
+                         <h6 class="text-danger">${opponentTeamDisplay} Performance</h6>
+                         <div class="mb-2">
+                             <strong>Their Total:</strong> ${data.opponentPoints} points
+                         </div>
+                         <div class="mb-2">
+                             <strong>Their Farmers:</strong>
+                             <ul class="list-unstyled">
+             `;
+
+             data.opponentFarmers.forEach(farmer => {
+                 resultHtml += `<li>${farmer.name}: ${farmer.points} points</li>`;
+             });
+
+             resultHtml += `
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+             `;
+
+             resultsElement.innerHTML = resultHtml;
+         } else {
+             resultsElement.innerHTML = '<div class="text-muted">You had a bye week in the previous cycle.</div>';
+         }
+     })
+     .catch(error => {
+         console.error('Error loading previous matchup results:', error);
+         resultsElement.innerHTML = '<div class="text-muted">Unable to load previous results.</div>';
+     });
+}
+// Style bye week badges differently
+ const badges = document.querySelectorAll('.badge');
+ badges.forEach(badge => {
+     if (badge.textContent && badge.textContent.includes('Bye')) {
+         badge.classList.add('bg-secondary');
+         badge.classList.remove('bg-primary');
+     }
+ });
+
+ // Update win probabilities after loading matchup data
+ if (typeof updateWinProbability === 'function') {
+     updateWinProbability();
+ }
+</script>
+
+    <!-- Include theme toggle script -->
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+    <!-- Include farmer stats sorting script when on farmer stats tab -->
+    {% if tab == 'farmer_stats' %}
+    <script src="{{ url_for('static', filename='js/farmer_stats.js') }}"></script>
+    {% endif %}
+{% endblock %}

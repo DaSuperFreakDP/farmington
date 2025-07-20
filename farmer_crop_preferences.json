@@ -1,0 +1,123 @@
+
+{
+  "Josh": {
+    "summer": "tomatoes",
+    "fall": "apples", 
+    "winter": "kale",
+    "spring": "lettuce"
+  },
+  "Zach": {
+    "summer": "corn",
+    "fall": "pumpkins",
+    "winter": "brussels_sprouts",
+    "spring": "radishes"
+  },
+  "Tyler": {
+    "summer": "peppers",
+    "fall": "squash",
+    "winter": "potatoes", 
+    "spring": "peas"
+  },
+  "Tyrone": {
+    "summer": "watermelon",
+    "fall": "sweet_potatoes",
+    "winter": "onions",
+    "spring": "strawberries"
+  },
+  "Luke": {
+    "summer": "watermelons",
+    "fall": "cranberries",
+    "winter": "winter_wheat",
+    "spring": "spinach"
+  },
+  "Vrock": {
+    "summer": "zucchini",
+    "fall": "carrots", 
+    "winter": "cabbage",
+    "spring": "asparagus"
+  },
+  "Jared": {
+    "summer": "tomatoes",
+    "fall": "pumpkins",
+    "winter": "kale",
+    "spring": "lettuce"
+  },
+  "Mezzy": {
+    "summer": "corn",
+    "fall": "apples",
+    "winter": "brussels_sprouts",
+    "spring": "radishes"
+  },
+  "Morris": {
+    "summer": "peppers",
+    "fall": "squash",
+    "winter": "potatoes",
+    "spring": "peas"
+  },
+  "Hunter": {
+    "summer": "cucumbers",
+    "fall": "sweet_potatoes", 
+    "winter": "onions",
+    "spring": "strawberries"
+  },
+  "Nelson": {
+    "summer": "watermelons",
+    "fall": "cranberries",
+    "winter": "winter_wheat",
+    "spring": "spinach"
+  },
+  "Dante": {
+    "summer": "zucchini",
+    "fall": "carrots",
+    "winter": "cabbage",
+    "spring": "asparagus"
+  },
+  "Christian": {
+    "summer": "tomatoes",
+    "fall": "apples",
+    "winter": "kale", 
+    "spring": "lettuce"
+  },
+  "Marc-Anthony": {
+    "summer": "corn",
+    "fall": "pumpkins",
+    "winter": "brussels_sprouts",
+    "spring": "radishes"
+  },
+  "Daniel": {
+    "summer": "peppers",
+    "fall": "squash",
+    "winter": "potatoes",
+    "spring": "peas"
+  },
+  "Nick Rebello": {
+    "summer": "cucumbers",
+    "fall": "sweet_potatoes",
+    "winter": "onions",
+    "spring": "strawberries"
+  },
+  "Kieran Richards": {
+    "summer": "watermelons",
+    "fall": "cranberries",
+    "winter": "winter_wheat",
+    "spring": "spinach"
+  },
+  "Gus Mulewhistle": {
+    "summer": "zucchini",
+    "fall": "carrots",
+    "winter": "cabbage",
+    "spring": "asparagus"
+  },
+  "Dusty Plowman": {
+    "summer": "tomatoes",
+    "fall": "apples",
+    "winter": "kale",
+    "spring": "lettuce"
+  },
+  "Bo Plowman": {
+    "summer": "corn",
+    "fall": "pumpkins",
+    "winter": "brussels_sprouts", 
+    "spring": "radishes"
+  }
+}

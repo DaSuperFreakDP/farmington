@@ -1,0 +1,29 @@
+{
+    "ty": {
+        "story_message": "First,\nJosh tried their best to Repair Tha Barn and made the place look like a palace. Now the Amish are sending him contracts. The cows mooed in approval!\nThen,\nVrock tried their best to Milk Tha Cow but failed. If he can't milk the cow, I guess he has to leave the farm. Josh and Jared were both very disappointed in Vrock.\nFinally,\nJared tried their best to Shovel Tha Manure but now it's a 'scent-sational' disaster! Josh and Vrock were both very disappointed in Jared.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "A devastating drought hit, ruining all crop-related work!",
+        "miss_days": {
+            "Josh": 0,
+            "Vrock": 0,
+            "Jared": 0
+        }
+    },
+    "jared": {
+        "story_message": "First,\nZach tried their best to Build Tha Fence but the only thing he nailed was his own finger. Now a sheep is nailing his wife. Luke and Mezzy were both very disappointed in Zach.\nThen,\nLuke tried their best to Chase Tha Coyote but his sneakers were no match for the ACME jetpack that just left him in the dust. Zach and Mezzy were both very disappointed in Luke.\nFinally,\nMezzy tried their best to Shovel Tha Manure but his efforts belong in the same pile. Zach and Luke were both very disappointed in Mezzy.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "Oh no! Zach got heat stroke and struggled to do their task.",
+        "miss_days": {
+            "Zach": 0,
+            "Luke": 0,
+            "Mezzy": 0
+        }
+    },
+    "bob": {
+        "story_message": "First,\nTyler tried their best to Build Tha Fence but the only thing he nailed was his own finger. Now a sheep is nailing his wife. Tyrone and Morris were both very disappointed in Tyler.\nThen,\nTyrone tried their best to Milk Tha Cow and became the dairy queen. Everyone cheered and started to square-dance!\nFinally,\nMorris tried their best to Push Tha Car but the car didn't budge. Tyler and Tyrone were both very disappointed in Morris.\nDue to after a silo fell and crushed his legs, Morris became injured and will miss 0 matchday(s).\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+        "catastrophe_message": "Oh no! Morris got heat stroke and struggled to do their task.",
+        "miss_days": {
+            "Tyler": 0,
+            "Tyrone": 0,
+            "Morris": 0
+        }
+    }
+}

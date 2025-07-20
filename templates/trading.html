@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+
+{% block title %}Trading Hub - Farmington{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="display-5 fw-bold text-warning mb-0">
+                        <i class="fas fa-exchange-alt me-2"></i>Trading Hub
+                    </h1>
+                    <p class="text-muted mb-0">Propose trades and manage your farmer exchanges</p>
+                </div>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-home me-2"></i>Back to Dashboard
+                </a>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-inbox me-2"></i>Incoming Trades
+                            </h5>
+                            <h3 class="mb-0">{{ incoming_trades|length }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-info text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-paper-plane me-2"></i>Outgoing Trades
+                            </h5>
+                            <h3 class="mb-0">{{ outgoing_trades|length }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">
+                                <i class="fas fa-users me-2"></i>Available Players
+                            </h5>
+                            <h3 class="mb-0">{{ users|length }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trade Proposal Form -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-plus me-2"></i>Propose New Trade
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            {% if user_team %}
+                                <form method="post" action="{{ url_for('propose_trade') }}" id="trade-form">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label class="form-label fw-bold">
+                                                <i class="fas fa-user me-2"></i>Trade With
+                                            </label>
+                                            <select name="target_user" class="form-select" required id="target-user-select">
+                                                <option value="" disabled selected>Choose player...</option>
+                                                {% for user in users %}
+                                                    <option value="{{ user }}">{{ user }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label fw-bold">
+                                                <i class="fas fa-arrow-right me-2"></i>You Give
+                                            </label>
+                                            <select name="offered_farmer_name" class="form-select" required>
+                                                <option value="" disabled selected>Your farmer...</option>
+                                                {% for role, farmer in user_team.items() %}
+                                                    {% if farmer %}
+                                                        <option value="{{ farmer.name }}">{{ farmer.name }} ({{ role }})</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label fw-bold">
+                                                <i class="fas fa-arrow-left me-2"></i>You Get
+                                            </label>
+                                            <select name="requested_farmer_name" class="form-select" required id="requested-farmer-select">
+                                                <option value="" disabled selected>Select player first...</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label fw-bold">
+                                                <i class="fas fa-comment me-2"></i>Message
+                                            </label>
+                                            <input name="message" class="form-control" placeholder="Optional message...">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-success btn-lg">
+                                                <i class="fas fa-paper-plane me-2"></i>Send Trade Proposal
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% else %}
+                                <div class="alert alert-warning">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    You need a drafted team before you can propose trades.
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Incoming Trades -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-inbox me-2"></i>Incoming Trade Requests
+                                <span class="badge bg-light text-dark ms-2">{{ incoming_trades|length }}</span>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            {% if incoming_trades %}
+                                {% for trade in incoming_trades %}
+                                    <div class="card border-primary mb-3">
+                                        <div class="card-header bg-light">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-0">
+                                                    <i class="fas fa-user me-2"></i>From: <strong>{{ trade.from_user }}</strong>
+                                                </h6>
+                                                <small class="text-muted">{{ trade.created_at[:19] }}</small>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <h6 class="text-danger">
+                                                        <i class="fas fa-minus me-2"></i>You Give Up
+                                                    </h6>
+                                                    <div class="farmer-trade-card bg-danger text-white p-2 rounded">
+                                                        <strong>{{ trade.requested_farmer.name }}</strong><br>
+                                                        <small>{{ trade.requested_role }}</small><br>
+                                                        <small>STR: {{ trade.requested_farmer.strength }}, HANDY: {{ trade.requested_farmer.handy }}, STA: {{ trade.requested_farmer.stamina }}, PHYS: {{ trade.requested_farmer.physical }}</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 text-center">
+                                                    <i class="fas fa-exchange-alt fa-2x text-warning mt-3"></i>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <h6 class="text-success">
+                                                        <i class="fas fa-plus me-2"></i>You Receive
+                                                    </h6>
+                                                    <div class="farmer-trade-card bg-success text-white p-2 rounded">
+                                                        <strong>{{ trade.offered_farmer.name }}</strong><br>
+                                                        <small>{{ trade.offered_role }}</small><br>
+                                                        <small>STR: {{ trade.offered_farmer.strength }}, HANDY: {{ trade.offered_farmer.handy }}, STA: {{ trade.offered_farmer.stamina }}, PHYS: {{ trade.offered_farmer.physical }}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            {% if trade.message %}
+                                                <div class="mt-3">
+                                                    <h6><i class="fas fa-comment me-2"></i>Message:</h6>
+                                                    <p class="mb-0 fst-italic">"{{ trade.message }}"</p>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="mt-3 d-flex gap-2">
+                                                <form method="post" action="{{ url_for('respond_trade') }}" class="flex-fill">
+                                                    <input type="hidden" name="trade_id" value="{{ trade.id }}">
+                                                    <input type="hidden" name="action" value="accept">
+                                                    <button type="submit" class="btn btn-success w-100"
+                                                            onclick="return confirm('Accept this trade?')">
+                                                        <i class="fas fa-check me-2"></i>Accept Trade
+                                                    </button>
+                                                </form>
+                                                <form method="post" action="{{ url_for('respond_trade') }}" class="flex-fill">
+                                                    <input type="hidden" name="trade_id" value="{{ trade.id }}">
+                                                    <input type="hidden" name="action" value="reject">
+                                                    <button type="submit" class="btn btn-danger w-100">
+                                                        <i class="fas fa-times me-2"></i>Reject
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="text-center py-4">
+                                    <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                                    <h5 class="text-muted">No Incoming Trades</h5>
+                                    <p class="text-muted">You don't have any pending trade requests.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Outgoing Trades -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-info text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-paper-plane me-2"></i>Your Trade Proposals
+                                <span class="badge bg-light text-dark ms-2">{{ outgoing_trades|length }}</span>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            {% if outgoing_trades %}
+                                {% for trade in outgoing_trades %}
+                                    <div class="card border-info mb-3">
+                                        <div class="card-header bg-light">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-0">
+                                                    <i class="fas fa-user me-2"></i>To: <strong>{{ trade.to_user }}</strong>
+                                                </h6>
+                                                <span class="badge bg-{% if trade.status == 'pending' %}warning{% elif trade.status == 'accepted' %}success{% else %}danger{% endif %}">
+                                                    {{ trade.status.title() }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <h6 class="text-danger">
+                                                        <i class="fas fa-minus me-2"></i>You Offered
+                                                    </h6>
+                                                    <div class="farmer-trade-card bg-primary text-white p-2 rounded">
+                                                        <strong>{{ trade.offered_farmer.name }}</strong><br>
+                                                        <small>{{ trade.offered_role }}</small><br>
+                                                        <small>STR: {{ trade.offered_farmer.strength }}, HANDY: {{ trade.offered_farmer.handy }}, STA: {{ trade.offered_farmer.stamina }}, PHYS: {{ trade.offered_farmer.physical }}</small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 text-center">
+                                                    <i class="fas fa-exchange-alt fa-2x text-warning mt-3"></i>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <h6 class="text-success">
+                                                        <i class="fas fa-plus me-2"></i>You Requested
+                                                    </h6>
+                                                    <div class="farmer-trade-card bg-secondary text-white p-2 rounded">
+                                                        <strong>{{ trade.requested_farmer.name }}</strong><br>
+                                                        <small>{{ trade.requested_role }}</small><br>
+                                                        <small>STR: {{ trade.requested_farmer.strength }}, HANDY: {{ trade.requested_farmer.handy }}, STA: {{ trade.requested_farmer.stamina }}, PHYS: {{ trade.requested_farmer.physical }}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            {% if trade.message %}
+                                                <div class="mt-3">
+                                                    <h6><i class="fas fa-comment me-2"></i>Your Message:</h6>
+                                                    <p class="mb-0 fst-italic">"{{ trade.message }}"</p>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="mt-3">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-clock me-1"></i>
+                                                    Sent: {{ trade.created_at[:19] }}
+                                                    {% if trade.responded_at %}
+                                                        | Responded: {{ trade.responded_at[:19] }}
+                                                    {% endif %}
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="text-center py-4">
+                                    <i class="fas fa-paper-plane fa-3x text-muted mb-3"></i>
+                                    <h5 class="text-muted">No Outgoing Trades</h5>
+                                    <p class="text-muted">You haven't sent any trade proposals yet.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/trading.js') }}"></script>
+{% endblock %}

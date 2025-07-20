@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}Waiting Room - Farmington{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1 class="display-6 fw-bold text-primary mb-0">
+                        <i class="fas fa-hourglass-half me-2"></i>Draft Waiting Room
+                    </h1>
+                    <p class="text-muted mb-0">League Code: <code>{{ league_code }}</code></p>
+                </div>
+                <a href="{{ url_for('index', tab='leagues') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Leagues
+                </a>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card bg-warning text-dark shadow-sm">
+                        <div class="card-body text-center">
+                            <h3 class="card-title mb-0">
+                                <i class="fas fa-clock me-2"></i>Draft starts in: 
+                                <span id="countdown-timer" class="fw-bold">Loading...</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title mb-0">
+                        <i class="fas fa-users me-2"></i>Farmer Pool Preview
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for farmer in farmer_pool %}
+                            <div class="col-md-4 col-lg-3">
+                                <div class="card farmer-preview-card h-100">
+                                    <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+                                         style="height: 500px; object-fit: cover;">
+                                    <div class="card-body text-center p-2">
+                                        <h6 class="card-title mb-1">{{ farmer.name }}</h6>
+                                        <div class="row text-xs mb-2">
+                                            <div class="col-6">
+                                                <small><strong>STR:</strong> {{ farmer.strength }}</small><br>
+                                                <small><strong>HANDY:</strong> {{ farmer.handy }}</small>
+                                            </div>
+                                            <div class="col-6">
+                                                <small><strong>STA:</strong> {{ farmer.stamina }}</small><br>
+                                                <small><strong>PHYS:</strong> {{ farmer.physical }}</small>
+                                            </div>
+                                        </div>
+
+                                        <!-- Crop Preferences -->
+                                        <div class="text-center">
+                                            <small class="text-muted d-block" style="font-size: 0.65rem;">🌾 Crops:</small>
+                                            <div class="mt-1">
+                                                <span class="badge bg-warning text-dark me-1" style="font-size: 0.5rem;">☀️ {{ farmer.crop_preferences.summer|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                <span class="badge bg-success me-1" style="font-size: 0.5rem;">🍂 {{ farmer.crop_preferences.fall|title if farmer.crop_preferences else 'N/A' }}</span>
+                                            </div>
+                                            <div class="mt-1">
+                                                <span class="badge bg-info me-1" style="font-size: 0.5rem;">❄️ {{ farmer.crop_preferences.winter|title if farmer.crop_preferences else 'N/A' }}</span>
+                                                <span class="badge bg-light text-dark" style="font-size: 0.5rem;">🌸 {{ farmer.crop_preferences.spring|title if farmer.crop_preferences else 'N/A' }}</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Previous Season Performance -->
+                                        {% if farmer.prev_season_stats %}
+                                            <div class="text-center mt-2">
+                                                <small class="text-muted d-block" style="font-size: 0.6rem;">📊 Last Season:</small>
+                                                <div class="mt-1">
+                                                    <span class="badge bg-primary me-1" style="font-size: 0.5rem;">{{ farmer.prev_season_stats.total_points }} pts</span>
+                                                    <span class="badge {% if farmer.prev_season_stats.total_injuries > 5 %}bg-danger{% elif farmer.prev_season_stats.total_injuries > 2 %}bg-warning text-dark{% else %}bg-success{% endif %}" style="font-size: 0.5rem;">{{ farmer.prev_season_stats.total_injuries }} inj</span>
+                                                </div>
+                                                {% if farmer.prev_season_stats.games_played > 0 %}
+                                                    <small class="text-muted" style="font-size: 0.5rem;">{{ "%.1f"|format(farmer.prev_season_stats.total_points / farmer.prev_season_stats.games_played) }} avg</small>
+                                                {% endif %}
+                                            </div>
+                                        {% else %}
+                                            <div class="text-center mt-2">
+                                                <small class="text-muted" style="font-size: 0.6rem;">📊 No previous data</small>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-list-ol me-2"></i>Snake Draft Order
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ol class="list-unstyled mb-0">
+                        {% for name in snake_order %}
+                            <li class="mb-2 d-flex align-items-center">
+                                <span class="badge bg-primary me-2">{{ loop.index }}</span>
+                                <span class="fw-bold">{{ name }}</span>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-eye me-2"></i>Players in Waiting Room
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0" id="viewer-list">
+                        {% for user in viewers %}
+                            <li class="mb-2 d-flex align-items-center">
+                                <i class="fas fa-user text-success me-2"></i>
+                                <span>{{ user }}</span>
+                                <span class="badge bg-success ms-auto">Online</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Draft Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-users me-2"></i>Draft Format</h6>
+                            <p class="mb-0">Snake Draft - 5 rounds per player</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-clock me-2"></i>Pick Timer</h6>
+                            <p class="mb-0">2 minutes per pick</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6><i class="fas fa-user-tag me-2"></i>Required Roles</h6>
+                            <p class="mb-0">Fix Meiser, Speed Runner, Lift Tender</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const countdownEl = document.getElementById("countdown-timer");
+const draftTime = new Date("{{ draft_time }}").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = draftTime - now;
+
+    if (distance <= 0) {
+        clearInterval(interval);
+        countdownEl.innerText = "00:00";
+
+        // Finalize league draft unlock
+        fetch("{{ url_for('finalize_draft_unlock') }}", { method: "POST" })
+            .then(() => new Promise(resolve => setTimeout(resolve, 500)))
+            .then(() => fetch("{{ url_for('check_draft_ready') }}"))
+            .then(res => res.json())
+            .then(data => {
+                if (data.ready) {
+                    window.location.href = "{{ url_for('draftroom', league_code=league_code) }}";
+                } else {
+                    alert("Draft not ready yet. Please wait.");
+                }
+            })
+            .catch(err => {
+                console.error("Error checking draft readiness:", err);
+                alert("Error starting draft. Please try again.");
+            });
+        return;
+    }
+
+    const minutes = Math.floor(distance / 60000);
+    const seconds = Math.floor((distance % 60000) / 1000);
+    countdownEl.innerText = 
+        (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+
+const interval = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Auto-refresh waiting room every 10 seconds
+setInterval(() => {
+    if (countdownEl.innerText !== "00:00") {
+        location.reload();
+    }
+}, 10000);
+</script>
+{% endblock %}

@@ -1,0 +1,381 @@
+{
+    "1C4740D5": {
+        "name": "balls",
+        "code": "1C4740D5",
+        "host": "ty",
+        "players": [
+            "ty",
+            "jared",
+            "bob"
+        ],
+        "season": "summer",
+        "matchdays": 30,
+        "use_playoffs": true,
+        "playoff_cutoff": 6,
+        "lock_market_in_playoffs": true,
+        "draft_time": "2025-07-20T14:35:46.785023",
+        "draft_complete": true,
+        "snake_order": [
+            "ty",
+            "jared",
+            "bob",
+            "bob",
+            "jared",
+            "ty",
+            "ty",
+            "jared",
+            "bob",
+            "bob",
+            "jared",
+            "ty",
+            "ty",
+            "jared",
+            "bob"
+        ],
+        "market_initialized": true,
+        "playoff_records": {
+            "ty": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0
+            },
+            "jared": {
+                "wins": 1,
+                "losses": 0,
+                "ties": 0
+            },
+            "bob": {
+                "wins": 0,
+                "losses": 1,
+                "ties": 0
+            }
+        },
+        "recorded_matchups": [
+            "ty_bye_cycle_0",
+            "bob_vs_jared_cycle_0"
+        ],
+        "matchup_schedule": {
+            "ty": [
+                null,
+                "bob",
+                "jared",
+                null,
+                "bob",
+                "jared",
+                null,
+                "bob",
+                "jared",
+                null
+            ],
+            "jared": [
+                "bob",
+                null,
+                "ty",
+                "bob",
+                null,
+                "ty",
+                "bob",
+                null,
+                "ty",
+                "bob"
+            ],
+            "bob": [
+                "jared",
+                "ty",
+                null,
+                "jared",
+                "ty",
+                null,
+                "jared",
+                "ty",
+                null,
+                "jared"
+            ]
+        },
+        "settings_locked": true,
+        "draft_ready": true,
+        "picked_farmers": [
+            {
+                "id": 1,
+                "name": "Josh",
+                "strength": 1,
+                "handy": 7,
+                "stamina": 6,
+                "physical": 6,
+                "image": "/static/images/farmers/josh.png"
+            },
+            {
+                "id": 2,
+                "name": "Zach",
+                "strength": 5,
+                "handy": 4,
+                "stamina": 8,
+                "physical": 8,
+                "image": "/static/images/farmers/zach.png"
+            },
+            {
+                "id": 3,
+                "name": "Tyler",
+                "strength": 10,
+                "handy": 3,
+                "stamina": 8,
+                "physical": 10,
+                "image": "/static/images/farmers/tyler.jpg"
+            },
+            {
+                "id": 4,
+                "name": "Tyrone",
+                "strength": 4,
+                "handy": 7,
+                "stamina": 7,
+                "physical": 9,
+                "image": "/static/images/farmers/tyrone.png"
+            },
+            {
+                "id": 5,
+                "name": "Luke",
+                "strength": 9,
+                "handy": 3,
+                "stamina": 6,
+                "physical": 7,
+                "image": "/static/images/farmers/luke.png"
+            },
+            {
+                "id": 6,
+                "name": "Vrock",
+                "strength": 6,
+                "handy": 5,
+                "stamina": 5,
+                "physical": 6,
+                "image": "/static/images/farmers/vrock.png"
+            },
+            {
+                "id": 7,
+                "name": "Jared",
+                "strength": 5,
+                "handy": 8,
+                "stamina": 9,
+                "physical": 8,
+                "image": "/static/images/farmers/jared.png"
+            },
+            {
+                "id": 8,
+                "name": "Mezzy",
+                "strength": 8,
+                "handy": 9,
+                "stamina": 8,
+                "physical": 8,
+                "image": "/static/images/farmers/mezzy.png"
+            },
+            {
+                "id": 9,
+                "name": "Morris",
+                "strength": 7,
+                "handy": 3,
+                "stamina": 4,
+                "physical": 5,
+                "image": "/static/images/farmers/morris.png"
+            },
+            {
+                "id": 10,
+                "name": "Hunter",
+                "strength": 6,
+                "handy": 8,
+                "stamina": 6,
+                "physical": 6,
+                "image": "/static/images/farmers/hunter.png"
+            },
+            {
+                "id": 11,
+                "name": "Nelson",
+                "strength": 4,
+                "handy": 8,
+                "stamina": 4,
+                "physical": 7,
+                "image": "/static/images/farmers/nelson.png"
+            },
+            {
+                "id": 12,
+                "name": "Dante",
+                "strength": 7,
+                "handy": 4,
+                "stamina": 5,
+                "physical": 7,
+                "image": "/static/images/farmers/dante.png"
+            },
+            {
+                "id": 13,
+                "name": "Christian",
+                "strength": 6,
+                "handy": 4,
+                "stamina": 5,
+                "physical": 9,
+                "image": "/static/images/farmers/christian.png"
+            },
+            {
+                "id": 14,
+                "name": "Marc-Anthony",
+                "strength": 5,
+                "handy": 6,
+                "stamina": 4,
+                "physical": 6,
+                "image": "/static/images/farmers/marc.png"
+            },
+            {
+                "id": 15,
+                "name": "Daniel",
+                "strength": 5,
+                "handy": 4,
+                "stamina": 7,
+                "physical": 7,
+                "image": "/static/images/farmers/daniel.png"
+            }
+        ],
+        "user_drafts": {
+            "ty": {
+                "Fix Meiser": {
+                    "id": 1,
+                    "name": "Josh",
+                    "strength": 1,
+                    "handy": 7,
+                    "stamina": 6,
+                    "physical": 6,
+                    "image": "/static/images/farmers/josh.png"
+                },
+                "Speed Runner": {
+                    "id": 6,
+                    "name": "Vrock",
+                    "strength": 6,
+                    "handy": 5,
+                    "stamina": 5,
+                    "physical": 6,
+                    "image": "/static/images/farmers/vrock.png"
+                },
+                "Lift Tender": {
+                    "id": 7,
+                    "name": "Jared",
+                    "strength": 5,
+                    "handy": 8,
+                    "stamina": 9,
+                    "physical": 8,
+                    "image": "/static/images/farmers/jared.png"
+                },
+                "Bench 1": {
+                    "id": 12,
+                    "name": "Dante",
+                    "strength": 7,
+                    "handy": 4,
+                    "stamina": 5,
+                    "physical": 7,
+                    "image": "/static/images/farmers/dante.png"
+                },
+                "Bench 2": {
+                    "id": 13,
+                    "name": "Christian",
+                    "strength": 6,
+                    "handy": 4,
+                    "stamina": 5,
+                    "physical": 9,
+                    "image": "/static/images/farmers/christian.png"
+                }
+            },
+            "jared": {
+                "Fix Meiser": {
+                    "id": 2,
+                    "name": "Zach",
+                    "strength": 5,
+                    "handy": 4,
+                    "stamina": 8,
+                    "physical": 8,
+                    "image": "/static/images/farmers/zach.png"
+                },
+                "Speed Runner": {
+                    "id": 5,
+                    "name": "Luke",
+                    "strength": 9,
+                    "handy": 3,
+                    "stamina": 6,
+                    "physical": 7,
+                    "image": "/static/images/farmers/luke.png"
+                },
+                "Lift Tender": {
+                    "id": 8,
+                    "name": "Mezzy",
+                    "strength": 8,
+                    "handy": 9,
+                    "stamina": 8,
+                    "physical": 8,
+                    "image": "/static/images/farmers/mezzy.png"
+                },
+                "Bench 1": {
+                    "id": 11,
+                    "name": "Nelson",
+                    "strength": 4,
+                    "handy": 8,
+                    "stamina": 4,
+                    "physical": 7,
+                    "image": "/static/images/farmers/nelson.png"
+                },
+                "Bench 2": {
+                    "id": 14,
+                    "name": "Marc-Anthony",
+                    "strength": 5,
+                    "handy": 6,
+                    "stamina": 4,
+                    "physical": 6,
+                    "image": "/static/images/farmers/marc.png"
+                }
+            },
+            "bob": {
+                "Fix Meiser": {
+                    "id": 3,
+                    "name": "Tyler",
+                    "strength": 10,
+                    "handy": 3,
+                    "stamina": 8,
+                    "physical": 10,
+                    "image": "/static/images/farmers/tyler.jpg"
+                },
+                "Speed Runner": {
+                    "id": 4,
+                    "name": "Tyrone",
+                    "strength": 4,
+                    "handy": 7,
+                    "stamina": 7,
+                    "physical": 9,
+                    "image": "/static/images/farmers/tyrone.png"
+                },
+                "Lift Tender": {
+                    "id": 9,
+                    "name": "Morris",
+                    "strength": 7,
+                    "handy": 3,
+                    "stamina": 4,
+                    "physical": 5,
+                    "image": "/static/images/farmers/morris.png"
+                },
+                "Bench 1": {
+                    "id": 10,
+                    "name": "Hunter",
+                    "strength": 6,
+                    "handy": 8,
+                    "stamina": 6,
+                    "physical": 6,
+                    "image": "/static/images/farmers/hunter.png"
+                },
+                "Bench 2": {
+                    "id": 15,
+                    "name": "Daniel",
+                    "strength": 5,
+                    "handy": 4,
+                    "stamina": 7,
+                    "physical": 7,
+                    "image": "/static/images/farmers/daniel.png"
+                }
+            }
+        },
+        "picks_made": 15,
+        "pick_start_time": "2025-07-20T14:36:41.285113",
+        "last_pick_message": "bob selected Daniel as Bench 2"
+    }
+}

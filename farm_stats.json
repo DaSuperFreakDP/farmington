@@ -1,0 +1,811 @@
+{
+    "users": {
+        "ty": {
+            "matchday": 5,
+            "drafted_team": {
+                "Fix Meiser": {
+                    "id": 1,
+                    "name": "Josh",
+                    "strength": 1,
+                    "handy": 7,
+                    "stamina": 6,
+                    "physical": 6,
+                    "image": "/static/images/farmers/josh.png"
+                },
+                "Speed Runner": {
+                    "id": 6,
+                    "name": "Vrock",
+                    "strength": 6,
+                    "handy": 5,
+                    "stamina": 5,
+                    "physical": 6,
+                    "image": "/static/images/farmers/vrock.png"
+                },
+                "Lift Tender": {
+                    "id": 7,
+                    "name": "Jared",
+                    "strength": 5,
+                    "handy": 8,
+                    "stamina": 9,
+                    "physical": 8,
+                    "image": "/static/images/farmers/jared.png"
+                },
+                "Bench 1": {
+                    "id": 12,
+                    "name": "Dante",
+                    "strength": 7,
+                    "handy": 4,
+                    "stamina": 5,
+                    "physical": 7,
+                    "image": "/static/images/farmers/dante.png"
+                },
+                "Bench 2": {
+                    "id": 13,
+                    "name": "Christian",
+                    "strength": 6,
+                    "handy": 4,
+                    "stamina": 5,
+                    "physical": 9,
+                    "image": "/static/images/farmers/christian.png"
+                }
+            },
+            "data": [
+                {
+                    "matchday": 1,
+                    "season": "summer",
+                    "daily_crop": "watermelons",
+                    "catastrophe_loss": 0,
+                    "affected_farmer": null,
+                    "story_message": "First,\nJosh tried their best to Repair Tha Barn but turned it into a 'do-it-yourself' disaster that'll be on HGTV's blooper reel. Vrock and Jared were both very disappointed in Josh.\nDue to after slipping on a rogue vegetable during lunch break, Josh became injured and will miss 0 matchday(s).\nThen,\nVrock tried their best to Harvest tha Crops but accidentally harvested his own damn boot. Fucking dumbass. Josh and Jared were both very disappointed in Vrock.\nDue to due to throwing out his back riding the mechanical bull at the local bar, Vrock became injured and will miss 0 matchday(s).\nFinally,\nJared tried their best to Shovel Tha Manure but the whole pile exploded in his face like a dirty prank from the universe. Josh and Vrock were both very disappointed in Jared.\nDue to because he tried to arm wrestle a gangster cow and lost, Jared became injured and will miss 0 matchday(s).\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Josh",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 5,
+                            "crop_points": 5,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 2,
+                            "injuries_this_season": 1,
+                            "injury_points_lost": 2,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Vrock",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 6,
+                            "crop_points": 6,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 1,
+                            "injuries_this_season": 1,
+                            "injury_points_lost": 1,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Jared",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 6,
+                            "crop_points": 6,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 2,
+                            "injuries_this_season": 1,
+                            "injury_points_lost": 2,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 2,
+                    "season": "summer",
+                    "daily_crop": "zucchini",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Jared",
+                    "story_message": "First,\nJosh tried their best to Fix Tha Tractor but accidentally transformed it into an expensive paperweight. Vrock and Jared were both very disappointed in Josh.\nThen,\nVrock tried their best to Mow Tha Lawn but somehow turned the lawnmower into a runaway go-kart. Josh and Jared were both very disappointed in Vrock.\nFinally,\nJared tried their best to Shovel Tha Manure but he failed. That's wasn't cowshit... that was BULLSHIT! Josh and Vrock were both very disappointed in Jared.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Josh",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 19,
+                            "crop_points": 19,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Vrock",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 10,
+                            "crop_points": 10,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Jared",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 2,
+                            "crop_points": 2,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 3,
+                    "season": "summer",
+                    "daily_crop": "corn",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Vrock",
+                    "story_message": "First,\nJosh tried their best to Fix Tha Tractor but somehow made it worse, now it's a lawn ornament. Vrock and Jared were both very disappointed in Josh.\nThen,\nVrock tried their best to Milk Tha Cow but the cow said 'You better take me out for dinner first'. Josh and Jared were both very disappointed in Vrock.\nFinally,\nJared tried their best to Push Tha Car but it did not move an inch. Josh and Vrock were both very disappointed in Jared.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Josh",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 5,
+                            "crop_points": 5,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Vrock",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 4,
+                            "crop_points": 4,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Jared",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 18,
+                            "crop_points": 18,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 4,
+                    "season": "summer",
+                    "daily_crop": "tomatoes",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Vrock",
+                    "story_message": "First,\nJosh tried their best to Repair Tha Barn but turned it into a 'do-it-yourself' disaster that'll be on HGTV's blooper reel. Vrock and Jared were both very disappointed in Josh.\nThen,\nVrock tried their best to Harvest tha Crops and now the field looks like a diggity-darn masterpiece. The town declared it a holiday!\nFinally,\nJared tried their best to Shovel Tha Manure and successfully cleaned it all up. We could call him the scatman today thats for sure. The town declared it a holiday!\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Josh",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 22,
+                            "crop_points": 22,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Vrock",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 16,
+                            "crop_points": 15,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Jared",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 63,
+                            "crop_points": 52,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 5,
+                    "season": "summer",
+                    "daily_crop": "corn",
+                    "catastrophe_loss": 2,
+                    "affected_farmer": null,
+                    "story_message": "First,\nJosh tried their best to Repair Tha Barn and made the place look like a palace. Now the Amish are sending him contracts. The cows mooed in approval!\nThen,\nVrock tried their best to Milk Tha Cow but failed. If he can't milk the cow, I guess he has to leave the farm. Josh and Jared were both very disappointed in Vrock.\nFinally,\nJared tried their best to Shovel Tha Manure but now it's a 'scent-sational' disaster! Josh and Vrock were both very disappointed in Jared.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Josh",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 2,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Vrock",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Jared",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                }
+            ],
+            "total_injuries": 3,
+            "total_injury_points_lost": 5
+        },
+        "jared": {
+            "matchday": 5,
+            "drafted_team": {
+                "Fix Meiser": {
+                    "id": 2,
+                    "name": "Zach",
+                    "strength": 5,
+                    "handy": 4,
+                    "stamina": 8,
+                    "physical": 8,
+                    "image": "/static/images/farmers/zach.png"
+                },
+                "Speed Runner": {
+                    "id": 5,
+                    "name": "Luke",
+                    "strength": 9,
+                    "handy": 3,
+                    "stamina": 6,
+                    "physical": 7,
+                    "image": "/static/images/farmers/luke.png"
+                },
+                "Lift Tender": {
+                    "id": 8,
+                    "name": "Mezzy",
+                    "strength": 8,
+                    "handy": 9,
+                    "stamina": 8,
+                    "physical": 8,
+                    "image": "/static/images/farmers/mezzy.png"
+                },
+                "Bench 1": {
+                    "id": 11,
+                    "name": "Nelson",
+                    "strength": 4,
+                    "handy": 8,
+                    "stamina": 4,
+                    "physical": 7,
+                    "image": "/static/images/farmers/nelson.png"
+                },
+                "Bench 2": {
+                    "id": 14,
+                    "name": "Marc-Anthony",
+                    "strength": 5,
+                    "handy": 6,
+                    "stamina": 4,
+                    "physical": 6,
+                    "image": "/static/images/farmers/marc.png"
+                }
+            },
+            "data": [
+                {
+                    "matchday": 1,
+                    "season": "summer",
+                    "daily_crop": "cucumbers",
+                    "catastrophe_loss": 2,
+                    "affected_farmer": null,
+                    "story_message": "First,\nZach tried their best to Fix Tha Tractor but somehow made it worse, now it's a lawn ornament. Luke and Mezzy were both very disappointed in Zach.\nThen,\nLuke tried their best to Chase Tha Coyote but the coyote hit him with a crate of dynamite. Classic Wile E. move. Zach and Mezzy were both very disappointed in Luke.\nFinally,\nMezzy tried their best to Shovel Tha Manure and even though he succeeded, nothing will mask that smell... The farmers celebrated with some of Aunt Myrna's Party cheese salad!\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Zach",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Luke",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Mezzy",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 11,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 2,
+                    "season": "summer",
+                    "daily_crop": "corn",
+                    "catastrophe_loss": 2,
+                    "affected_farmer": null,
+                    "story_message": "First,\nZach tried their best to Build Tha Fence but the only thing he nailed was his own finger. Now a sheep is nailing his wife. Luke and Mezzy were both very disappointed in Zach.\nThen,\nLuke tried their best to Mow Tha Lawn but the lawnmower refused to start. Zach and Mezzy were both very disappointed in Luke.\nFinally,\nMezzy tried their best to Push Tha Car but the car didn't budge. Zach and Luke were both very disappointed in Mezzy.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Zach",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Luke",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Mezzy",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 3,
+                    "season": "summer",
+                    "daily_crop": "watermelons",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Mezzy",
+                    "story_message": "First,\nZach tried their best to Build Tha Fence but ended up creating a luxury dog door for every farm animal...mission failed! Luke and Mezzy were both very disappointed in Zach.\nThen,\nLuke tried their best to Chase Tha Coyote but his sneakers were no match for the ACME jetpack that just left him in the dust. Zach and Mezzy were both very disappointed in Luke.\nFinally,\nMezzy tried their best to Push Tha Car but the car stayed put. Sounds like someone forgot to put it in neutral. Zach and Luke were both very disappointed in Mezzy.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Zach",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 15,
+                            "crop_points": 15,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Luke",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 25,
+                            "crop_points": 25,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Mezzy",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 4,
+                            "crop_points": 4,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 4,
+                    "season": "summer",
+                    "daily_crop": "tomatoes",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Mezzy",
+                    "story_message": "First,\nZach tried their best to Repair Tha Barn but turned it into a 'do-it-yourself' disaster that'll be on HGTV's blooper reel. Luke and Mezzy were both very disappointed in Zach.\nThen,\nLuke tried their best to Mow Tha Lawn and succeeded. Everyone starting clapping, but they weren't moving their hands. Fireworks lit up the night sky in the shape of a sexy chicken!\nFinally,\nMezzy tried their best to Push Tha Car but the car stayed put. Sounds like someone forgot to put it in neutral. Zach and Luke were both very disappointed in Mezzy.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Zach",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 12,
+                            "crop_points": 12,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Luke",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 36,
+                            "crop_points": 33,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Mezzy",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 2,
+                            "crop_points": 2,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 5,
+                    "season": "summer",
+                    "daily_crop": "zucchini",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Zach",
+                    "story_message": "First,\nZach tried their best to Build Tha Fence but the only thing he nailed was his own finger. Now a sheep is nailing his wife. Luke and Mezzy were both very disappointed in Zach.\nThen,\nLuke tried their best to Chase Tha Coyote but his sneakers were no match for the ACME jetpack that just left him in the dust. Zach and Mezzy were both very disappointed in Luke.\nFinally,\nMezzy tried their best to Shovel Tha Manure but his efforts belong in the same pile. Zach and Luke were both very disappointed in Mezzy.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Zach",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 2,
+                            "crop_points": 2,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Luke",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 9,
+                            "crop_points": 9,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Mezzy",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 20,
+                            "crop_points": 20,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                }
+            ],
+            "total_injuries": 0,
+            "total_injury_points_lost": 0
+        },
+        "bob": {
+            "matchday": 5,
+            "drafted_team": {
+                "Fix Meiser": {
+                    "id": 3,
+                    "name": "Tyler",
+                    "strength": 10,
+                    "handy": 3,
+                    "stamina": 8,
+                    "physical": 10,
+                    "image": "/static/images/farmers/tyler.jpg"
+                },
+                "Speed Runner": {
+                    "id": 4,
+                    "name": "Tyrone",
+                    "strength": 4,
+                    "handy": 7,
+                    "stamina": 7,
+                    "physical": 9,
+                    "image": "/static/images/farmers/tyrone.png"
+                },
+                "Lift Tender": {
+                    "id": 9,
+                    "name": "Morris",
+                    "strength": 7,
+                    "handy": 3,
+                    "stamina": 4,
+                    "physical": 5,
+                    "image": "/static/images/farmers/morris.png"
+                },
+                "Bench 1": {
+                    "id": 10,
+                    "name": "Hunter",
+                    "strength": 6,
+                    "handy": 8,
+                    "stamina": 6,
+                    "physical": 6,
+                    "image": "/static/images/farmers/hunter.png"
+                },
+                "Bench 2": {
+                    "id": 15,
+                    "name": "Daniel",
+                    "strength": 5,
+                    "handy": 4,
+                    "stamina": 7,
+                    "physical": 7,
+                    "image": "/static/images/farmers/daniel.png"
+                }
+            },
+            "data": [
+                {
+                    "matchday": 1,
+                    "season": "summer",
+                    "daily_crop": "tomatoes",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Tyrone",
+                    "story_message": "First,\nTyler tried their best to Repair Tha Barn but turned it into a 'do-it-yourself' disaster that'll be on HGTV's blooper reel. Tyrone and Morris were both very disappointed in Tyler.\nThen,\nTyrone tried their best to Chase Tha Coyote but the coyote hit him with a crate of dynamite. Classic Wile E. move. Tyler and Morris were both very disappointed in Tyrone.\nDue to blowing out his fat wife's back, Tyrone became injured and will miss 0 matchday(s).\nFinally,\nMorris tried their best to Shovel Tha Manure but now it's a 'scent-sational' disaster! Tyler and Tyrone were both very disappointed in Morris.\nDue to after falling off a tractor trying to jack off, Morris became injured and will miss 0 matchday(s).\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Tyler",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 13,
+                            "crop_points": 13,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Tyrone",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 1,
+                            "crop_points": 1,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 1,
+                            "injuries_this_season": 1,
+                            "injury_points_lost": 1,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Morris",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 5,
+                            "crop_points": 5,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 1,
+                            "injuries_this_season": 1,
+                            "injury_points_lost": 1,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 2,
+                    "season": "summer",
+                    "daily_crop": "zucchini",
+                    "catastrophe_loss": 2,
+                    "affected_farmer": null,
+                    "story_message": "First,\nTyler tried their best to Build Tha Fence but forgot to put up the posts first, so it's basically just a bunch of random boards lying on the ground. Fucking retard. Tyrone and Morris were both very disappointed in Tyler.\nDue to after a silo fell and crushed his legs, Tyler became injured and will miss 0 matchday(s).\nThen,\nTyrone tried their best to Milk Tha Cow but it's tits had nothing left to give...Fresh burgers tomorrow? Tyler and Morris were both very disappointed in Tyrone.\nFinally,\nMorris tried their best to Push Tha Car and defied physics, expectations, and his chiropractor's advice! A feast of fresh cornbread and raccoon BBQ was served!\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Tyler",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 2,
+                            "injuries_this_season": 1,
+                            "injury_points_lost": 2,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Tyrone",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 0,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Morris",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 4,
+                            "crop_points": 0,
+                            "catastrophe_loss": 2,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 3,
+                    "season": "summer",
+                    "daily_crop": "watermelons",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Tyrone",
+                    "story_message": "First,\nTyler tried their best to Fix Tha Tractor but now it's smoking like Josh with a bong. Tyrone and Morris were both very disappointed in Tyler.\nThen,\nTyrone tried their best to Harvest tha Crops but ended up in a brawling with a angry scarecrow. Tyler and Morris were both very disappointed in Tyrone.\nFinally,\nMorris tried their best to Shovel Tha Manure but now it's a 'scent-sational' disaster! Tyler and Tyrone were both very disappointed in Morris.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Tyler",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 15,
+                            "crop_points": 15,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Tyrone",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 8,
+                            "crop_points": 8,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Morris",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 6,
+                            "crop_points": 6,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 4,
+                    "season": "summer",
+                    "daily_crop": "peppers",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Tyler",
+                    "story_message": "First,\nTyler tried their best to Fix Tha Tractor but accidentally transformed it into an expensive paperweight. Tyrone and Morris were both very disappointed in Tyler.\nThen,\nTyrone tried their best to Mow Tha Lawn and finished so fast, even the grass didn't realize it had been cut. Everyone cheered and started to square-dance!\nFinally,\nMorris tried their best to Shovel Tha Manure but now it's a 'scent-sational' disaster! Tyler and Tyrone were both very disappointed in Morris.\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Tyler",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 10,
+                            "crop_points": 10,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Tyrone",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 49,
+                            "crop_points": 44,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Morris",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 9,
+                            "crop_points": 9,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        }
+                    ]
+                },
+                {
+                    "matchday": 5,
+                    "season": "summer",
+                    "daily_crop": "zucchini",
+                    "catastrophe_loss": 1,
+                    "affected_farmer": "Morris",
+                    "story_message": "First,\nTyler tried their best to Build Tha Fence but the only thing he nailed was his own finger. Now a sheep is nailing his wife. Tyrone and Morris were both very disappointed in Tyler.\nThen,\nTyrone tried their best to Milk Tha Cow and became the dairy queen. Everyone cheered and started to square-dance!\nFinally,\nMorris tried their best to Push Tha Car but the car didn't budge. Tyler and Tyrone were both very disappointed in Morris.\nDue to after a silo fell and crushed his legs, Morris became injured and will miss 0 matchday(s).\n\nYeeeeeeHawww! That's all the news for this matchday. Stay tuned for more Farmington News! YEEEEEHAWWWW!",
+                    "farmers": [
+                        {
+                            "name": "Tyler",
+                            "job": "Fix Meiser",
+                            "points_after_catastrophe": 9,
+                            "crop_points": 9,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Tyrone",
+                            "job": "Speed Runner",
+                            "points_after_catastrophe": 34,
+                            "crop_points": 32,
+                            "catastrophe_loss": 0,
+                            "daily_injury_loss": 0,
+                            "injuries_this_season": 0,
+                            "injury_points_lost": 0,
+                            "miss_days": 0
+                        },
+                        {
+                            "name": "Morris",
+                            "job": "Lift Tender",
+                            "points_after_catastrophe": 1,
+                            "crop_points": 1,
+                            "catastrophe_loss": 1,
+                            "daily_injury_loss": 2,
+                            "injuries_this_season": 1,
+                            "injury_points_lost": 2,
+                            "miss_days": 0
+                        }
+                    ]
+                }
+            ],
+            "total_injuries": 4,
+            "total_injury_points_lost": 6
+        }
+    }
+}

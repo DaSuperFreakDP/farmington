@@ -1,0 +1,282 @@
+{
+    "Josh": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Zach": {
+        "total_points": 6,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Speed Runner": {
+                "count": 1,
+                "total_points": 6
+            }
+        },
+        "recent_form": [
+            6
+        ]
+    },
+    "Tyler": {
+        "total_points": 5,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 5
+            }
+        },
+        "recent_form": [
+            5
+        ]
+    },
+    "Tyrone": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Luke": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Vrock": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Jared": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Speed Runner": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Mezzy": {
+        "total_points": 5,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 5
+            }
+        },
+        "recent_form": [
+            5
+        ]
+    },
+    "Morris": {
+        "total_points": 1,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 1
+            }
+        },
+        "recent_form": [
+            1
+        ]
+    },
+    "Hunter": {
+        "total_points": 6,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 6
+            }
+        },
+        "recent_form": [
+            6
+        ]
+    },
+    "Nelson": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Dante": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Christian": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Marc-Anthony": {
+        "total_points": 0,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 1,
+                "total_points": 0
+            }
+        },
+        "recent_form": [
+            0
+        ]
+    },
+    "Daniel": {
+        "total_points": 4,
+        "matchdays_played": 1,
+        "roles_played": {
+            "Speed Runner": {
+                "count": 1,
+                "total_points": 4
+            }
+        },
+        "recent_form": [
+            4
+        ]
+    },
+    "Nick Rebello": {
+        "total_points": 14,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 9
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            9,
+            5
+        ]
+    },
+    "Kieran Richards": {
+        "total_points": 11,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 11
+            }
+        },
+        "recent_form": [
+            3,
+            5,
+            0,
+            3,
+            0
+        ]
+    },
+    "Gus Mulewhistle": {
+        "total_points": 10,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 15
+            }
+        },
+        "recent_form": [
+            2,
+            5,
+            0,
+            3,
+            0
+        ]
+    },
+    "Dusty Plowman": {
+        "total_points": 6,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Fix Meiser": {
+                "count": 5,
+                "total_points": 6
+            }
+        },
+        "recent_form": [
+            0,
+            6,
+            0,
+            0,
+            0
+        ]
+    },
+    "Bo Plowman": {
+        "total_points": 11,
+        "matchdays_played": 5,
+        "roles_played": {
+            "Lift Tender": {
+                "count": 5,
+                "total_points": 4
+            }
+        },
+        "recent_form": [
+            0,
+            0,
+            0,
+            4,
+            7
+        ]
+    }
+}

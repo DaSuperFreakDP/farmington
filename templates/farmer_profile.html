@@ -1,0 +1,286 @@
+
+{% extends "base.html" %}
+
+{% block title %}{{ farmer.name }} - Farmer Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="display-5 fw-bold text-primary">
+                    <i class="fas fa-user me-2"></i>{{ farmer.name }}
+                </h1>
+                <a href="{{ url_for('index', tab='farmer_stats') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Farmer Stats
+                </a>
+            </div>
+
+            <div class="row">
+                <!-- Farmer Image and Basic Info -->
+                <div class="col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-id-card me-2"></i>Profile
+                            </h4>
+                        </div>
+                        
+                        {% if farmer.image %}
+                            <img src="{{ farmer.image }}" class="card-img-top" alt="{{ farmer.name }}" 
+                                 style="height: 500px; object-fit: cover;">
+                        {% else %}
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" 
+                                 style="height: 500px;">
+                                <i class="fas fa-user fa-5x text-muted"></i>
+                            </div>
+                        {% endif %}
+
+                        <div class="card-body text-center">
+                            <h3 class="card-title mb-3">{{ farmer.name }}</h3>
+                            
+                            {% if farmer_stats %}
+                                <div class="mb-3">
+                                    <span class="badge bg-info fs-6">
+                                        Current Role: {{ farmer_stats.role }}
+                                    </span>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <span class="badge bg-success fs-6">
+                                        Owner: {{ farmer_stats.owner_team_name }}
+                                    </span>
+                                </div>
+                            {% endif %}
+
+                            <!-- Overall Rating -->
+                            <div class="mt-3">
+                                <div class="progress mb-2" style="height: 12px;">
+                                    <div class="progress-bar bg-primary" 
+                                         style="width: {{ ((farmer.strength + farmer.handy + farmer.stamina + farmer.physical) / 40 * 100)|round }}%"></div>
+                                </div>
+                                <small class="text-muted">
+                                    Overall Rating: {{ farmer.strength + farmer.handy + farmer.stamina + farmer.physical }}/40
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats and Performance -->
+                <div class="col-lg-8">
+                    <div class="row">
+                        <!-- Stats Card -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="card-title mb-0">
+                                        <i class="fas fa-chart-bar me-2"></i>Stats
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row text-center mb-3">
+                                        <div class="col-6">
+                                            <div class="stat-display">
+                                                <div class="stat-value text-danger fw-bold display-6">{{ farmer.strength }}</div>
+                                                <div class="stat-label text-muted">Strength</div>
+                                                <div class="progress mt-1" style="height: 6px;">
+                                                    <div class="progress-bar bg-danger" style="width: {{ (farmer.strength / 10 * 100)|round }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stat-display">
+                                                <div class="stat-value text-warning fw-bold display-6">{{ farmer.handy }}</div>
+                                                <div class="stat-label text-muted">Handy</div>
+                                                <div class="progress mt-1" style="height: 6px;">
+                                                    <div class="progress-bar bg-warning" style="width: {{ (farmer.handy / 10 * 100)|round }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center">
+                                        <div class="col-6">
+                                            <div class="stat-display">
+                                                <div class="stat-value text-info fw-bold display-6">{{ farmer.stamina }}</div>
+                                                <div class="stat-label text-muted">Stamina</div>
+                                                <div class="progress mt-1" style="height: 6px;">
+                                                    <div class="progress-bar bg-info" style="width: {{ (farmer.stamina / 10 * 100)|round }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stat-display">
+                                                <div class="stat-value text-success fw-bold display-6">{{ farmer.physical }}</div>
+                                                <div class="stat-label text-muted">Physical</div>
+                                                <div class="progress mt-1" style="height: 6px;">
+                                                    <div class="progress-bar bg-success" style="width: {{ (farmer.physical / 10 * 100)|round }}%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Role Recommendations -->
+                                    <div class="mt-4">
+                                        <h6 class="text-muted mb-2">Best Suited For:</h6>
+                                        {% set max_stat = [farmer.strength, farmer.handy, farmer.stamina]|max %}
+                                        {% if farmer.handy == max_stat %}
+                                            <span class="badge bg-warning text-dark">Fix Meiser (Handy Focus)</span>
+                                        {% elif farmer.stamina == max_stat %}
+                                            <span class="badge bg-info">Speed Runner (Stamina Focus)</span>
+                                        {% elif farmer.strength == max_stat %}
+                                            <span class="badge bg-danger">Lift Tender (Strength Focus)</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Crop Preferences Card -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card shadow-sm h-100">
+                                <div class="card-header bg-warning text-dark">
+                                    <h5 class="card-title mb-0">
+                                        <i class="fas fa-seedling me-2"></i>Crop Preferences
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    {% if farmer.crop_preferences %}
+                                        <div class="row text-center">
+                                            <div class="col-6 mb-3">
+                                                <div class="season-pref">
+                                                    <div class="mb-2">
+                                                        <span class="badge bg-warning text-dark fs-6">☀️ Summer</span>
+                                                    </div>
+                                                    <h5 class="text-warning">{{ farmer.crop_preferences.summer|title }}</h5>
+                                                    <small class="text-muted">Preferred crop in summer season</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <div class="season-pref">
+                                                    <div class="mb-2">
+                                                        <span class="badge bg-success fs-6">🍂 Fall</span>
+                                                    </div>
+                                                    <h5 class="text-success">{{ farmer.crop_preferences.fall|title }}</h5>
+                                                    <small class="text-muted">Preferred crop in fall season</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <div class="season-pref">
+                                                    <div class="mb-2">
+                                                        <span class="badge bg-info fs-6">❄️ Winter</span>
+                                                    </div>
+                                                    <h5 class="text-info">{{ farmer.crop_preferences.winter|title }}</h5>
+                                                    <small class="text-muted">Preferred crop in winter season</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <div class="season-pref">
+                                                    <div class="mb-2">
+                                                        <span class="badge bg-light text-dark fs-6">🌸 Spring</span>
+                                                    </div>
+                                                    <h5 class="text-secondary">{{ farmer.crop_preferences.spring|title }}</h5>
+                                                    <small class="text-muted">Preferred crop in spring season</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="alert alert-info mt-3">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            <small>
+                                                <strong>Crop Bonus:</strong> When this farmer works with their preferred crop, 
+                                                they receive a 1.5x harvest bonus!
+                                            </small>
+                                        </div>
+                                    {% else %}
+                                        <div class="text-center text-muted">
+                                            <i class="fas fa-question-circle fa-3x mb-3"></i>
+                                            <p>No crop preferences available for this farmer.</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Card (if farmer has stats) -->
+                        {% if farmer_stats %}
+                        <div class="col-12">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="card-title mb-0">
+                                        <i class="fas fa-trophy me-2"></i>Performance Statistics
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row text-center">
+                                        <div class="col-md-3">
+                                            <div class="stat-box">
+                                                <h3 class="text-primary">{{ farmer_stats.total_points }}</h3>
+                                                <small class="text-muted">Total Points</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="stat-box">
+                                                <h3 class="text-success">{{ farmer_stats.matchdays }}</h3>
+                                                <small class="text-muted">Matchdays Played</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="stat-box">
+                                                <h3 class="text-warning">{{ farmer_stats.average }}</h3>
+                                                <small class="text-muted">Average Points</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="stat-box">
+                                                <h3 class="text-danger">{{ farmer_stats.best }}</h3>
+                                                <small class="text-muted">Best Performance</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% if farmer_stats.vs_your_role_diff is not none %}
+                                    <div class="mt-3 text-center">
+                                        <div class="alert alert-{% if farmer_stats.vs_your_role_diff > 0 %}success{% elif farmer_stats.vs_your_role_diff < 0 %}danger{% else %}secondary{% endif %}">
+                                            <strong>vs. Your {{ farmer_stats.role }}:</strong>
+                                            {% if farmer_stats.vs_your_role_diff > 0 %}
+                                                <span class="text-success">+{{ farmer_stats.vs_your_role_diff }} points ahead</span>
+                                            {% elif farmer_stats.vs_your_role_diff < 0 %}
+                                                <span class="text-danger">{{ farmer_stats.vs_your_role_diff }} points behind</span>
+                                            {% else %}
+                                                <span class="text-muted">Tied</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.stat-display {
+    padding: 1rem 0;
+}
+
+.season-pref {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.02);
+}
+
+.stat-box {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.02);
+    margin-bottom: 1rem;
+}
+</style>
+{% endblock %}
